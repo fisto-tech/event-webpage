@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airlock</title>
+    <link rel="icon" href="./logo.svg">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            background: rgba(22, 21, 21, 0.8);
+            box-sizing: border-box;
+
+        }
+
+        @media screen and (min-width: 992px) {
+            body {
+                overflow-y: hidden;
+                overflow-x: hidden;
+            }
+
+            #preloader img {
+              width: 500px !important;
+            }
+
+        }
+
+
+           @media screen and (max-width: 992px) {
+            
+
+            #preloader img {
+              width: 300px !important;
+            }
+
+        }
+
+        #content {
+            width: 100%;
+            margin: 0 auto;
+           
+
+        }
+
+        #content object {
+            width: 100%;
+            height: 100%;
+            border: none;
+            min-height: 100vh;
+            background-color: none;
+        }
+
+
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgb(255, 255, 255);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999999999;
+      opacity: 1;
+      padding: 10vw;
+      /* display: none; */
+    }
+
+
+
+    /* Slow smooth logo animation */
+    @keyframes logoPulse {
+      0% {
+        transform: scale(0.9);
+        opacity: 0.6;
+      }
+
+      50% {
+        transform: scale(1.1);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(0.9);
+        opacity: 0.6;
+      }
+    }
+
+    .animate-logo {
+      animation: logoPulse 8s ease-in-out infinite;
+      /* slower 4s cycle */
+    }
+
+    /* Fade-out effect */
+    .fade-out {
+      opacity: 0;
+      transition: opacity 4s ease-out;
+      /* smooth 2s fade */
+      pointer-events: none;
+    }
+
+    </style>
+</head>
+
+<body>
+  <div id="preloader" class="fixed inset-0 bg-white flex items-center justify-center z-999999999999"
+    style="opacity: 1;">
+    <img src="./global-assets/Airlock-Logo.gif" alt="Logo" class="w-20 h-20 animate-logo" style="background-color: white; ">
+  </div>
+    <div id="content"></div>
+</body>
+
+<!-- 
+<script>
+  const embedded = document.getElementById("content");
+   window.addEventListener("message", function (event) {
+      // You could add origin checks here for security
+      if (event.data && event.data.action === "toggleFullscreen") {
+        if (!document.fullscreenElement) {
+          
+          if (embedded.requestFullscreen) {
+            embedded.requestFullscreen();
+          } else if (embedded.webkitRequestFullscreen) {
+            embedded.webkitRequestFullscreen();
+          } else if (embedded.msRequestFullscreen) {
+            embedded.msRequestFullscreen();
+          }
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          }
+        }
+      }
+    });
+
+   
+</script>
+
+
+
+
+
+<script>
+    function load_home() {
+        var isMobile = window.innerWidth <= 1115;
+        var folderPath = isMobile ? 'For_Desc/index.html' : 'For_Desc/index.html';
+        if (!document.getElementById("content")) {
+            console.error("Content element not found");
+            return;
+        }
+        document.getElementById("content").innerHTML =
+            '<object type="text/html" data="' + folderPath + '" style="width:100%; height:600px;"></object>';
+    }
+    window.onload = load_home;
+</script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const preloader = document.getElementById("preloader");
+
+      // Keep preloader visible for a bit longer (e.g., 2.5 seconds)
+      setTimeout(() => {
+        preloader.classList.add("fade-out");
+
+        // Remove preloader from DOM after fade-out completes
+        setTimeout(() => {
+          preloader.style.display = "none";
+        }, 1000); 
+      }, 3000); 
+    });
+  </script> -->
+    <script>
+     const preloader  = document.getElementById("preloader");
+const contentDiv = document.getElementById("content");
+
+let hideScheduled = false;
+
+function scheduleHide() {
+    if (hideScheduled) return;
+    hideScheduled = true;
+    setTimeout(showContent, 2000); // 2 sec buffer after all images load
+}
+
+function showContent() {
+    preloader.classList.add("fade-out");
+    setTimeout(() => {
+        preloader.style.display = "none";
+    }, 800);
+}
+
+function waitForAllImagesInIframe(objectEl) {
+    try {
+        const iframeDoc = objectEl.contentDocument || objectEl.contentWindow?.document;
+        if (!iframeDoc) { scheduleHide(); return; }
+
+        const images = Array.from(iframeDoc.getElementsByTagName('img'));
+
+        if (images.length === 0) { scheduleHide(); return; }
+
+        let loadedCount = 0;
+        const totalImages = images.length;
+
+        function onImageSettled() {
+            loadedCount++;
+            if (loadedCount >= totalImages) {
+                scheduleHide();
+            }
+        }
+
+        images.forEach((img) => {
+            if (img.complete) {
+                onImageSettled();
+            } else {
+                img.addEventListener('load',  onImageSettled, { once: true });
+                img.addEventListener('error', onImageSettled, { once: true });
+            }
+        });
+
+    } catch (err) {
+        console.error('Iframe access error:', err);
+        scheduleHide();
+    }
+}
+
+function load_home() {
+    var folderPath = 'For_Desc/index.html';
+    contentDiv.innerHTML = '<object type="text/html" data="' + folderPath +
+        '" style="width:100%; height:600px;"></object>';
+
+    const objectEl = contentDiv.querySelector('object');
+
+    if (objectEl) {
+        objectEl.addEventListener('load', function () {
+            setTimeout(() => waitForAllImagesInIframe(objectEl), 500);
+        });
+
+        // Hard fallback — never show preloader longer than 20 seconds
+        setTimeout(() => scheduleHide(), 20000);
+    }
+}
+
+// ===== MERGED MESSAGE LISTENER (both contentReady + fullscreen) =====
+const embedded = document.getElementById("content");
+window.addEventListener("message", function (event) {
+    if (!event.data || !event.data.action) return;
+
+    // Signal from inner flipbook: all images loaded
+    if (event.data.action === "contentReady") {
+        scheduleHide();
+    }
+
+    // Fullscreen toggle from inner flipbook
+    if (event.data.action === "toggleFullscreen") {
+        if (!document.fullscreenElement) {
+            embedded.requestFullscreen?.() || embedded.webkitRequestFullscreen?.();
+        } else {
+            document.exitFullscreen?.();
+        }
+    }
+});
+
+window.onload = load_home;
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft' ||
+        e.key === 'ArrowDown'  || e.key === 'ArrowUp') {
+        e.preventDefault();
+    }
+    if (e.target.matches('input, textarea')) return;
+    const objectEl = document.querySelector('#content object');
+    if (!objectEl) return;
+    switch(e.key) {
+        case 'ArrowRight':
+        case 'ArrowDown':
+            objectEl.contentWindow.postMessage({ action: 'flipNext' }, '*');
+            break;
+        case 'ArrowLeft':
+        case 'ArrowUp':
+            objectEl.contentWindow.postMessage({ action: 'flipPrev' }, '*');
+            break;
+        case 'Home':
+            objectEl.contentWindow.postMessage({ action: 'flipFirst' }, '*');
+            break;
+        case 'End':
+            objectEl.contentWindow.postMessage({ action: 'flipLast' }, '*');
+            break;
+    }
+});
+    </script>
+</html>

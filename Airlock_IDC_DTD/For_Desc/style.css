@@ -1,0 +1,2045 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: "Prompt", sans-serif;
+}
+
+@font-face {
+    font-family: 'Fieldwork Geo Fat';
+    src: url('../global assets/font/fonnts.com-Fieldwork-Geo-Regular.otf') format('opentype');
+}
+
+.home-img-container {
+    position: absolute;
+    top: 3%;
+    right: 3%;
+    background: #ffffff;
+    padding: 0.75%;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+/* ********************************************************** */
+
+#viewer {
+    width: 90%;
+    height: 93%;
+    margin: 0 auto;
+    margin-top: .5vw;
+    overflow-y: auto;
+}
+
+select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.nav-overlay {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .24s;
+}
+
+.nav-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/******************************************************************************** table of contents ****************************************************/
+
+.nav-toggle-btn {
+    position: fixed;
+    top: 3%;
+    left: 2%;
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    border: none;
+    background: #fff;
+    /* dark green background */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    z-index: 1002;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.26s, transform 0.2s, background 0.25s;
+    outline: 3px solid #fff;
+    /* white border */
+    scale: .8;
+}
+
+.nav-toggle-btn:hover {
+    background: #074995;
+    /* lighter green on hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+
+}
+
+.nav-toggle-btn.open {
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* --- Hamburger Icon --- */
+.hamburger-icon {
+    width: 34px;
+    height: 34px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hamburger-bar {
+    position: absolute;
+    width: 32px;
+    height: 5px;
+    border-radius: 3px;
+    background: #0e0e0d;
+    /* white bars */
+    transition: transform 0.3s cubic-bezier(.72, -0.19, .49, 1.24), opacity 0.23s;
+    /* left: 1px; */
+}
+
+.bar1 {
+    top: 5px;
+}
+
+.bar2 {
+    top: 14px;
+}
+
+.bar3 {
+    top: 23px;
+}
+
+.nav-toggle-btn.open .bar1 {
+    transform: translateY(9px) rotate(45deg);
+    background: #080808;
+    /* green cross */
+}
+
+.nav-toggle-btn.open .bar2 {
+    opacity: 0;
+}
+
+.nav-toggle-btn.open .bar3 {
+    transform: translateY(-9px) rotate(-45deg);
+    background: #000000;
+}
+
+/* --- Floating TOC Styles --- */
+.toc-floating {
+    position: fixed;
+    /* top: 3.25%;
+    left: 6%; */
+    bottom: 10%;
+    left: 2%;
+    min-width: 228px;
+    max-width: 96vw;
+    background: #D3D6DB;
+    /* white background */
+    padding-top: 20px;
+    /* padding: 23px 22px 17px 22px; */
+    /* border-radius: 18px; */
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.2);
+    border: 2px solid #000000;
+    /* dark green border */
+    border: none;
+    z-index: 1001;
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+    pointer-events: none;
+    transition: opacity .32s cubic-bezier(.7, -0.26, .8, 1.42), transform .33s cubic-bezier(.7, -0.26, .8, 1.42);
+    visibility: hidden;
+}
+
+.toc-floating.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+    visibility: visible;
+}
+
+.toc-title {
+    font-size: 1.2em;
+    color: #000000;
+    font-weight: 600;
+    margin-bottom: 13px;
+    margin-top: 10px;
+    text-align: center;
+    letter-spacing: 0.03em;
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-list li {
+    margin: 11px 0;
+    cursor: pointer;
+}
+
+.toc-list a {
+    text-decoration: none;
+    color: #000;
+    /* black text */
+    font-weight: 500;
+    display: block;
+    border-radius: 5px;
+    transition: color 0.21s, background 0.22s, transform 0.17s;
+    /* background: #f9f9f9; */
+    /* light background */
+    padding: 10px 20px;
+    font-size: 1.03em;
+}
+
+.toc-list a:hover,
+.toc-list a:focus {
+    color: #ffffff;
+    background: #074995;
+    /* dark green hover */
+    transform: translateX(7px) scale(1.066);
+}
+
+
+
+@media (max-width: 650px) {
+    .toc-floating {
+        left: 0;
+        top: 0;
+        right: 0;
+        border-radius: 0 0 15px 15px;
+        width: 97vw;
+        margin: 0 1.5vw;
+        border-left: none;
+        border-right: none;
+    }
+
+    .nav-toggle-btn {
+        top: 16px;
+        left: 10px;
+    }
+}
+
+
+
+/* -----------nav-toc scrollable------------- */
+
+
+.toc-floating {
+    position: fixed;
+    bottom: 6%;
+    left: 2%;
+    min-width: 228px;
+    max-width: 96vw;
+    /* background: #fff; */
+    /* padding: 23px 22px 17px 22px; */
+    border-radius: 18px;
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.2);
+    /* border: 2px solid #000000; */
+    z-index: 1001;
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+    pointer-events: none;
+    transition: opacity .32s cubic-bezier(.7, -0.26, .8, 1.42),
+        transform .33s cubic-bezier(.7, -0.26, .8, 1.42);
+    visibility: hidden;
+    /* max-height: 70vh; */
+    display: flex;
+    flex-direction: column;
+}
+
+.toc-title {
+    flex-shrink: 0;
+    /* keep title fixed */
+}
+
+.toc-list {
+    flex: 1;
+    /* take remaining space */
+    overflow-y: auto;
+    /* only vertical scroll */
+    overflow-x: hidden;
+    /* disable horizontal scroll */
+    padding: 0;
+    margin: 0;
+
+}
+
+
+
+/******************************************************************************** table of contents ends ****************************************************/
+
+/******************************************************************************** share button starts ****************************************************/
+
+.share-btn {
+    position: fixed;
+    top: 3.5%;
+    right: 2%;
+    width: 58px;
+    height: 58px;
+    border: none;
+    border-radius: 50%;
+    margin: 0;
+    background: linear-gradient(135deg, #4A90FF 0%, #357AFF 100%);
+    box-shadow: 0 4px 20px rgba(74, 144, 255, 0.4);
+    z-index: 1002;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.share-btn:hover {
+    background: linear-gradient(135deg, #5BA4FF 0%, #468BFF 100%);
+    box-shadow: 0 8px 28px rgba(74, 144, 255, 0.6);
+    transform: translateY(-3px);
+}
+
+.share-btn:active {
+    transform: translateY(-1px);
+}
+
+.share-btn:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+}
+
+.share-menu {
+    position: fixed;
+    /* top: 98px;
+    right: 36px; */
+    top: 25px;
+    right: 100px;
+    min-width: 280px;
+    padding: 14px 18px 12px 18px;
+    background: #fff;
+    /* white menu background */
+    border-radius: 13px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, .2);
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    z-index: 1003;
+
+    animation: slideInRightShare 0.8s ease-out;
+    border: 2px solid #0f2f1d;
+    /* dark green border */
+
+}
+
+
+
+@keyframes slideInRightShare {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.share-menu.show {
+    display: flex;
+
+}
+
+.share-link-row {
+
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#shareInput {
+    flex: 1 1 auto;
+    padding: 7px 10px;
+    /* font-size: 1em; */
+    background: #f5f5f5;
+    /* light grey background */
+    border: 1.5px solid #0f2f1d;
+    /* dark green border */
+    border-radius: 7px;
+    color: #000;
+    /* black text */
+    font-family: inherit;
+    overflow-x: auto;
+    pointer-events: auto;
+    user-select: all;
+}
+
+.copy-link-btn {
+    background: #000000;
+    /* dark green */
+    color: #ffffff;
+    /* white text */
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 1em;
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background .18s, transform .18s;
+}
+
+.copy-link-btn:hover,
+.copy-link-btn:focus {
+    background: #020202;
+    /* lighter green */
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.copied-msg {
+    display: none;
+    font-size: .97em;
+    color: #000000;
+    /* dark green text */
+    margin-top: 10px;
+    letter-spacing: .02em;
+    font-weight: 600;
+    text-align: right;
+}
+
+.copied-msg.show {
+    display: inline-block;
+}
+
+@media (max-width: 700px) {
+
+    .share-btn,
+    .share-menu {
+        right: 14px;
+    }
+
+    .share-menu {
+        min-width: 160px;
+    }
+}
+
+
+
+
+
+/******************************************************************************** share button ends ****************************************************/
+
+
+
+
+.home-button {
+    position: fixed;
+    width: 2vw;
+    height: 2vw;
+    right: 2%;
+    top: 2%;
+    padding: 0.43vw;
+    z-index: 1005;
+    border-radius: 9999px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.home-button:hover {
+    background-color: #074995;
+}
+
+
+
+.bgm-toggle.off:hover {
+    background: #5a6268;
+}
+
+
+
+
+
+/******************************************************************************** pulley tables  ****************************************************/
+
+
+.title {
+    height: 3%;
+    width: 87%;
+    text-align: left;
+    font-weight: 500;
+    font-family: 'Fieldwork Geo Fat', sans-serif;
+    font-size: 0.95vw;
+}
+
+.table {
+    height: 81%;
+    max-height: 81%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 87%;
+}
+
+.table img {
+    height: 100%;
+    width: auto;
+}
+
+.images {
+    height: 14%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 87%;
+}
+
+.images img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+
+.hidden-controls {
+    display: none;
+}
+
+
+
+.page.page-even .gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 101%;
+    height: 100%;
+    background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 97.5%, rgb(0 0 0 / 44%) 100%);
+    filter: blur(6.35px);
+    background-image: linear-gradient(left, rgba(0, 0, 0, 0) 97.5%, rgb(0 0 0 / 70%) 100%);
+    z-index: 99;
+    pointer-events: none;
+    user-select: none;
+}
+
+
+.page.page-odd .gradient {
+    position: absolute;
+    top: 0;
+    left: -1%;
+    width: 100%;
+    height: 100%;
+    background-image: -webkit-linear-gradient(right, rgb(0 0 0 / 0%) 97.5%, rgb(0 0 0 / 70%) 100%);
+    filter: blur(6.35px);
+    background-image: linear-gradient(right, rgb(0 0 0 / 0%) 97.5%, rgb(0 0 0 / 70%) 100%);
+    z-index: 99;
+    pointer-events: none;
+    user-select: none;
+}
+
+
+
+
+
+
+
+/* ******************* bottom thumanail css code*************************  */
+
+
+/* --- Floating TOC Styles --- */
+.toc-floating1 {
+    position: fixed;
+    /* top: 3.25%;
+    left: 6%; */
+    bottom: 10%;
+    left: 20%;
+    /* min-width: 228px;
+    max-width: 96vw; */
+    background: #D3D6DB;
+    /* white background */
+    padding: 23px 22px 17px 22px;
+    border-radius: 18px;
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.2);
+    border: 2px solid #000000;
+    /* dark green border */
+    border: none;
+    z-index: 1001;
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+    pointer-events: none;
+    transition: opacity .32s cubic-bezier(.7, -0.26, .8, 1.42), transform .33s cubic-bezier(.7, -0.26, .8, 1.42);
+    visibility: hidden;
+}
+
+.toc-floating1.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+    visibility: visible;
+}
+
+.toc-title1 {
+    font-size: 1.2em;
+    color: #000000;
+    font-weight: 600;
+    margin-bottom: 13px;
+    letter-spacing: 0.03em;
+}
+
+.toc-list1 {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-list1 .active {
+    border: .5vw solid #0E3E76;
+    /* Blue border */
+    border-radius: 6px;
+    /* color: white; */
+    background-color: #0E3E76;
+    padding-bottom: 1vw;
+}
+
+.toc-list1 .active p {
+    color: white !important;
+}
+
+.toc-list1 li {
+    margin: 11px 0;
+    cursor: pointer;
+}
+
+.toc-list1 a {
+    text-decoration: none;
+    color: #000;
+    /* black text */
+    font-weight: 500;
+    display: block;
+    /* border-radius: 20px; */
+    transition: color 0.21s, background 0.22s, transform 0.17s;
+    /* background: #f9f9f9; */
+    /* light background */
+    /* padding: 10px 20px; */
+    font-size: 1.03em;
+}
+
+.toc-list1 a:hover,
+.toc-list1 a:focus {
+    /* color: #ffffff; */
+    /* background: #074995; */
+    /* dark green hover */
+    transform: translateX(4px) scale(1.066);
+}
+
+
+@media (max-width: 650px) {
+    .toc-floating1 {
+        left: 0;
+        top: 0;
+        right: 0;
+        border-radius: 0 0 15px 15px;
+        width: 97vw;
+        margin: 0 1.5vw;
+        border-left: none;
+        border-right: none;
+    }
+
+    .nav-toggle-btn1 {
+        top: 16px;
+        left: 10px;
+    }
+}
+
+
+
+/* -----------nav-toc scrollable------------- */
+
+
+.toc-floating1 {
+    position: fixed;
+    bottom: 6%;
+    left: 2%;
+    height: 80%;
+    /* Left corner positioning */
+    /* min-width: 228px; */
+    width: 15%;
+    min-width: 200px;
+    max-width: 250px;
+    /* background: #fff; */
+    padding: 23px 22px 17px 22px;
+    border-radius: 18px;
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.2);
+    /* border: 2px solid #000000; */
+    z-index: 1001;
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+    pointer-events: none;
+    transition: opacity .32s cubic-bezier(.7, -0.26, .8, 1.42),
+        transform .33s cubic-bezier(.7, -0.26, .8, 1.42);
+    visibility: hidden;
+    max-height: 80%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.toc-title1 {
+    flex-shrink: 0;
+    /* keep title fixed */
+}
+
+.toc-list1 {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    /* centers the element */
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+    overflow-x: hidden;
+    /* remove horizontal scroll */
+    overflow-y: auto;
+    /* enable vertical scroll */
+    max-height: 80vh;
+    white-space: normal;
+    /* allows wrapping */
+}
+
+/* Scrollbar for .toc-list1 */
+.toc-list1::-webkit-scrollbar {
+    width: 8px;
+    /* vertical scrollbar width */
+}
+
+.toc-list1::-webkit-scrollbar-track {
+    background: #74777a;
+    /* light blur-like effect */
+    backdrop-filter: blur(6px);
+    border-radius: 10px;
+}
+
+.toc-list1::-webkit-scrollbar-thumb {
+    background: #034EA2;
+    /* soft gray blur */
+    backdrop-filter: blur(8px);
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.toc-list1::-webkit-scrollbar-thumb:hover {
+    background: #073a86;
+}
+
+
+
+
+.nav-overlay1 {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .24s;
+}
+
+.nav-overlay1.show {
+    opacity: 1;
+    pointer-events: auto;
+
+}
+
+
+.nav-toggle-btn1 {
+    position: fixed;
+    top: 3%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    border: none;
+    background: #fff;
+    /* dark green background */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    z-index: 1002;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.26s, transform 0.2s, background 0.25s;
+    outline: 3px solid #fff;
+    /* white border */
+    scale: .8;
+}
+
+/* ******************* bottom thumanail css code end *************************  */
+
+
+/* *************************share button navbar start************************** */
+@keyframes modal-float {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -45%);
+        scale: 0.9;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+        scale: 1;
+    }
+}
+
+.animate-modal-float {
+    animation: modal-float 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    10% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    90% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+.animate-fade-in-out {
+    animation: fadeInOut 2s ease-in-out forwards;
+}
+
+/* *************************share button navbar end************************** */
+
+
+
+
+
+
+/* *********************************search button icons ********************************** */
+
+
+/* Search Modal Animation */
+#searchModal.show {
+    display: block;
+    animation: modalSlideDown 0.3s ease-out;
+}
+
+#searchOverlay.show {
+    display: block;
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* @keyframes modalSlideDown {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+} */
+
+/* Search Result Items */
+.search-result-item {
+    padding: 12px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+    margin-bottom: 8px;
+}
+
+.search-result-item:hover {
+    background-color: #f3f4f6;
+    border-color: #3b82f6;
+}
+
+.search-result-item .page-title {
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 4px;
+}
+
+.search-result-item .page-number {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* *********************************search button icons end********************************** */
+
+
+/* ************************************zoom in zoom out button start ********************************** */
+
+/* Zoom Control Container */
+.zoom-control-container {
+    position: absolute;
+    /* top: -5%; */
+    left: 61%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    /* gap: 12px; */
+    /* background: rgba(40, 40, 40, 0.95); */
+    padding: 12px 20px;
+    /* border-radius: 50px; */
+    /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); */
+    z-index: 900;
+    /* backdrop-filter: blur(10px); */
+}
+
+/* Zoom Buttons */
+.zoom-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    /* background: rgba(255, 255, 255, 0.1); */
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.zoom-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.zoom-btn:active {
+    transform: scale(0.95);
+}
+
+.zoom-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Zoom Slider */
+.zoom-slider {
+    width: 180px;
+    height: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+}
+
+.zoom-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #3b82f6;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(59, 130, 246, 0.5);
+}
+
+.zoom-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    background: #2563eb;
+}
+
+.zoom-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #3b82f6;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(59, 130, 246, 0.5);
+}
+
+.zoom-slider::-moz-range-thumb:hover {
+    transform: scale(1.2);
+    background: #2563eb;
+}
+
+/* Zoom Percentage Display */
+.zoom-percentage {
+    color: white;
+    font-size: 1vw;
+    font-weight: 600;
+    min-width: 45px;
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .zoom-control-container {
+        padding: 10px 16px;
+    }
+
+    .zoom-btn {
+        width: 38px;
+        height: 38px;
+    }
+
+    .zoom-slider {
+        width: 120px;
+    }
+}
+
+
+
+
+/* ************************************zoom in zoom out button end ********************************** */
+
+
+
+/* ******************************autoplay flipbook code start************************************ */
+
+/* Auto Play Control Bar */
+.autoplay-control-bar {
+    position: absolute;
+    top: 40%;
+    right: 45%;
+    width: 20vw;
+    min-width: 250px;
+    display: flex;
+    /* align-items: center; */
+    gap: 12px;
+    z-index: 900;
+    /* transform: translate(-50%); */
+}
+
+/* Play/Pause Button */
+.autoplay-btn {
+    /* width: 32px; */
+    /* height: 32px; */
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    position: absolute;
+    top: -100%;
+    left: -15%;
+}
+
+.autoplay-btn:hover {
+    opacity: 0.8;
+}
+
+.autoplay-btn:active {
+    transform: scale(0.95);
+}
+
+/* Progress Container */
+.autoplay-progress-container {
+    flex: 1;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Progress Track (Gray Background Bar) */
+.autoplay-progress-track {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.3);
+    /* Gray bar */
+    border-radius: 3px;
+    position: relative;
+    overflow: visible;
+}
+
+/* Progress Fill (Blue Bar) */
+.autoplay-progress-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0%;
+    background: #105D97;
+    /* Blue fill */
+    border-radius: 3px;
+    pointer-events: none;
+    /* transition: width 0.05s linear; */
+}
+
+/* Progress Thumb (Draggable Circle) */
+.autoplay-progress-thumb {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    background: #105D97;
+    /* border: 2px solid white; */
+    border-radius: 50%;
+    cursor: grab;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease;
+    z-index: 10;
+}
+
+.autoplay-progress-thumb:hover {
+    transform: translate(-50%, -50%) scale(1.2);
+}
+
+.autoplay-progress-thumb:active {
+    cursor: grabbing;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .autoplay-control-bar {
+        width: 70vw;
+        min-width: unset;
+    }
+}
+
+/* Update #viewer container */
+#viewer {
+    width: 90%;
+    height: 94%;
+    /* margin: 0 auto; */
+    margin-top: 0.2vw;
+    overflow: hidden;
+    /* Change from overflow-y: auto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/* NEW: Scrollable wrapper for zoomed flipbook */
+.flipbook-scroll-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    /* This handles scroll */
+    overflow-x: hidden;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    /* Align to top */
+    /* padding: 5vh 5vw; Space for zoomed content */
+
+    /* Scrollbar styling */
+    scrollbar-width: thin;
+    /* Firefox */
+    scrollbar-color: #ffffff transparent;
+    /* Firefox */
+}
+
+/* Chrome, Edge, Safari Scrollbar */
+.flipbook-scroll-wrapper::-webkit-scrollbar {
+    width: 10px;
+}
+
+.-scroll-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.flipbook-scroll-wrapper::-webkit-scrollbar-thumb {
+    background: #0E3E77;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+.flipbook-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #105D97;
+}
+
+
+/* Flipbook stays centered */
+#flipbook {
+    margin: auto;
+    /* Centers when not zoomed */
+    flex-shrink: 0;
+}
+
+/* Hide scrollbar while flipping */
+.no-scrollbar {
+    overflow-y: hidden !important;
+}
+
+
+
+.page .midsec {
+    height: 80%;
+    /* overflow-y: scroll !important; */
+
+}
+
+/* Custom Scrollbar */
+.custom-scroll::-webkit-scrollbar {
+    width: 12px;
+    /* Scrollbar width */
+}
+
+/* Hide the top/bottom arrows */
+.custom-scroll::-webkit-scrollbar-button {
+    display: none;
+    height: 0;
+    width: 0;
+
+}
+
+/* Track (background) */
+.custom-scroll::-webkit-scrollbar-track {
+    background: transparent;
+    /* Light gray */
+    border-radius: 10px;
+}
+
+/* Thumb (scroll handle) */
+.custom-scroll::-webkit-scrollbar-thumb {
+    background: #0E3E77;
+    /* Gray handle */
+    border-radius: 10px;
+}
+
+/* Thumb hover color */
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+    background: #105D97;
+}
+
+/* Example: ensure .page takes full viewport so percentage heights would work */
+.page {
+    height: 100vh;
+}
+
+/* If you prefer percentage height for midsec, uncomment:
+  .page .midsec { height: 80%; overflow-y: auto; }
+  */
+
+/* Ensure images are block (centers nicely) */
+#poly-v-pulley-pageContent img {
+    display: block;
+    margin: 0 auto;
+}
+
+/* your existing custom scrollbar (kept) */
+.custom-scroll::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-scroll::-webkit-scrollbar-button {
+    display: none;
+    height: 0;
+    width: 0;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+    background: #bed0eb;
+    border-radius: 10px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+    background: #0E3E77;
+    border-radius: 10px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+    background: #105D97;
+}
+
+/* Firefox */
+.custom-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #0E3E77 #bed0eb;
+}
+
+
+
+/* Update zoom slider range */
+.zoom-slider {
+    width: 180px;
+    height: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    display: none;
+}
+
+/* Zoom feedback animation */
+#zoom-feedback {
+    animation: zoomPulse 0.3s ease-out;
+}
+
+@keyframes zoomPulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Zoomed state scrollbar visibility */
+.flipbook-scroll-wrapper {
+    overflow-y: hidden;
+    /* Hidden by default */
+}
+
+.flipbook-scroll-wrapper.zoomed {
+    overflow-y: auto !important;
+    /* Show when zoomed */
+    scrollbar-width: thin;
+    scrollbar-color: #0E3E77 transparent;
+}
+
+.flipbook-scroll-wrapper.zoomed::-webkit-scrollbar {
+    width: 10px;
+}
+
+.flipbook-scroll-wrapper.zoomed::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.flipbook-scroll-wrapper.zoomed::-webkit-scrollbar-thumb {
+    background: #0E3E77;
+    border-radius: 10px;
+}
+
+/* Add this to your style.css */
+
+/* Allow scrolling when zoomed */
+.flipbook-scroll-wrapper.zoomed {
+    overflow-y: auto !important;
+    pointer-events: auto !important;
+}
+
+.flipbook-scroll-wrapper {
+    overflow-y: hidden;
+    transition: overflow-y 0.2s ease;
+}
+
+#flipbook {
+    pointer-events: auto;
+    transition: transform 0.2s ease, pointer-events 0.2s ease;
+}
+
+.no-scrollbar {
+    overflow-y: hidden !important;
+}
+
+@keyframes zoomInOut {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (min-width: 1904px) and (min-height: 891px) {
+    .diverter-wheel-scroll {
+        width: 88.7%;
+    }
+
+    .sprockets-table-title {
+        width: 64%;
+    }
+
+    .taper-title-img {
+        width: 86.5%;
+    }
+}
+
+
+.scroll-wrapper {
+    position: absolute;
+    /* bottom: 40px; */
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
+    text-align: center;
+    color: #0d00c0;
+    /* font-family: Arial, sans-serif; */
+    /* letter-spacing: 4px; */
+}
+
+.scroll-text {
+    font-size: 8px;
+    margin-bottom: 2px;
+    display: block;
+}
+
+.scroll-line {
+    position: relative;
+    width: 1px;
+    height: 20px;
+    background: #2800db;
+    margin: 0 auto;
+    animation: scrollLine 1.5s ease-in-out infinite;
+}
+
+/* Arrow attached directly to the line */
+.scroll-line::after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    /* overlaps slightly = no gap */
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    border-right: 1px solid #2800db;
+    border-bottom: 1px solid #2800db;
+    transform: translateX(-50%) rotate(45deg);
+}
+
+@keyframes scrollLine {
+    0% {
+        height: 6px;
+        opacity: 1;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    60% {
+        height: 10px;
+        opacity: 1;
+    }
+
+    100% {
+        height: 6px;
+        opacity: 1;
+    }
+}
+
+.scroll-arrow {
+    width: 6px;
+    height: 6px;
+    border-right: 2px solid #2800db;
+    border-bottom: 2px solid #2800db;
+    transform: rotate(45deg);
+    margin: 0 auto 0;
+    animation: arrowFade 1.5s ease-in-out infinite;
+}
+
+@keyframes arrowFade {
+    0% {
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/* page - 1 start  */
+
+
+/* In your <style> or main.css */
+#DTD-image {
+    pointer-events: all !important;
+    cursor: pointer;
+}
+
+.page-1-down {
+    pointer-events: all !important;
+}
+
+
+/* page - 1 end  */
+
+
+
+@media screen and (min-width: 501px) and (max-width: 767px) {
+    #viewer {
+        margin-top: 1.5% !important;
+    }
+
+    .ui-arrow-next-page {
+        bottom: -9.5%;
+        top: unset;
+        right: 42%;
+    }
+
+    .ui-arrow-previous-page {
+        bottom: -9.5%;
+        top: unset;
+        left: 42%;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1100px) {
+    #viewer {
+        margin-top: 6% !important;
+    }
+
+    .ui-arrow-next-page {
+        bottom: -9.5%;
+        top: unset;
+        right: 42%;
+    }
+
+    .ui-arrow-previous-page {
+        bottom: -9.5%;
+        top: unset;
+        left: 42%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/* =============================================
+   MOBILE NAV BAR — visible only ≤1024px
+   ============================================= */
+@media screen and (max-width: 1024px) {
+    .mobile-nav-bar {
+        display: flex !important;
+    }
+
+    .absolute.bottom-0 {
+        display: none !important;
+    }
+}
+
+.mobile-nav-bar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 52px;
+    background: rgba(8, 20, 48, 0.97);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 9200;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    border-top: 0.5px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Icon buttons (hamburger + dots) */
+.mob-icon-btn {
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 3.5px;
+    transition: background 0.18s;
+    flex-shrink: 0;
+}
+
+.mob-icon-btn:active {
+    background: rgba(255, 255, 255, 0.22);
+}
+
+/* Hamburger lines */
+.mob-ham {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.mob-ham span {
+    display: block;
+    width: 16px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: transform 0.22s, opacity 0.18s;
+}
+
+/* Animated open state */
+.mob-icon-btn.open .mob-ham span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.mob-icon-btn.open .mob-ham span:nth-child(2) {
+    opacity: 0;
+}
+
+.mob-icon-btn.open .mob-ham span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Three dots */
+.mob-dots-btn {
+    background: rgba(255, 255, 255, 0.0);
+    flex-direction: column;
+    gap: 3px;
+}
+
+.mob-dots {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5px;
+    align-items: center;
+}
+
+.mob-dots span {
+    display: block;
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+/* Page number center */
+.mob-page-label {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 12px;
+    font-weight: 400;
+    margin: 0;
+    text-align: center;
+}
+
+.mob-page-label span {
+    font-weight: 600;
+    color: #fff;
+}
+
+/* ---- TOC popup ---- */
+.mob-toc-popup {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 8px;
+    width: 215px;
+    max-height: 68vh;
+    background: #D3D6DB;
+    border-radius: 14px;
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.36);
+    z-index: 9300;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.mob-toc-popup.show {
+    display: flex;
+}
+
+.mob-toc-title {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #000;
+    text-align: center;
+    padding: 13px 14px 8px;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.12);
+    flex-shrink: 0;
+}
+
+.mob-toc-list {
+    list-style: none;
+    margin: 0;
+    padding: 6px 0;
+    overflow-y: auto;
+}
+
+.mob-toc-list li {
+    margin: 0;
+}
+
+.mob-toc-list a {
+    display: block;
+    padding: 9px 16px;
+    font-size: 12.5px;
+    color: #111;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+}
+
+.mob-toc-list li:active a,
+.mob-toc-list li.mob-active a {
+    background: #0E3E76;
+    color: #fff;
+}
+
+/* ---- Dots popup ---- */
+.mob-dots-popup {
+    display: none;
+    position: fixed;
+    top: 70px;
+    right: 8px;
+    width: 155px;
+    background: #D3D6DB;
+    border-radius: 14px;
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.36);
+    z-index: 9300;
+    flex-direction: column;
+    padding: 8px 0;
+    overflow: hidden;
+}
+
+.mob-dots-popup.show {
+    display: flex;
+}
+
+.mob-action-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 14px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: background 0.15s;
+}
+
+.mob-action-row:active {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.mob-action-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #0e3e76;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.mob-action-svg {
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+}
+
+.mob-action-label {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: #111;
+}
+
+/* ---- Overlay ---- */
+.mob-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.28);
+    z-index: 9100;
+}
+
+.mob-overlay.show {
+    display: block;
+}
+
+
+
+/* =========================
+   MOBILE & TABLET RESPONSIVE
+   SHARE POPUP UI
+========================= */
+
+@media (max-width: 1024px) {
+
+    .mobile-download {
+        position: absolute;
+        top: 8% !important;
+        right: 1.5% !important;
+        width: 50% !important;
+    }
+
+    /* Overlay */
+    #shareOverlay {
+        backdrop-filter: blur(6px);
+    }
+
+    /* Main Modal */
+    #shareModal {
+        width: 90vw !important;
+        max-width: 90vw !important;
+        top: 50% !important;
+        left: 96% !important;
+        transform: translate(-50%, -50%) !important;
+        border-radius: 22px;
+    }
+
+    /* Padding */
+    #shareModal .p-\[2\.5vw\] {
+        padding: 6vw !important;
+    }
+
+    /* Close Button */
+    #closeBtn {
+        top: 4vw !important;
+        right: 4vw !important;
+        font-size: 5vw !important;
+    }
+
+    /* Heading */
+    #shareModal h2 {
+        font-size: 5vw !important;
+        margin-bottom: 1.5vw !important;
+    }
+
+    /* Subtitle */
+    #shareModal p {
+        font-size: 3vw !important;
+    }
+
+    /* Social Grid */
+    #shareModal .grid {
+        gap: 3vw !important;
+    }
+
+    /* Social Buttons */
+    #shareModal .grid button {
+        height: 14vw !important;
+        border-radius: 16px !important;
+    }
+
+    /* Social Icons */
+    #shareModal .grid img {
+        width: 6vw !important;
+    }
+
+    /* Section Labels */
+    #shareModal .uppercase {
+        font-size: 2.8vw !important;
+        margin-bottom: 3vw !important;
+    }
+
+    /* Divider */
+    #shareModal .bg-gradient-to-r {
+        margin-bottom: 5vw !important;
+    }
+
+    /* Copy Area */
+    #shareModal .flex.gap-\[0\.8vw\] {
+        gap: 2vw !important;
+        flex-direction: column;
+    }
+
+    /* Input */
+    #shareInput {
+        width: 100%;
+        height: 12vw !important;
+        font-size: 3vw !important;
+        padding: 0 4vw !important;
+        border-radius: 14px !important;
+    }
+
+    /* Copy Button */
+    #copyBtn {
+        width: 100%;
+        height: 12vw !important;
+        font-size: 3.2vw !important;
+        border-radius: 14px !important;
+        gap: 2vw !important;
+    }
+
+    /* Copy Icon */
+    #copyBtn svg {
+        width: 4vw !important;
+        height: 4vw !important;
+    }
+
+    /* Copied Message */
+    #copiedMsg {
+        top: -10vw !important;
+        font-size: 2.8vw !important;
+        padding: 2vw 3vw !important;
+        border-radius: 10px !important;
+    }
+}
+
+
+/* =========================
+   MOBILE ONLY
+========================= */
+
+@media (max-width: 600px) {
+
+    #shareModal {
+        width: 94vw !important;
+        max-width: 94vw !important;
+        border-radius: 20px;
+    }
+
+    #shareModal .p-\[2\.5vw\] {
+        padding: 7vw !important;
+    }
+
+    #shareModal h2 {
+        font-size: 6vw !important;
+    }
+
+    #shareModal p {
+        font-size: 3.5vw !important;
+    }
+
+    #shareModal .grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 4vw !important;
+    }
+
+    #shareModal .grid button {
+        height: 16vw !important;
+    }
+
+    #shareModal .grid img {
+        width: 7vw !important;
+    }
+
+    #shareInput {
+        height: 13vw !important;
+        font-size: 3.5vw !important;
+    }
+
+    #copyBtn {
+        height: 13vw !important;
+        font-size: 3.5vw !important;
+    }
+
+    #copyBtn svg {
+        width: 5vw !important;
+        height: 5vw !important;
+    }
+
+    #copiedMsg {
+        font-size: 3vw !important;
+    }
+}
+
+
+
+
+#locationBtn,
+a[href*="google.com/maps"] {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    z-index: 9999;
+
+}
+
+@media screen and (max-width: 1024px) {
+    .shadow-mobile {
+        left: -1% !important;
+        transform: rotate(180deg);
+    }
+}

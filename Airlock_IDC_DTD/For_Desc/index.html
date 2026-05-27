@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Airlock</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Tailwind Css  -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <!-- External JS dependencies -->
+  <script type="text/javascript" src="assets/js/jquery-2.0.3.min.js"></script>
+  <script type="text/javascript" src="assets/js/underscore-min.js"></script>
+  <script type="text/javascript" src="assets/js/backbone-min.js"></script>
+
+
+  <!-- papa parse for data fetch from excel -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+  <!-- Turn.js UI Kit -->
+  <script type="text/javascript" src="assets/js/turn.min.js"></script>
+
+  <!-- App dependencies -->
+  <script type="text/javascript" src="assets/js/app.js"></script>
+
+
+  <!-- External CSS dependencies -->
+  <link type="text/css" rel="stylesheet" href="assets/css/font-awesome.min.css">
+  </link>
+
+
+  <!-- App CSS dependencies -->
+  <link type="text/css" rel="stylesheet" href="./assets/css/main.css">
+  </link>
+
+  <!--  CSS dependencies -->
+  <link type="text/css" rel="stylesheet" href="./assets/css/lightbox.css">
+  </link>
+
+
+  <!------ Fontawesome link  ------->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Tilt+Neon&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/cataloguemain.css">
+
+  <!-- Favicon icon -->
+  <link rel="icon" href="../logo.svg" type="image/x-icon">
+
+  <!-- Fontawesome icon  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css">
+
+  <style type="text/css">
+    .page-1 .s1 {
+      -webkit-transform: translateY(100px);
+      -webkit-transition: all 1.5s;
+      opacity: 0;
+    }
+
+    .page-1 .s2 {
+      -webkit-transform: translateY(100px);
+      -webkit-transition: all 1s;
+      -webkit-transition-delay: 0.5s;
+      opacity: 0;
+      font-family: 'Carrois Gothic SC', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 40px;
+      text-align: center;
+      color: white;
+    }
+
+    .page-1.animation-on .s1 {
+      -webkit-transform: translateY(0px);
+      opacity: 1;
+    }
+
+    .page-1.animation-on .s2 {
+      -webkit-transform: translateY(0px);
+      opacity: 1;
+    }
+  </style>
+
+
+  <style>
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+      font-size: 14px;
+      color: #333;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 8px 8px 8px 32px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    input[type="number"]:focus {
+      outline: none;
+      border-color: #4CAF50;
+      box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+    }
+
+    .midsec img {
+      width: 90%;
+      object-fit: contain;
+      /* animation: fadeIn 0.5s ease-in-out; */
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+      /* background: white; */
+      border-top: 2px solid #e0e0e0;
+    }
+
+    .image-counter {
+      font-size: 10px;
+      font-weight: bold;
+      color: #333;
+      min-width: 20vw;
+      text-align: center;
+    }
+
+    /* Fullscreen Hint Tooltip Styles */
+    #fs-hint-container {
+      position: fixed;
+      width: 200px;
+      bottom: 60px;
+      right: 20px;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+      z-index: 2147483647 !important;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      /* border-left: 4px solid #3b82f6; */
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      pointer-events: none;
+      letter-spacing: 0.3px;
+    }
+
+    #fs-hint-container::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      right: 15px;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid #0f172a;
+    }
+
+    #fs-hint-container.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+
+    @media (max-width: 767px) {
+      #fs-hint-container {
+        display: none !important;
+      }
+    }
+  </style>
+  <style>
+  /* Mobile & Tablet background override */
+  @media (max-width: 1024px) {
+    .catalog-app {
+      background-image: url('../global assets/icons/background-mobile-img.webp') !important;
+      background-size: cover !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+    }
+     body{
+      background-image: url('../global assets/icons/background-mobile-img.webp') !important;
+    }
+  }
+
+
+</style>
+</head>
+
+<body>
+
+
+  <!-- ***************************************************** DC started *************************************************-->
+
+  <div class="catalog-app "
+    style="background-image: url('../global assets/icons/background-img.webp'); background-size: 100%;">
+
+
+    <div class="absolute bottom-0  left-0 w-[100%] h-[5%] bg-black cursor-pointer"
+      style="background-image: url('../global-assets/navbar-icons/nav-bg.webp'); background-size: 100%;">
+      <div class="absolute top-[50%] left-[2%] cursor-pointer hover:bg-gray-500 z-[910]"
+        style="transform: translateY(-50%);">
+        <img src="../global-assets/navbar-icons/table-of-content-icon.svg" title="Table of Content"
+          alt="table-of-content-icon" id="navToggle" class="  w-[2vw] h-[2vw] cursor-pointer hidden" />
+
+      </div>
+      <img src="../global-assets/navbar-icons/thumbnail-icon.svg" title="Thumbnail" alt="foundation_thumbnails"
+        id="navToggle1" class=" absolute top-[50%] left-[2%] w-[2vw] h-[2vw] cursor-pointer z-[910]"
+        style="transform: translateY(-50%);" />
+      <img src="../global-assets/navbar-icons/share-icon.svg" title="share" alt="share-icon" id="shareBtn"
+        class="absolute top-[50%] left-[30%] cursor-pointer w-[2vw] h-[2vw]  z-[910]"
+        style="transform: translateY(-50%);" />
+      <img src="../global-assets/navbar-icons/download-icon.svg" title="download" alt="download-icon" id="download-btn"
+        class="absolute top-[50%] left-[33.5%] cursor-pointer w-[2vw] h-[2vw]  z-[910]"
+        style="transform: translateY(-50%);" />
+      <img src="../global-assets/navbar-icons/full-screen-icon.svg" title="full screen" alt="full-screen-icon"
+        id="full-screen-btn" class="absolute top-[50%] right-[2%] cursor-pointer w-[2vw] h-[2vw] full-screen  z-[910]"
+        style="transform: translateY(-50%);" />
+
+      <!-- ********************************Audio button start****************************************  -->
+      <div class="bgm-container absolute top-[55%] left-[37%] cursor-pointer  z-[910]"
+        style="transform: translateY(-50%);">
+        <audio id="bgmAudio" loop>
+          <source src="../audios/Lights(chosic.com).mp3" type="audio/wav">
+        </audio>
+        <button id="bgmButton" class="bgm-toggle cursor-pointer">
+          <img id="musicOnImg" src="../global-assets/navbar-icons/music-on-icon.svg" title="music on"
+            class="w-[2vw] h-[2vw]">
+          <img id="musicOffImg" src="../global-assets/navbar-icons/music-off-icon.svg" title="music off"
+            class="w-[2vw] h-[2vw] hidden"></button>
+      </div>
+
+
+      <!-- ********************************Audio button end****************************************  -->
+
+      <div class="absolute top-[50%] left-[48%]  text-white  text-[.8vw]  z-[910]" title="page No"
+        style="transform: translateY(-50%);">
+        <p>Page <span id="page-no"></span></p>
+      </div>
+
+      <!-- Zoom Control Widget -->
+      <div class="zoom-control-container top-[50%]  z-[910]" style="transform: translateY(-50%);">
+        <button id="zoomOutBtn" class="zoom-btn" title="Zoom Out">
+
+          <img src="../global assets/icons/zoom-out-icon.svg" title="zoom out" class="w-[1.5vw]" />
+        </button>
+
+        <input type="range" id="zoomSlider" min="50" max="150" value="100" step="10" class="zoom-slider hidden" />
+        <span id="zoomPercentage" class="zoom-percentage hidden">100%</span>
+        <button id="zoomInBtn" class="zoom-btn" title="Zoom In">
+
+          <img src="../global assets/icons/zoom-in-icon.svg" title="zoom in" class="w-[1.5vw]" />
+        </button>
+
+
+      </div>
+
+
+
+      <!-- Auto Play Control Bar -->
+      <div class="autoplay-control-bar z-[910] hidden!">
+        <!-- Play/Pause Button -->
+        <button id="autoPlayBtn" class="autoplay-btn " title="Auto Play">
+
+          <img src="../global assets/icons/play-icon.svg" id="playIcon" class="w-[1.4vw]" />
+          <svg id="pauseIcon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="hidden">
+            <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
+          </svg>
+        </button>
+
+        <!-- Progress Bar Container -->
+        <div class="autoplay-progress-container">
+          <div class="autoplay-progress-track">
+            <div class="autoplay-progress-fill" id="autoPlayProgressFill"></div>
+            <div class="autoplay-progress-thumb" id="autoPlayThumb"></div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <!-- <img src="../global assets/icons/search-icon.png" alt="search-icon" title="search"
+      class="absolute top-[2%] left-[2%] w-[2.5vw] z-[1111111112] cursor-pointer" /> -->
+
+
+
+    <div id="viewer">
+
+      <audio id="navAudio"></audio>
+
+
+      <div>
+        <img id="goToPage1" data-audio-path="../audios/home.mp3" data-page="1"
+          src="../global assets/Images/TableOfContent/home-icon.svg" alt="home-icon" class="home-button hidden" />
+      </div>
+
+
+      <!-- ========== MOBILE NAV BAR (mobile/tablet only) ========== -->
+      <div id="mobileNavBar" class="mobile-nav-bar">
+
+        <!-- Left: hamburger TOC -->
+        <button id="mobileTocBtn" class="mob-icon-btn" aria-label="Table of Contents">
+          <span class="mob-ham">
+            <span></span><span></span><span></span>
+          </span>
+        </button>
+
+        <!-- Center: page number -->
+        <!-- <p class="mob-page-label ">Page <span id="mob-page-no">1</span></p> -->
+          <img src="../global-assets/Airlock-Logo.gif" alt="logo" class=" w-[100px] z-[11111] cursor-pointer tb-link" data-page="1" />
+
+        <!-- Right: three dots -->
+        <button id="mobileDotsBtn" class="mob-icon-btn mob-dots-btn" aria-label="More options">
+          <span class="mob-dots"><span></span><span></span><span></span></span>
+        </button>
+      </div>
+
+      <!-- TOC popup -->
+      <nav id="mobileTocPopup" class="mob-toc-popup" aria-label="Mobile Table of Contents">
+        <div class="mob-toc-title">Table of contents</div>
+        <ul class="mob-toc-list">
+          <li class="mob-tb-link tb-link" data-page="1" data-audio-path="../audios/home.mp3"><a>Home</a></li>
+          <li class="mob-tb-link tb-link" data-page="2" data-audio-path="../audios/table-of-content.mp3"><a>Table of Content</a></li>
+          <li class="mob-tb-link tb-link" data-page="3" data-audio-path="../audios/description.mp3"><a>Description</a></li>
+          <li class="mob-tb-link tb-link" data-page="4" data-audio-path="../audios/features.mp3"><a>Features</a></li>
+          <li class="mob-tb-link tb-link" data-page="4" data-audio-path="../audios/applications.mp3"><a>Applications</a></li>
+          <li class="mob-tb-link tb-link" data-page="4" data-audio-path="../audios/options.mp3"><a>Options</a></li>
+          <li class="mob-tb-link tb-link" data-page="5" data-audio-path="../audios/dimension-details.mp3"><a>Dimension Details</a></li>
+          <li class="mob-tb-link tb-link" data-page="8" data-audio-path="../audios/contact_us.mp3"><a>Contact us</a></li>
+      
+        </ul>
+      </nav>
+
+      <!-- Dots popup -->
+      <div id="mobileDotsPopup" class="mob-dots-popup">
+        <button id="mobMusicBtn" class="mob-action-row">
+          <span class="mob-action-icon">
+            <img id="mobMusicOnImg" src="../global-assets/navbar-icons/music-on-icon.svg" class="mob-action-svg" />
+            <img id="mobMusicOffImg" src="../global-assets/navbar-icons/music-off-icon.svg"
+              class="mob-action-svg hidden" />
+          </span>
+          <span class="mob-action-label">Music</span>
+        </button>
+        <button id="mobShareBtn" class="mob-action-row">
+          <span class="mob-action-icon">
+            <img src="../global-assets/navbar-icons/share-icon.svg" class="mob-action-svg" />
+          </span>
+          <span class="mob-action-label">Share</span>
+        </button>
+        <button id="mobDownloadBtn" class="mob-action-row">
+          <span class="mob-action-icon">
+            <img src="../global-assets/navbar-icons/download-icon.svg" class="mob-action-svg" />
+          </span>
+          <span class="mob-action-label">Download</span>
+        </button>
+      </div>
+
+
+
+      <!-- Overlay -->
+      <div id="mobOverlay" class="mob-overlay"></div>
+      <!-- ========== END MOBILE NAV BAR ========== -->
+
+      <!-- ***********************************************Bottom Functionality code******************************************************** -->
+
+
+      <div id="navOverlay" class="nav-overlay"></div>
+
+      <nav id="tocNav" class="toc-floating" aria-label="Table of Contents">
+        <div class="toc-title"></div>
+        <ul class="toc-list">
+          <li class="tb-link cursor-pointer" data-page="1" data-audio-path="../audios/home.mp3"><a> </a></li>
+          <li class="tb-link cursor-pointer" data-page="2" data-audio-path="../audios/about us.mp3"><a></a>
+          </li>
+          <li class="tb-link cursor-pointer" data-page="3" data-audio-path="../audios/products.mp3"><a> </a>
+          </li>
+          <li class="tb-link cursor-pointer" data-page="4" data-audio-path="../audios/taper-push-pulley.mp3"><a>
+               </a></li>
+          <li class="tb-link cursor-pointer" data-page="10" data-audio-path="../audios/timing-pulley.mp3"><a>
+              </a></li>
+          <li class="tb-link cursor-pointer" data-page="13" data-audio-path="../audios/poly-v-pulley.mp3"><a>
+               </a></li>
+          <li class="tb-link cursor-pointer" data-page="17" data-audio-path="../audios/sprocket.mp3"><a></a>
+          </li>
+          <li class="tb-link cursor-pointer" data-page="24" data-audio-path="../audios/couplings.mp3"><a></a>
+          </li>
+          <li class="tb-link cursor-pointer" data-page="56" data-audio-path="../audios/diverter-wheels.mp3"><a>
+              </a></li>
+          <li class="tb-link cursor-pointer" data-page="60" data-audio-path="../audios/contact_us.mp3"><a></a></li>
+
+
+        </ul>
+      </nav>
+
+
+      <div id="navOverlay1" class="nav-overlay1"></div>
+
+      <nav id="tocNav1" class="toc-floating1 " aria-label="Table of Contents">
+
+        <ul class="toc-list1">
+          <li class="tb-link cursor-pointer" data-page="1"><a
+              class="w-full h-[6vw] flex flex-col items-center justify-center"> <img
+                src="../global-assets/thumbnail-images/page-1.webp" class="h-full w-auto mx-auto" />
+              <p class="text-[.6vw] text-center mt-[.2vw]">page 1</p>
+            </a></li>
+          <li class="tb-link cursor-pointer" data-page="2"><a
+              class="w-full h-[6vw] flex flex-col items-center justify-center"> <img
+                src="../global-assets/thumbnail-images/page-2-3.webp" class="h-full w-auto mx-auto" />
+              <p class="text-[.6vw] text-center mt-[.2vw]">page 2-3</p>
+            </a></li>
+          <li class="tb-link cursor-pointer" data-page="4"><a
+              class="w-full h-[6vw] flex flex-col items-center justify-center"> <img
+                src="../global-assets/thumbnail-images/page-4-5.webp" class="h-full w-auto mx-auto" />
+              <p class="text-[.6vw] text-center mt-[.2vw]">page 4-5</p>
+            </a></li>
+          <li class="tb-link cursor-pointer" data-page="6"><a
+              class="w-full h-[6vw] flex flex-col items-center justify-center"> <img
+                src="../global-assets/thumbnail-images/page-6-7.webp" class="h-full w-auto mx-auto" />
+              <p class="text-[.6vw] text-center mt-[.2vw]">page 6-7</p>
+            </a></li>
+          <li class="tb-link cursor-pointer" data-page="8"><a
+              class="w-full h-[6vw] flex flex-col items-center justify-center"> <img
+                src="../global-assets/thumbnail-images/page-8.webp" class="h-full w-auto mx-auto" />
+              <p class="text-[.6vw] text-center mt-[.2vw]">page 8</p>
+            </a></li>
+
+        </ul>
+      </nav>
+
+      <!-- *************************share button navbar start**************************  -->
+
+
+
+      <!-- Overlay -->
+      <div id="shareOverlay" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-[1111111110] animate-fade-in">
+      </div>
+
+
+      <!-- Modern Share Modal -->
+      <div id="shareModal"
+        class="hidden fixed top-[65%] left-[50%] transform -translate-x-1/2  max-w-[28vw] bg-gradient-to-br from-[#0A1E3F] to-[#0E3E76] rounded-2xl shadow-2xl z-[1111111111] overflow-hidden animate-modal-float">
+
+        <!-- Close Button -->
+        <button id="closeBtn"
+          class="absolute top-[1.5vw] right-[1.5vw] text-[1.5vw] text-gray-300 hover:text-white transition-colors cursor-pointer z-10">
+          ✕
+        </button>
+
+        <!-- Main Content -->
+        <div class="p-[2.5vw]">
+          <!-- Header -->
+          <div class="mb-[2vw]">
+            <h2 class="text-[1.5vw] font-bold text-white mb-[0.5vw]">Share This</h2>
+            <p class="text-[0.85vw] text-gray-300">Spread the word with your network</p>
+          </div>
+
+          <!-- Social Icons -->
+          <div class="mb-[2.5vw]">
+            <p class="text-[0.75vw] text-gray-400 uppercase tracking-widest mb-[1.2vw] font-semibold">Share On</p>
+            <div class="grid grid-cols-4 gap-[1vw]">
+              <!-- WhatsApp -->
+              <button id="whatsappBtn"
+                class="w-full h-[4.5vw] flex items-center justify-center bg-white/10 hover:bg-[#25D366] text-white rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-lg cursor-pointer border border-white/20"
+                title="WhatsApp">
+                <img src="../global assets/icons/whatsapp-icon.svg" alt="whatsapp-icon" class="w-[1.8vw]" />
+              </button>
+
+              <!-- Twitter -->
+              <button id="twitterBtn"
+                class="w-full h-[4.5vw] flex items-center justify-center bg-white/10 hover:bg-[#1DA1F2] text-white rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-lg cursor-pointer border border-white/20"
+                title="Twitter">
+                <img src="../global assets/icons/twitter-icon.svg" alt="twitter-icon" class="w-[1.8vw]" />
+              </button>
+
+              <!-- Facebook -->
+              <button id="facebookBtn"
+                class="w-full h-[4.5vw] flex items-center justify-center bg-white/10 hover:bg-[#1877F2] text-white rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-lg cursor-pointer border border-white/20"
+                title="Facebook">
+                <img src="../global assets/icons/facebook-icon.svg" alt="facebook-icon" class="w-[1.8vw]" />
+              </button>
+
+              <!-- LinkedIn -->
+              <button id="linkedInBtn"
+                class="w-full h-[4.5vw] flex items-center justify-center bg-white/10 hover:bg-[#0A66C2] text-white rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-lg cursor-pointer border border-white/20"
+                title="LinkedIn">
+                <img src="../global assets/icons/linked-in-icon.svg" alt="linked-in-icon" class="w-[1.8vw]" />
+              </button>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="w-full h-[1.5px] bg-gradient-to-r from-transparent via-white/30 to-transparent mb-[2vw]"></div>
+
+          <!-- Copy Link Section -->
+          <div>
+            <p class="text-[0.75vw] text-gray-400 uppercase tracking-widest mb-[1vw] font-semibold">Copy Link</p>
+            <div class="flex gap-[0.8vw]">
+              <input id="shareInput" type="text" readonly
+                class="flex-1 h-[2.8vw] px-[1.2vw] py-[0.8vw] bg-white/10 border border-white/20 rounded-lg text-[0.75vw] font-mono text-gray-200 placeholder-gray-500 focus:bg-white/20 focus:border-white/40 focus:outline-none transition-colors" />
+              <div class="relative">
+                <button id="copyBtn"
+                  class="h-[2.8vw] px-[1.5vw] flex items-center justify-center gap-[0.5vw] bg-gradient-to-r from-[#4A90FF] to-[#357AFF] hover:from-[#5BA4FF] hover:to-[#468BFF] text-white rounded-lg text-[0.8vw] font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/50 active:scale-95 whitespace-nowrap cursor-pointer">
+                  <svg width="1.2vw" height="1.2vw" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                    <rect x="9" y="2" width="6" height="4"></rect>
+                  </svg>
+                  Copy
+                </button>
+                <span id="copiedMsg"
+                  class="hidden absolute top-[-2.5vw] right-0 bg-green-500 text-white px-[1vw] py-[0.6vw] rounded-lg text-[0.75vw] whitespace-nowrap animate-fade-in-out shadow-lg">
+                  ✓ Copied!
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- *************************share button navbar end**************************  -->
+
+
+      <!-- ***********************************download start*********************************** -->
+
+
+      <div id="downloadPopup"
+        class="hidden mobile-download fixed top-[2%] right-[.8%] bg-gray-500 text-white px-4 py-3 rounded-lg shadow-lg z-[9999] w-[20vw] text-sm opacity-0 transition-opacity duration-300">
+        Download started...
+      </div>
+
+
+
+      <!-- ***********************************download end*********************************** -->
+
+
+
+      <!-- ******************************************************************************************************* -->
+
+
+
+      <div class="flipbook-scroll-wrapper">
+        <div id="flipbook" class="ui-flipbook">
+
+
+          <!-- ************************* Start**************************** -->
+     
+
+          <!-- ************************* End**************************** -->
+
+
+
+
+          <!-- *************************page 1 Start**************************** -->
+
+          <div class="page">
+            <img src="../global-assets/pages/page-1/background-img.webp" alt="background-img"
+              class="absolute w-[100%] h-[100%] top-[0%] left-[0%]" />
+            <img src="../global-assets/pages/page-1/logo.svg" alt="logo"
+              class="absolute w-[22%]  top-[4%] left-[5%] z-[2] left-img" />
+            <img src="../global-assets/pages/page-1/product-image.webp" alt="product-img"
+              class="absolute w-[60%] bottom-[0%] right-[0%] down-img" />
+            <img src="../global-assets/pages/page-1/text.svg" alt="text"
+              class="absolute w-[96%] top-[5%] left-[0%] up-img" />
+            <img src="../global-assets/pages/right-page-shadow.svg" alt="shadow"
+              class="absolute top-0 left-[-1%] h-[100%] z-19" />
+
+            <!-- <img src="../global assets/Images/commonThings/right-page-shadow.svg" alt="shadow"
+                            class="absolute top-0 right-[-2%] h-[100%] rotate-180 shadow-mobile" /> -->
+            <!-- <img src="../global assets/Images/commonThings/right-page-shadow.svg" alt="shadow"
+                            class="absolute top-0 left-[-1%] h-[100%] z-19" /> -->
+          </div>
+
+          <!-- *************************page 1 End**************************** -->
+
+          <!-- *************************page 2 Start**************************** -->
+
+          <div class="page">
+            <img src="../global-assets/pages/page-2/background-img.webp" alt="background-img"
+              class="absolute w-[100%] h-[100%] top-[0%] left-[0%]" />
+            <img src="../global-assets/pages/page-2/table-of-content-text.svg" alt="table of content"
+              class="absolute w-[50%] top-[4%] left-[15%] z-[2]" />
+            <img src="../global-assets/pages/page-2/description.svg" alt="description"
+              class="absolute w-[85%] top-[10%] left-[12%] tb-link cursor-pointer"
+              style="transform: scale(1); transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'"
+              onmouseout="this.style.transform='scale(1)'" data-page="3"
+              data-audio-path="../audios/description.mp3" />
+            <img src="../global-assets/pages/page-2/features.svg" alt="description"
+              class="absolute w-[85%] top-[16%] left-[12%] tb-link cursor-pointer"
+              style="transform: scale(1); transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'"
+              onmouseout="this.style.transform='scale(1)'" data-page="4" data-audio-path="../audios/features.mp3" />
+            <img src="../global-assets/pages/page-2/applications.svg" alt="description"
+              class="absolute w-[85%] top-[22%] left-[12%] tb-link cursor-pointer"
+              style="transform: scale(1); transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'"
+              onmouseout="this.style.transform='scale(1)'" data-page="4" data-audio-path="../audios/applications.mp3" />
+            <img src="../global-assets/pages/page-2/designs.svg" alt="description"
+              class="absolute w-[85%] top-[28%] left-[12%] tb-link cursor-pointer"
+              style="transform: scale(1); transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'"
+              onmouseout="this.style.transform='scale(1)'" data-page="4" data-audio-path="../audios/designs.mp3" />
+            <img src="../global-assets/pages/page-2/options.svg" alt="description"
+              class="absolute w-[85%] top-[34%] left-[12%] tb-link cursor-pointer"
+              style="transform: scale(1); transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'"
+              onmouseout="this.style.transform='scale(1)'" data-page="4" data-audio-path="../audios/options.mp3" />
+            <img src="../global-assets/pages/page-2/dimention-details.svg" alt="description"
+              class="absolute w-[85%] top-[40%] left-[12%] tb-link cursor-pointer"
+              style="transform: scale(1); transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'"
+              onmouseout="this.style.transform='scale(1)'" data-page="5" data-audio-path="../audios/dimension-details.mp3" />
+            <img src="../global-assets/pages/page-2/contact-us.svg" alt="description"
+              class="absolute w-[85%] top-[46%] left-[12%] tb-link cursor-pointer"
+              style="transform: scale(1); transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'"
+              onmouseout="this.style.transform='scale(1)'" data-page="8" data-audio-path="../audios/contact_us.mp3" />
+            <img src="../global-assets/pages/page-2/product-image.webp" alt="product-img"
+              class="absolute w-[55%] bottom-[0%] left-[0%] left-img" />
+
+            <img src="../global-assets/pages/right-page-shadow.svg" alt="shadow"
+              class="absolute top-0 right-[-2%] h-[100%] rotate-180 shadow-mobile" />
+          </div>
+
+          <!-- *************************page 2 End**************************** -->
+
+          <!-- *************************page 3 Start**************************** -->
+          <div class="page">
+            <img src="../global-assets/pages/page-3/background-img.webp" alt="background-img"
+              class="absolute w-[100%] h-[100%] top-[0%] left-[0%]" />
+            <img src="../global-assets/pages/page-3/drum-type-diverter.svg" alt="logo"
+              class="absolute w-[35%]  top-[4%] left-[5%] z-[2]" />
+            <img src="../global-assets/pages/page-3/product-image.webp" alt="product-img"
+              class="absolute w-[92%] top-[10%] right-[4%] popup_image" />
+            <img src="../global-assets/pages/page-3/text.svg" alt="text"
+              class="absolute w-[95%] bottom-[7%] right-[0%]" />
+            <img src="../global-assets/pages/page-3/02.svg" alt="text"
+              class="absolute w-[4%] bottom-[1%] left-[47.5%]" />
+            <img src="../global-assets/pages/right-page-shadow.svg" alt="shadow"
+              class="absolute top-0 left-[-1%] h-[100%] z-19" />
+          </div>
+
+          <!-- *************************page 3 End**************************** -->
+
+          <!-- *************************page 4 Start**************************** -->
+          <div class="page">
+            <img src="../global-assets/pages/page-4/background-img.webp" alt="background-img"
+              class="absolute w-[100%] h-[100%] top-[0%] left-[0%]" />
+            <img src="../global-assets/pages/page-4/product-image.webp" alt="product-img"
+              class="absolute w-[50%] bottom-[0%] right-[0%] down-img" />
+            <img src="../global-assets/pages/page-4/text.svg" alt="text"
+              class="absolute w-[85%] top-[3%] right-[7.5%]" />
+            <img src="../global-assets/pages/page-4/03.svg" alt="03" class="absolute w-[4%] bottom-[1%] left-[47.5%]" />
+            <img src="../global-assets/pages/right-page-shadow.svg" alt="shadow"
+              class="absolute top-0 right-[-2%] h-[100%] rotate-180 shadow-mobile" />
+          </div>
+
+          <!-- *************************page 4 End**************************** -->
+
+          <!-- *************************page 5 Start**************************** -->
+          <div class="page">
+            <img src="../global-assets/pages/page-5/background-img.webp" alt="background-img"
+              class="absolute w-[100%] h-[100%] top-[0%] left-[0%]" />
+            <img src="../global-assets/pages/page-5/dimension-details-of-dtd-valve.svg" alt="dimension-of-dtd-valve"
+              class="absolute w-[55%] top-[5%] left-[22.5%]" />
+            <img src="../global-assets/pages/page-5/product-image.webp" alt="product-img"
+              class="absolute w-[70%] top-[15%] left-[15%] popup_image" />
+            <img src="../global-assets/pages/page-5/text.svg" alt="text"
+              class="absolute w-[97%] bottom-[7%] left-[0%]" />
+            <a href="../lightBox/index.html#DTD-model" target="_blank"> <img
+                src="../global-assets/pages/page-5/360-icon.webp" alt="product-img"
+                class="absolute w-[20%] top-[15%] left-[15%] " /></a>
+            <a href="https://youtu.be/v-ia6qNOMek?si=X99cTMZzozjZRPJl" target="_blank"><img src="../global-assets/pages/page-5/play-icon.webp" alt="text"
+              class="absolute w-[20%] top-[50%] right-[10%] cursor-pointer" /></a>
+            <img src="../global-assets/pages/page-5/04.svg" alt="03" class="absolute w-[4%] bottom-[1%] left-[47.5%]" />
+            <img src="../global-assets/pages/right-page-shadow.svg" alt="shadow"
+              class="absolute top-0 left-[-1%] h-[100%] z-19" />
+          </div>
+
+          <!-- *************************page 5 End**************************** -->
+
+          <!-- *************************page 6 Start**************************** -->
+          <div class="page">
+            <img src="../global-assets/pages/page-6/background-img.webp" alt="background-img"
+              class="absolute w-[100%] h-[100%] top-[0%] left-[0%]" />
+            <img src="../global-assets/pages/page-6/heading.svg" alt="heading"
+              class="absolute w-[88%] top-[2.5%] left-[6%]" />
+            <img src="../global-assets/pages/page-6/product-image.webp" alt="product-img"
+              class="absolute w-[86%] top-[20%] left-[7%]" />
+            <img src="../global-assets/pages/page-6/text-table.svg" alt="text"
+              class="absolute w-[88%] bottom-[10%] left-[6%]" />
+            <img src="../global-assets/pages/page-6/05.svg" alt="05" class="absolute w-[4%] bottom-[1%] left-[47.5%]" />
+            <img src="../global-assets/pages/right-page-shadow.svg" alt="shadow"
+              class="absolute top-0 right-[-2%] h-[100%] rotate-180 shadow-mobile" />
+          </div>
+
+          <!-- *************************page 6 End**************************** -->
+          <!-- *************************page 7 Start**************************** -->
+
+   <div class="page">
+            <img src="../global-assets/pages/page-7/Heading.svg" alt="heading"
+              class="absolute w-[50%]  top-[4%] left-[25%]" />
+            <img src="../global-assets/pages/page-7/DTD-DRUM-TYPE-DIVERTER.webp" alt="images"
+              class="absolute w-[45%]  top-[10%] left-[4%] z-[2]  popup_image" style="transform: scale(1); transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+              <img src="../global-assets/pages/page-7/DTD-X-DRUM-TYPE-DIVERTER.webp" alt="images"
+              class="absolute w-[45%]  top-[10%] right-[4%] z-[2]  popup_image" style="transform: scale(1); transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+              <img src="../global-assets/pages/page-7/SINGLE-TUNNEL-DRUM-TYPE-DIVERTER.webp" alt="images"
+              class="absolute w-[45%]  top-[40%] left-[4%] z-[2]  popup_image" style="transform: scale(1); transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+              <img src="../global-assets/pages/page-7/BDV-Ball-Type-Diverter.webp" alt="images"
+              class="absolute w-[45%]  top-[40%] right-[4%] z-[2]  popup_image" style="transform: scale(1); transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+              <img src="../global-assets/pages/page-7/SV-A-(SCALE-VALVE-A).webp" alt="images"
+              class="absolute w-[45%]  top-[70%] left-[4%] z-[2]  popup_image" style="transform: scale(1); transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+              <img src="../global-assets/pages/page-7/BPV-(BY-PASS-VALVE).webp" alt="images"
+              class="absolute w-[45%]  top-[70%] right-[4%] z-[2]  popup_image" style="transform: scale(1); transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+              <img src="../global-assets/pages/page-7/06.svg" alt="06" class="absolute w-[4%] bottom-[1%] left-[47.5%]" />
+            <!-- <img src="../global-assets/pages/right-page-shadow.svg" alt="shadow" class="absolute top-0 left-[-1%] h-[100%] z-19" /> -->
+          </div>
+
+
+          <!-- *************************page 7 End**************************** -->
+
+          <!-- *************************page 8 Start**************************** -->
+          <div class="page">
+            <img src="../global-assets/pages/page-8/background-img.webp" alt="background-img"
+              class="absolute w-[100%] h-[100%] top-[0%] left-[0%]" />
+            <img src="../global-assets/pages/page-8/logo.svg" alt="logo"
+              class="absolute w-[22%]  top-[4%] left-[5%] z-[2] left-img" />
+            <img src="../global-assets/pages/page-8/Solution-Provider-For-Bulk-Solids-Handling.svg" alt="heading"
+              class="absolute w-[45%] top-[5%] right-[4%]" />
+            <img src="../global-assets/pages/page-8/contact-map.gif" alt="contact-map"
+              class="absolute w-[100%] top-[10%] left-[0%]" />
+
+
+            <img src="../global-assets/pages/page-8/QR-code.svg" alt="qr-code"
+              class="absolute w-[28%] bottom-[2%] left-[3%]" />
+
+            <a href="https://www.google.com/maps?q=AIRLOCK+INDIA+PVT.+LTD.,+1/15-8,+Annur+Road,+Arasur,+Ponnandhampalayam,+Thennampalayam,+Tamil+Nadu+641107"
+              target="_blank">
+              <img src="../global-assets/pages/page-8/location.svg" id="locationBtn" alt="location"
+                class="absolute w-[60%] bottom-[15%] right-[2%] cursor-pointer" />
+            </a>
+
+            <!-- Phone -->
+            <div id="phoneBtn" class="absolute w-[22%] bottom-[12%] right-[30%]" style="z-index:9999; cursor:pointer;">
+              <img src="../global-assets/pages/page-8/phone-number.svg" alt="phone-number" style="width:100%;" />
+            </div>
+
+            <!-- Email -->
+            <div id="emailBtn" class="absolute w-[22%] bottom-[12%] right-[10%]" style="z-index:9999; cursor:pointer;">
+              <img src="../global-assets/pages/page-8/email.svg" alt="email" style="width:100%;" />
+            </div>
+
+            <img src="../global-assets/pages/page-8/Sales-offices.svg" alt="sales-offices"
+              class="absolute w-[55%] bottom-[5%] right-[3%]" />
+
+            <!-- WhatsApp -->
+            <div id="whatsappIconBtn" class="absolute w-[3.5%] bottom-[1%] right-[46%]"
+              style="z-index:9999; cursor:pointer;">
+              <img src="../global-assets/pages/page-8/Whatsapp-icon.webp" alt="whatsapp" style="width:100%;" />
+            </div>
+
+            <!-- Instagram -->
+            <div id="instagramBtn" class="absolute w-[3.5%] bottom-[1%] right-[40%]"
+              style="z-index:9999; cursor:pointer;">
+              <img src="../global-assets/pages/page-8/instagram.webp" alt="instagram" style="width:100%;" />
+            </div>
+
+            <!-- Facebook -->
+            <div id="facebookIconBtn" class="absolute w-[3.5%] bottom-[1%] right-[34%]"
+              style="z-index:9999; cursor:pointer;">
+              <img src="../global-assets/pages/page-8/Facebook-icon.webp" alt="facebook" style="width:100%;" />
+            </div>
+
+            <!-- YouTube -->
+            <div id="youtubeBtn" class="absolute w-[4%] bottom-[1%] right-[28%]" style="z-index:9999; cursor:pointer;">
+              <img src="../global-assets/pages/page-8/Youtube-icon.webp" alt="youtube" style="width:100%;" />
+            </div>
+
+            <!-- LinkedIn -->
+            <div id="linkedinIconBtn" class="absolute w-[3.5%] bottom-[1%] right-[22%]"
+              style="z-index:9999; cursor:pointer;">
+              <img src="../global-assets/pages/page-8/Linkedin-icon.webp" alt="linked in" style="width:100%;" />
+            </div>
+
+            <!-- Website -->
+            <div id="websiteBtn" class="absolute w-[3.5%] bottom-[1%] right-[16%]"
+              style="z-index:9999; cursor:pointer;">
+              <img src="../global-assets/pages/page-8/web-icon.webp" alt="web" style="width:100%;" />
+            </div>
+
+
+            <img src="../global-assets/pages/right-page-shadow.svg" alt="shadow"
+              class="absolute top-0 right-[-2%] h-[100%] rotate-180 shadow-mobile" />
+          </div>
+
+          <!-- *************************page 8 End**************************** -->
+
+
+
+
+
+          <a ignore="1" class="ui-arrow-control ui-arrow-next-page">
+            <img src="../global assets/icons/next-page-icon.svg" class="z-1111" />
+          </a>
+          <a ignore="1" class="ui-arrow-control ui-arrow-previous-page">
+            <img src="../global assets/icons/previous-page.svg" class="1111" />
+          </a>
+        </div>
+      </div>
+
+
+
+    </div>
+
+
+
+
+    <audio id="flipaudio" src="../audios/flipsound-new.ogg"></audio>
+
+    <!-- controls -->
+    <div id="controls">
+      <div class="all">
+
+
+        <!-- zoom slider -->
+        <div id="zoom-slider-view" class="zoom-slider">
+          <div class="bg">
+            <div class="ui-slider" id="zoom-slider">
+              <div class="bar">
+                <div class="progress-width">
+                  <div class="progress">
+                    <div class="handler"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- / zoom slider -->
+      </div>
+
+      <div id="ui-icon-expand-options">
+        <a class="ui-icon show-hint">
+          <i class="fa fa-ellipsis-h"></i>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- / controls -->
+
+    <!-- miniatures -->
+    <div id="miniatures" class="ui-miniatures-slider">
+    </div>
+
+    <!-- / miniatures -->
+
+
+
+
+    <!-- Search Modal Overlay -->
+
+    <!-- Search Modal -->
+    <div id="searchModal" class="fixed top-[2.5%] left-[3%]  z-[1111111111] hidden w-[14vw] ">
+      <div class="bg-[#7998BA]  shadow-2xl overflow-hidden h-[2vw] rounded-r-full ">
+        <!-- Search Input Container -->
+        <div class="relative flex items-center h-[100%] p-4  border-gray-200 ">
+          <input type="text" id="searchInput" placeholder="Search Page No or Text"
+            class="flex-1 outline-none text-white text-[.8vw] items-start absolute top-[50%]  ml-[.8vw]"
+            style="transform: translateY(-50%);" autocomplete="off" />
+          <button id="closeSearchModal"
+            class="text-white hover:text-gray-50 text-[.8vw] h-[100%] z-[100005] absolute right-[1vw] top-[50%]  p-[.5vw] cursor-pointer"
+            style="transform: translateY(-50%); cursor: pointer; z-index: 10003241;">
+            ✕
+          </button>
+        </div>
+
+        <!-- Search Results -->
+        <div id="searchResults" class="max-h-[400px] overflow-y-auto p-4 hidden">
+          <p class="text-gray-500 text-center">Type to search pages...</p>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+
+  <script type="text/javascript">
+    // Change these settings
+
+    gsap.config({
+      nullTargetWarn: false
+    });
+    let windowWidth = window.innerWidth;
+    let windowHeight = window.innerHeight;
+
+    const normal = { width: 1450, height: 900 };
+
+    const heightLower = (windowHeight >= 700) ? 690 : 550;
+    const widthLower = (windowHeight >= 700) ? 1100 : 900;
+
+    const lower = { width: widthLower, height: heightLower };
+
+    // 📱 MOBILE — increase both width & height
+    const mobile = {
+      width: 800,   // 98% screen width
+      height: 500  // 95% screen height
+    };
+
+    // choose correct size
+    let crctSize;
+    if (windowWidth <= 768) {
+
+      crctSize = mobile;
+      // alert(`Mobile size\nWidth: ${crctSize.width}px\nHeight: ${crctSize.height}px`);
+    } else if (windowWidth > 1280) {
+      crctSize = normal;
+    } else {
+      crctSize = lower;
+    }
+
+
+
+
+
+    console.log('correct width: ', crctSize.width);
+    console.log('correct height: ', crctSize.height);
+    FlipbookSettings = {
+      options: {
+        width: crctSize.width,
+        height: crctSize.height,
+        autoCenter: true,
+        pages: 8,
+        when: {
+          turning: function () {
+            document.getElementById("flipaudio")?.play();
+          }
+        }
+      }
+    };
+
+    if (windowWidth <= 768) {
+      const el = document.querySelector(".catalog-app");
+      if (el) {
+        el.style.width = "100vw";
+        el.style.height = "100vh";
+        el.style.maxWidth = "100%";
+      }
+    }
+
+
+
+    const fsBtn = document.getElementById("full-screen-btn");
+
+    const fullIcon = "../global assets/icons/full-screen-icon.svg";
+    const exitIcon = "../global assets/icons/normal-screen-icon.svg"; // <-- add correct path
+
+    let isFullscreen = false;
+
+    $('.full-screen').on('click', function () {
+      isFullscreen = !isFullscreen;
+      fsBtn.src = isFullscreen ? exitIcon : fullIcon;
+
+      window.parent.postMessage({ action: "toggleFullscreen" }, "*");
+    });
+
+    $(document).on('keydown', function (event) {
+      console.log('Key pressed:', event.key);
+      if ((event.key === 'Escape' || event.keyCode === 27) && isFullscreen) {
+        isFullscreen = false;
+        fsBtn.src = fullIcon;
+        window.parent.postMessage({ action: "toggleFullscreen" }, "*");
+      }
+    });
+
+
+
+
+    $('#flipbook').bind('turning', function (event, page, view) {
+      resetPageImages(); // Clear or reset before the page turns
+    });
+
+
+
+
+    $('#flipbook').bind('turning', function (event, page, view) {
+
+      const isMobile = window.innerWidth <= 768;
+
+      resetPageImages(); // Clear animations before page turns
+
+      console.log("Page turned to:", page, "Mobile:", isMobile);
+
+      // ============== Page 1 - Home ==============
+      if (page === 1) {
+        DownAnimation();
+        UpAnimation();
+        LeftAnimation();
+      }
+
+      // ============== Page 2-3 - About Us & Table of Contents ==============
+      if (page === 2 || page === 3) {
+        LeftAnimation();
+        popupAnimation();
+      }
+
+      if (page === 3) {
+        popupAnimation();
+      }
+
+      // ============== Page 4-5 - Round Containers ==============
+      if (page === 4 || page === 5) {
+        DownAnimation();
+        popupAnimation();
+      }
+      if (page === 5) {
+        popupAnimation();
+      }
+
+      // ============== Page 6-7 - Round Square ==============
+      if (page === 6 || page === 7) {
+        popupAnimation();
+      }
+      if (page === 7) {
+        popupAnimation();
+      }
+      if (page === 9) {
+
+      }
+
+      // ============== Page 8-9 - Oval ==============
+      if (page === 6 || page === 7) {
+
+      }
+      if (page === 6) {
+
+      }
+
+
+      if (page === 8) {
+        LeftAnimation();
+      }
+
+
+
+      // Update page counter
+      updateActiveThumbnail(page);
+    });
+
+
+    function resetPageImages() {
+      // const allAnimatedImages = document.querySelectorAll("[data-image-animation], [data-3d-image-animation]");
+      const allAnimatedImages = document.querySelectorAll(" .up-img, .down-img, .right-img, .left-img, .popup_images2 ");
+      allAnimatedImages.forEach((img) => {
+        gsap.set(img, {
+          opacity: 0,
+          x: 0,
+          y: 0,
+          scale: 1
+        });
+      });
+      gsap.set('.up-img, .down-img, .right-img, .left-img, .popup_images2   ', { opacity: 0 });
+    }
+
+
+
+    function popupAnimation() {
+
+      gsap.fromTo('.popup_image',
+        { opacity: 0, scale: 0.5 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.75,
+          stagger: 0.1,
+          ease: "power3.out"
+        }
+      );
+
+    }
+
+
+    function DownAnimation() {
+      gsap.fromTo(
+        ".down-img",
+        { opacity: 0, y: 80 },   // start: hidden + shifted to the right
+        {
+          opacity: 1,
+          y: 0,                  // move to normal position
+          duration: 1.5,
+          stagger: 0.1,          // reveal one by one if multiple
+          ease: "power3.out"
+        }
+      );
+    }
+
+    function UpAnimation() {
+      gsap.fromTo(
+        ".up-img",
+        { opacity: 0, y: -80 },   // start: hidden + shifted to the right
+        {
+          opacity: 1,
+          y: 0,                  // move to normal position
+          duration: 1.5,
+          stagger: 0.1,          // reveal one by one if multiple
+          ease: "power3.out"
+        }
+      );
+    }
+
+    function RightAnimation() {
+      gsap.fromTo(
+        ".right-img",
+        { opacity: 0, x: 80 },   // start: hidden + shifted to the right
+        {
+          opacity: 1,
+          x: 0,                  // move to normal position
+          duration: 1.5,
+          stagger: 0.1,          // reveal one by one if multiple
+          ease: "power3.out"
+        }
+      );
+    }
+
+    function LeftAnimation() {
+      gsap.fromTo(
+        ".left-img",
+        { opacity: 0, x: -80 },   // start: hidden + shifted to the right
+        {
+          opacity: 1,
+          x: 0,                  // move to normal position
+          duration: 1.5,
+          stagger: 0.1,          // reveal one by one if multiple
+          ease: "power3.out"
+        }
+      );
+    }
+    function resetPageImages() {
+      gsap.set('.services_grid_main img, .slide_up_image, .fade_in_images, .popup', { opacity: 0 });
+    }
+
+
+
+
+
+  </script>
+
+
+  <!-- <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.2.0/model-viewer.min.js  "></script> -->
+  <script type="text/javascript" src="script.js"></script>
+
+
+  <script>
+
+    let finalState = false;
+    // ICON button
+    // const fsBtn = document.getElementById("full-screen-btn");
+
+    // CLICK → Send toggle request to parent
+    $('.full-screen').on('click', function () {
+
+      // Immediately change icon (optimistic)
+      const isCurrentlyFullscreen = fsBtn.src.includes('normal-screen-icon');
+
+      if (isCurrentlyFullscreen) {
+        fsBtn.src = "../global-assets/navbar-icons/full-screen-icon.svg";
+        fsBtn.title = "Full Screen";
+        finalState = true;
+      } else {
+        fsBtn.src = "../global-assets/navbar-icons/normal-screen-icon.svg";
+        fsBtn.title = "Exit Full Screen";
+        finalState = false;
+      }
+
+      console.log("IFRAME: Sent toggle request");
+      window.parent.postMessage({ action: "toggleFullscreen" }, "*");
+    });
+
+    // RECEIVE confirmed fullscreen state from parent
+    window.addEventListener("message", (event) => {
+
+      if (typeof event.data.fullscreen !== "undefined") {
+        const state = event.data.fullscreen;
+
+        if (state) {
+          fsBtn.src = "../global assets/icons/normal-screen-icon.svg";
+          fsBtn.title = "Exit Full Screen";
+          console.log("IFRAME: Fullscreen confirmed");
+        } else {
+          fsBtn.src = "../global assets/icons/full-screen-icon.svg";
+          fsBtn.title = "Full Screen";
+          console.log("IFRAME: Normal screen confirmed");
+        }
+      }
+    });
+
+
+
+    window.addEventListener("resize", () => {
+      console.log("changed");
+
+      if (finalState) {
+
+        fsBtn.src = "../global-assets/navbar-icons/full-screen-icon.svg";
+        fsBtn.title = "Full Screen";
+        console.log("Resize: Normal → Fullscreen Icon");
+
+      }
+
+    });
+
+  </script>
+
+  <script>
+    // =============================================
+    // All clickable buttons — desktop + mobile
+    // =============================================
+    (function () {
+
+      var mapsURL = "https://www.google.com/maps?q=AIRLOCK+INDIA+PVT.+LTD.,+1/15-8,+Annur+Road,+Arasur,+Ponnandhampalayam,+Thennampalayam,+Tamil+Nadu+641107";
+      var phoneNumber = "tel:+914226678535";           // ← replace with real number
+      var emailAddress = "mailto:sales@airlockintl.co.in"; // ← replace with real email
+      var whatsappURL = "https://wa.me/919XXXXXXXXX";  // ← replace with real number
+      var instagramURL = "https://www.instagram.com/airlockindia?utm_source=qr&igshid=MzNlNGNkZWQ4Mg%3D%3D";
+      var facebookURL = "https://www.facebook.com/YOUR_PAGE";
+      var youtubeURL = "https://www.youtube.com/@YOUR_CHANNEL";
+      var linkedinURL = "https://www.linkedin.com/company/YOUR_COMPANY";
+      var websiteURL = "https://www.airlockindia.com"; // ← replace with real website
+
+      var buttons = [
+        { id: "locationBtn", url: mapsURL },
+        { id: "phoneBtn", url: phoneNumber },
+        { id: "emailBtn", url: emailAddress },
+        { id: "whatsappIconBtn", url: whatsappURL },
+        { id: "instagramBtn", url: instagramURL },
+        { id: "facebookIconBtn", url: facebookURL },
+        { id: "youtubeBtn", url: youtubeURL },
+        { id: "linkedinIconBtn", url: linkedinURL },
+        { id: "websiteBtn", url: websiteURL },
+      ];
+
+      buttons.forEach(function (btn) {
+        var el = document.getElementById(btn.id);
+        if (!el) return;
+
+        var touchMoved = false;
+        var touchStartX = 0;
+        var touchStartY = 0;
+        var url = btn.url;
+
+        // Capture phase — fires BEFORE Turn.js steals the touch
+        el.addEventListener('touchstart', function (e) {
+          touchMoved = false;
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+          e.stopPropagation();
+        }, true);
+
+        el.addEventListener('touchmove', function (e) {
+          var dx = Math.abs(e.touches[0].clientX - touchStartX);
+          var dy = Math.abs(e.touches[0].clientY - touchStartY);
+          if (dx > 8 || dy > 8) touchMoved = true;
+          e.stopPropagation();
+        }, true);
+
+        el.addEventListener('touchend', function (e) {
+          e.stopPropagation();
+          if (!touchMoved) {
+            e.preventDefault(); // block ghost click
+            window.open(url, '_blank');
+          }
+        }, true);
+
+        // Desktop click
+        el.addEventListener('click', function () {
+          window.open(url, '_blank');
+        });
+      });
+
+    })();
+
+
+  </script>
+
+  <!-- Scripts cleaned up -->
+
+
+  <script>
+    /* =============================================
+    MOBILE NAV BAR — only active on ≤1024px
+    ============================================= */
+    (function () {
+      if (window.innerWidth > 1024) return;
+
+      const mobileTocBtn = document.getElementById('mobileTocBtn');
+      const mobileDotsBtn = document.getElementById('mobileDotsBtn');
+      const mobileTocPopup = document.getElementById('mobileTocPopup');
+      const mobileDotsPopup = document.getElementById('mobileDotsPopup');
+      const mobOverlay = document.getElementById('mobOverlay');
+      const mobPageNo = document.getElementById('mob-page-no');
+
+      function closeAll() {
+        mobileTocPopup.classList.remove('show');
+        mobileDotsPopup.classList.remove('show');
+        mobOverlay.classList.remove('show');
+        mobileTocBtn.classList.remove('open');
+      }
+
+      /* Hamburger / TOC toggle */
+      mobileTocBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const wasOpen = mobileTocPopup.classList.contains('show');
+        closeAll();
+        if (!wasOpen) {
+          mobileTocPopup.classList.add('show');
+          mobOverlay.classList.add('show');
+          mobileTocBtn.classList.add('open');   // animate to ✕
+        }
+      });
+
+      /* Dots toggle */
+      mobileDotsBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const wasOpen = mobileDotsPopup.classList.contains('show');
+        closeAll();
+        if (!wasOpen) {
+          mobileDotsPopup.classList.add('show');
+          mobOverlay.classList.add('show');
+        }
+      });
+
+      mobOverlay.addEventListener('click', closeAll);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeAll();
+      });
+
+      /* TOC links */
+      document.querySelectorAll('.mob-tb-link').forEach(function (item) {
+        item.addEventListener('click', function () {
+          const page = parseInt(this.dataset.page);
+          if ($('#flipbook').turn) $('#flipbook').turn('page', page);
+          // highlight active
+          document.querySelectorAll('.mob-tb-link').forEach(li => li.classList.remove('mob-active'));
+          this.classList.add('mob-active');
+          closeAll();
+        });
+      });
+
+      /* Music */
+      const mobMusicBtn = document.getElementById('mobMusicBtn');
+      const mobMusicOnImg = document.getElementById('mobMusicOnImg');
+      const mobMusicOffImg = document.getElementById('mobMusicOffImg');
+      const bgmAudio = document.getElementById('bgmAudio');
+      const musicOnImg = document.getElementById('musicOnImg');
+      const musicOffImg = document.getElementById('musicOffImg');
+
+      mobMusicBtn.addEventListener('click', function () {
+        if (bgmAudio.paused) {
+          bgmAudio.play();
+          mobMusicOnImg.classList.remove('hidden');
+          mobMusicOffImg.classList.add('hidden');
+          musicOnImg.classList.remove('hidden');
+          musicOffImg.classList.add('hidden');
+        } else {
+          bgmAudio.pause();
+          mobMusicOnImg.classList.add('hidden');
+          mobMusicOffImg.classList.remove('hidden');
+          musicOnImg.classList.add('hidden');
+          musicOffImg.classList.remove('hidden');
+        }
+        closeAll();
+      });
+
+      /* Share — reuses existing share modal */
+      document.getElementById('mobShareBtn').addEventListener('click', function () {
+        const shareModal = document.getElementById('shareModal');
+        const shareOverlay = document.getElementById('shareOverlay');
+        const shareInput = document.getElementById('shareInput');
+        if (shareModal && shareOverlay) {
+          shareModal.classList.remove('hidden');
+          shareOverlay.classList.remove('hidden');
+          try { shareInput.value = window.top.location.href; } catch (e) { shareInput.value = window.location.href; }
+        }
+        closeAll();
+      });
+
+      /* Download — reuses existing download logic */
+      document.getElementById('mobDownloadBtn').addEventListener('click', function () {
+        const downloadPopup = document.getElementById('downloadPopup');
+        if (downloadPopup) {
+          downloadPopup.classList.remove('hidden');
+          setTimeout(function () { downloadPopup.classList.add('opacity-100'); }, 10);
+          setTimeout(function () {
+            downloadPopup.classList.remove('opacity-100');
+            setTimeout(function () { downloadPopup.classList.add('hidden'); }, 300);
+          }, 2000);
+        }
+        const link = document.createElement('a');
+        link.href = '../global-assets/Airlock-IDC.pdf';
+        link.download = 'Airlock-IDC.pdf';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        closeAll();
+      });
+
+      /* Sync page number */
+      $('#flipbook').bind('turned', function (event, page) {
+        if (mobPageNo) mobPageNo.textContent = page;
+        // sync active TOC highlight
+        document.querySelectorAll('.mob-tb-link').forEach(function (li) {
+          li.classList.toggle('mob-active', parseInt(li.dataset.page) === page);
+        });
+      });
+
+    })();
+  </script>
+
+
+
+<script>
+  $(document).ready(function () {
+    var isMobile = $(window).width() < 768;
+
+    if (!isMobile) return;
+
+    $('#flipbook').on('touchstart touchmove', '.page-wrapper, .page', function (e) {
+      var $target = $(e.target);
+
+      // Allow any interactive / overlay element to work freely
+      var isInteractive =
+        $target.is('a, button, img[id], [data-page]') ||
+        $target.closest('a, button, [id], [data-page]').length > 0 ||
+        $target.closest('#mobileTocPopup').length > 0 ||
+        $target.closest('#mobileDotsPopup').length > 0 ||
+        $target.closest('#mobOverlay').length > 0 ||
+        $target.closest('#locationBtn, #phoneBtn, #emailBtn').length > 0 ||
+        $target.closest('#whatsappIconBtn, #instagramBtn, #facebookIconBtn').length > 0 ||
+        $target.closest('#youtubeBtn, #linkedinIconBtn, #websiteBtn').length > 0;
+
+      if (isInteractive) {
+        e.stopImmediatePropagation();
+        return true; // Let it through
+      }
+
+      // Only block swipe/scroll on non-interactive areas
+      if (e.type === 'touchmove') {
+        e.preventDefault();
+      }
+      e.stopPropagation();
+      return false;
+    });
+  });
+</script>
+  <script>
+    /* Fullscreen Hint Logic */
+    (function () {
+      const fsHint = document.createElement('div');
+      fsHint.id = 'fs-hint-container';
+      fsHint.innerHTML = `
+        
+        <span>Click the Fullscreen icon for the best experience</span>
+      `;
+      document.body.appendChild(fsHint);
+
+      function showHint() {
+        fsHint.classList.add('visible');
+        setTimeout(() => {
+          fsHint.classList.remove('visible');
+        }, 10000); // Display for 10 seconds
+      }
+
+      // Initial show on load
+      showHint();
+
+      // Repeat every 3 minutes (180000 ms)
+      setInterval(showHint, 180000);
+    })();
+  </script>
+</body>
+
+
+</html>

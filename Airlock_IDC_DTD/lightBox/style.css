@@ -1,0 +1,12 @@
+#preview {
+    width: 50%;
+    height: 80%;
+    position: absolute;
+}
+
+
+.color_picker1{
+   /* position: absolute; */
+   bottom: -80% !important;
+   left: -88% !important;
+}

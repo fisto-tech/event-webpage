@@ -1,0 +1,7801 @@
+
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@300&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@font-face {
+  font-family: 'raleway-thin';
+  src: url('AkiraControls/fonts/woff/raleway-thin.woff') format('woff');
+  
+}
+@font-face {
+  font-family: 'Switzerland Condensed Plain';
+  src: url('AkiraControls/fonts/woff/Switzerland Condensed Plain.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'ebrima';
+  src: url('fonts/woff/Ebrima Font/Ebrima Font/ebrima.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'clobber-font';
+  src: url('fonts/woff/ClobberGrotesk-Regular.ttf') format ('truetype');
+}
+
+@font-face {
+  font-family: "Clobber Grotesk W01 Light";
+  src: url("https://db.onlinewebfonts.com/t/5621f8cab110decb922898f594ecd660.eot");
+  src: url("https://db.onlinewebfonts.com/t/5621f8cab110decb922898f594ecd660.eot?#iefix")format("embedded-opentype"),
+  url("https://db.onlinewebfonts.com/t/5621f8cab110decb922898f594ecd660.woff2")format("woff2"),
+  url("https://db.onlinewebfonts.com/t/5621f8cab110decb922898f594ecd660.woff")format("woff"),
+  url("https://db.onlinewebfonts.com/t/5621f8cab110decb922898f594ecd660.ttf")format("truetype"),
+  url("https://db.onlinewebfonts.com/t/5621f8cab110decb922898f594ecd660.svg#Clobber Grotesk W01 Light")format("svg");
+}
+
+:root {
+    view-transition-name: root;
+  }
+  * {
+
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  
+  }
+  html{ 
+    overflow: hidden;
+    display: block;
+
+  }
+  .menu{
+    position: fixed;
+    width: 100%;
+    top: -35px;
+    transition: all 0.5s;
+    overflow: hidden;
+    margin-left: 10px;
+} 
+
+  
+  body{
+    width: 100%;
+    height: 100%;
+    overflow: hidden; 
+    margin: 0px;
+    zoom: 97.5%;
+  }
+
+  @media screen and (min-width:1900px) {
+    body{
+      zoom: 98%;
+    }
+  }
+
+
+ 
+.digital-catalog{
+    width: 100%;
+    height: 100vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    perspective: 1200px;
+    overflow: hidden;   
+}
+
+
+#flip{
+  min-width: 912px;
+  height: 600px;
+  top: 50%;
+  left: 52%;
+  transform: translate(-50%,-50%);
+  position: absolute;
+  padding-bottom: 100px;
+  overflow: hidden;
+  
+}
+  
+#flipbook {
+  width: 912px;
+  height: 600px;
+  margin: 32px 32px 32px;
+  position: relative;
+  overflow: hidden;   
+
+  }
+  
+  @media screen and (min-width:200px) and (max-width:650px){
+    #flipbook{
+      transform: translate(0px, -30px);
+    }
+  }
+  @media screen and (min-width:650px) and (max-width:768px){
+    #flipbook{
+      transform: translate(0px, -50px);
+    }
+  }
+  @media screen and (min-width:1320px){
+    #flipbook{
+    position: relative;
+    top: 15px !important;
+  }
+}
+  @media screen and (min-width:1900px){
+    #flipbook{
+    position: relative;
+    top: 25px !important;
+    zoom: 102%;
+  }
+  
+  #viewer{
+    transform: translateY(35px) !important;
+    zoom: 101%;
+  }
+}
+
+@media screen  and (min-width: 1900px) and (max-height: 700px){
+  #flipbook{
+    position: relative;
+    top: 1px !important;
+    zoom: 102%;
+  }
+
+#viewer{
+  transform: translateY(-50px) !important;
+  zoom: 97.5%;
+
+}
+}
+  
+#flipbook .shadow{
+  -webkit-transition: -webkit-box-shadow 0.5s;
+  -moz-transition: -moz-box-shadow 0.5s;
+  -o-transition: -webkit-box-shadow 0.5s;
+  -ms-transition: -ms-box-shadow 0.5s;
+  box-shadow: -2px 2px 15px -2px ;
+  overflow: hidden;
+}
+
+#flipbook .odd {
+  background: -webkit-gradient(linear, right top, left top, color-stop(0.95, #FFF), color-stop(1, #DADADA));
+  background-image: -webkit-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+  background-image: -moz-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+  background-image: -ms-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+  background-image: -o-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+  background-image: linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+  -webkit-box-shadow: inset 0 0 5px #666;
+  -moz-box-shadow: inset 0 0 5px #666;
+  -o-box-shadow: inset 0 0 5px #666;
+  -ms-box-shadow: inset 0 0 5px #666;
+  overflow: hidden;
+
+}
+
+#flipbook .even {
+
+  background: -webkit-gradient(linear, left top, right top, color-stop(0.95, #fff), color-stop(1, #dadada));
+  background-image: -webkit-linear-gradient(left, #fff 95%, #dadada 100%);
+  background-image: -moz-linear-gradient(left, #fff 95%, #dadada 100%);
+  background-image: -ms-linear-gradient(left, #fff 95%, #dadada 100%);
+  background-image: -o-linear-gradient(left, #fff 95%, #dadada 100%);
+  background-image: linear-gradient(left, #fff 95%, #dadada 100%);
+  -webkit-box-shadow: inset 0 0 5px #666;
+  -moz-box-shadow: inset 0 0 5px #666;
+  -o-box-shadow: inset 0 0 5px #666;
+  -ms-box-shadow: inset 0 0 5px #666;
+  box-shadow: 6.2px 12.3px 12.3px hsl(0deg 0% 0% / 0.31); 
+   overflow: hidden;
+
+ }
+
+  .page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .pages {
+    position: relative;
+    background-color: white;
+    overflow: hidden;
+  
+  }
+  .pages.even {
+    background: linear-gradient(to right, white 0%, white 55%, #ebebeb 117%);
+    overflow: hidden;
+ 
+  }
+  .pages.even::after {
+    content: "";
+    position: absolute;
+    cursor: pointer;
+    width: 60px;
+    top: 0;
+    left: 0;
+    height: 60px;
+    overflow: hidden;
+
+  }
+  .pages.even::before {
+    content: "";
+    position: absolute;
+    cursor: pointer;
+    width: 60px;
+    bottom: 0;
+    left: 0;
+    height: 60px;
+    overflow: hidden;
+  }
+  .pages.odd {
+    background: linear-gradient(to left, white 0%, white 55%, #ebebeb 117%);
+    overflow: hidden;
+    box-shadow: 2px 2px 15px -2px rgba(0,0,0,0.2);
+  }
+  .pages.odd::after {
+    content: "";
+    position: absolute;
+    cursor: pointer;
+    width: 60px;
+    top: 0;
+    right: 0;
+    height: 60px;
+    overflow: hidden;
+ 
+  }
+  .pages.odd::before {
+    content: "";
+    position: absolute;
+    cursor: pointer;
+    width: 60px;
+    bottom: 0;
+    right: 0;
+    height: 60px;
+    overflow: hidden;
+  
+  }
+
+  
+  /****************************** basic file ended ***************************************************************/
+
+  .logo{
+    width: 20%;
+    margin-top: 40px;
+    float: left;
+    overflow: hidden;
+  
+  }
+  .logo img{
+    width: 30%;
+    overflow: hidden;
+  }
+
+
+  /************************* model viewer ***********************/
+
+  .progress-bar {
+    display: block;
+    width: 33%;
+    height: 10%;
+    max-height: 2%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    border-radius: 25px;
+    box-shadow: 0px 3px 10px 3px rgba(0, 0, 0, 0.5), 0px 0px 5px 1px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .progress-bar.hide {
+    visibility: hidden;
+    transition: visibility 0.3s;
+  }
+  
+  .update-bar {
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 0%;
+    height: 100%;
+    border-radius: 25px;
+    float: left;
+    transition: width 0.3s;
+  }
+  
+  #ar-button {
+    background-image: url(ar_icon.png);
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    background-position: 12px 50%;
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    bottom: 16px;
+    padding: 0px 16px 0px 40px;
+    font-family: Roboto Regular, Helvetica Neue, sans-serif;
+    font-size: 14px;
+    color:#4285f4;
+    height: 36px;
+    line-height: 36px;
+    border-radius: 18px;
+    border: 1px solid #DADCE0;
+  }
+  
+  #ar-button:active {
+    background-color: #E8EAED;
+  }
+  
+  #ar-button:focus {
+    outline: none;
+  }
+  
+  #ar-button:focus-visible {
+    outline: 1px solid #4285f4;
+  }
+  
+  @keyframes circle {
+    from { transform: translateX(-50%) rotate(0deg) translateX(50px) rotate(0deg); }
+    to   { transform: translateX(-50%) rotate(360deg) translateX(50px) rotate(-360deg); }
+  }
+  
+  @keyframes elongate {
+    from { transform: translateX(100px); }
+    to   { transform: translateX(-100px); }
+  }
+  
+  model-viewer > #ar-prompt {
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    animation: elongate 2s infinite ease-in-out alternate;
+    display: none;
+  }
+  
+  model-viewer[ar-status="session-started"] > #ar-prompt {
+    display: block;
+  }
+  
+  model-viewer > #ar-prompt > img {
+    animation: circle 4s linear infinite;
+  }
+  
+ 
+
+  .lightbox-target .deg img{
+    width: 5%;
+    position: absolute;
+    top: -80%;
+  }
+  .lightbox-target1 .deg img{
+    width: 5%;
+    position: absolute;
+    top: -80%;
+  }
+
+
+
+   /************************************************* Page1 ******************************************/
+   .page-1{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+   }
+  
+   .page-1 .page-1logoright{
+    position: absolute;
+    width: 55%;
+    margin-left: 60%;
+   margin-top: 10%;
+   overflow: hidden;
+   }
+   .page-1 .page-1logoright img{
+    width: 50%;
+    overflow: hidden;
+   }
+  .page-1 .page-1centerimg{
+    position: absolute;
+    width: 80%;
+    margin-top: 90%;
+    margin-left: 22%;
+    z-index: 2;
+    overflow: hidden;
+  }
+  .page-1 .page-1centerimg-1{
+    position: absolute;
+    width: 100%;
+    margin-top: 30%;
+    margin-left: 2%;
+    z-index: 2;
+    overflow: hidden;
+  }
+
+  .page-1 .page-1centerimg-1 img{
+    width: 100%;
+    margin-left: 0%;
+    overflow: hidden;
+  }
+  .page-1 .page-1centerimg h2{
+    font-size: 1.5vw;
+    font-weight: 530;
+    text-transform: uppercase;
+    overflow: hidden;
+    font-family: 'Raleway';
+    @media screen and (max-width:500px) {
+      font-size: 4.5vw;
+    }
+    @media screen and (min-width:769px) and (max-width:900px){
+      font-size: 3vw;
+    }
+  }
+  .page-1 .page-1centerimg h3{
+    font-size: 2vw;
+    text-transform: uppercase;
+  font-weight: 550;
+    overflow: hidden;
+    font-family: 'Raleway';
+    @media screen and (max-width:500px) {
+      font-size: 5vw;
+    }
+    @media screen and (min-width:769px) and (max-width:900px){
+      font-size: 5vw;
+
+    }
+  }
+  .page-1 .page-1centerimg h4{
+    font-size: 1.1vw;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #001e4a;
+    color: #4b1813;
+    overflow: hidden;
+    font-family: 'Raleway';
+    @media screen and (max-width:500px) {
+      font-size: 4vw;
+    }
+    @media screen and (min-width:769px) and (max-width:900px){
+
+      font-size: 3.5vw;
+    }
+  }
+  .page-1 .page-1centerimg h5{
+    font-size: 1.1vw;
+    overflow: hidden;
+    color: #708099;
+    font-family: 'Raleway';
+    @media screen and (max-width:500px) {
+          font-size: 4vw;
+        }
+        @media screen and (min-width:769px) and (max-width:900px){
+
+          font-size: 3.5vw;
+        }
+
+  }
+    
+ 
+  
+  .page-1 .page-1lastimg{
+    position: absolute;
+    top: 70%;
+    width: 100%;
+    height: 30vh;
+    overflow: hidden;
+   
+  }
+
+  
+   .page-1 .page-1lastimg img{
+    width: 100%;
+    overflow: hidden;
+    opacity: .6;
+   }
+
+    /************************************************* Page2 ******************************************/
+    .page-2{
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+     }
+     .page-2 .page-2firsthead{
+      position: absolute;
+      margin-top: 2%;
+     margin-left: 2%;
+     width: 55%;
+     overflow: hidden;
+    
+     }
+
+     .page-2 .page-2firsthead h2{
+      margin-top: 2%;
+      margin-left: 4%;
+      font-size: 18px;
+      overflow: hidden;
+      font-family: 'Raleway';
+      font-weight: 800;
+      @media screen and (max-width:500px) {
+        font-size: 13.5px;
+        margin-top: 1%;
+      }
+      @media screen and (min-width:769px) and (max-width:900px){
+
+        font-size: 19px;
+      }
+     }
+
+     .page-2 .page2first{
+      position: absolute;
+      margin-top: 10%;
+      margin-left: 5%;
+      width: 100%;
+      height: 50%;
+      overflow: hidden;
+      @media screen and (max-width:500px) {
+        margin-top: 7%;
+      }
+     }
+     .page-2 .page2first   .column {
+      float: left;
+    width: 30%;
+    padding: 6px;
+      overflow: hidden;
+      
+    }
+    
+    .page-2 .page2first   .column img {
+      width: 100%;
+      height: auto;
+      overflow: hidden; 
+      @media screen and (max-width:500px) {
+        width: 30%;
+      }
+      @media screen and (min-width:769px) and (max-width:900px){
+
+        width: 110%;
+      }
+    }
+    .page-2 .page2first .row:after {
+      content: "";
+      display: table;
+      clear: both;
+      overflow: hidden;
+    }
+    
+    .page-2 .page2first   .column p {
+      width: 56%;
+      font-size: 12px;
+      text-align: left;
+      position: absolute;
+      overflow: hidden;
+      font-family: 'Raleway';
+      line-height: 14px;
+      @media screen and (max-width:500px) {
+        font-size: 9px;
+        top: 1.5%;
+        line-height: 11px;
+        left: 35%;
+      }
+      @media screen and (min-width:769px) and (max-width:900px){
+        font-size: 14px;
+        line-height: 17px;
+
+      }
+      @media screen and (min-width:1024px) and (max-width:1100px) {
+        font-size: 11px;
+        line-height: 12.5px;
+      }
+    }
+ 
+    @media screen and (max-width: 600px) {
+      .page-2 .page2first .column {
+        width: 100%;
+        overflow: hidden;
+      }
+    }
+
+    .page-2 .page2last{
+      position: absolute;
+      margin-top: 50.5%;
+      margin-left: 5%;
+      overflow: hidden;
+      z-index: 3;
+      @media screen and (max-width:500px) {
+        margin-top: 58.5%;
+      }
+    }
+    .page-2 .page2last p{
+      width: 95%;
+      padding-top: 1%;
+      font-size: 12px;
+      text-align: justify;
+      overflow: hidden;
+      z-index: 3;
+      font-family: 'Raleway';
+      line-height: 15px;
+      @media screen and (max-width:500px) {
+        font-size: 9px;
+        line-height: 11px;
+        position: relative;
+        top: 10px;
+      }
+      @media screen and (min-width:769px) and (max-width:900px){
+
+        font-size: 14px;
+        line-height: 18px;
+      }
+      @media screen and (min-width:1024px) and (max-width:1100px) {
+       font-size: 11px; 
+      }
+
+    }
+    @media screen and (max-width:500px) {
+      .our-profile{
+      position: relative;
+      left: 0% !important;
+      line-height: 9px;
+      top: -5px !important;
+    }
+    }
+    
+
+    .page-2 .page2last h4{
+      font-size: 18px;
+      overflow: hidden;
+      font-family: 'Raleway';
+      font-weight: 800;
+      @media screen and (max-width:500px) {
+        font-size: 11px;
+        position: relative;
+        bottom: 4px;
+      }
+      @media screen and (min-width:769px) and (max-width:900px){
+
+        margin-top: 3%;
+      }
+      @media screen and (min-width:1024px) and (max-width:1100px) {
+        font-size: 15px; 
+      }
+    }
+
+
+    .page-2 .page-1lastimg{
+      position: absolute;
+      top: 70%;
+      width: 100%;
+      height: 30vh;
+      overflow: hidden;
+     
+    }
+  
+    
+     .page-2 .page-1lastimg img{
+      width: 100%;
+      overflow: hidden;
+      opacity: .6;
+     }
+     img[src*="modelimage"] {
+      width: 80%;
+      position: relative;
+      left: 10%;
+      
+      @media screen and (max-width:500px){
+        width: 35% !important;
+        left: 55% !important;
+        bottom: 5px;
+      }
+    }
+     img[src*="modelimage/Ap105-106.png"] {
+      width: 43%;
+      position: relative;
+      left: 45%;
+      
+@media screen and (max-width:500px){
+  width: 17% !important;
+  left: 70% !important;
+  bottom: 7px;
+}
+    }
+     img[src*="modelimage/Ap205-206.png"] {
+      width: 47%;
+      position: relative;
+      left: 30%;
+      bottom: 15px;
+      
+@media screen and (max-width:500px){
+  width: 18% !important;
+  left: 65% !important;
+  bottom: 20px;
+}
+    }
+     img[src*="modelimage/Ap206.png"] {
+      width:60%;
+      position: relative;
+      left: 30%;
+      @media screen and (max-width:500px){
+        width: 25% !important;
+        left: 65% !important;
+      }
+    }
+     img[src*="modelimage/Ap207.png"] {
+      width:55%;
+      position: relative;
+      left: 33%;
+      @media screen and (max-width:500px){
+        width: 25% !important;
+        left: 65% !important;
+      }
+    }
+     img[src*="modelimage/Ap105.png"] {
+          width: 51%;
+    position: relative;
+    left: 37%;
+      @media screen and (max-width:500px){
+        width: 25% !important;
+        left: 65% !important;
+        bottom: 10px;
+      }
+    }
+     img[src*="modelimage/St201.png"] {
+      width:55%;
+      position: relative;
+      left: 35%;
+      
+      @media screen and (max-width:500px){
+       width: 27% !important; 
+       left: 60% !important;
+       bottom: 10px;
+      }
+    }
+     img[src*="modelimage/aquaboost.png"] {
+      width:27%;
+      position: relative;
+      left: 50%;
+      
+@media screen and (max-width:500px){
+  width: 13% !important;
+  left: 75% !important;
+  bottom: 10px;
+}
+    }
+     img[src*="modelimage/TB101-301.png"] {
+      width: 47%;
+      position: relative;
+      left: 40%;
+      
+@media screen and (max-width:500px){
+  width: 22% !important;
+  left: 65%  !important;
+  bottom: 10px;
+}
+    }
+     img[src*="modelimage/Dp301.png"] {
+      width:47%;
+      position: relative;
+      left: 45%;
+
+      @media screen and (max-width:500px){
+        width: 21% !important;
+        left: 68.5% !important;
+        bottom: 5px;
+      }
+    }
+     img[src*="modelimage/st401-402.png"] {
+      width: 58%;
+      position: relative;
+      left: 34%;
+      
+      @media screen and (max-width:500px){
+        width: 23% !important;
+        left: 65% !important;
+        bottom: 7px;
+      }
+    }
+     img[src*="modelimage/st301-302.png"] {
+      width:48%;
+      position: relative;
+      left: 35%;
+      @media screen and (max-width:500px){
+        left: 68% !important; 
+        width: 20% !important;
+        bottom: 5px;
+      }
+    }
+     img[src*="modelimage/ST101-103.png"] {
+      width:55%;
+      position: relative;
+      left: 45%;
+      @media screen and (max-width:500px){
+        left: 68% !important; 
+        width: 25% !important;
+        bottom: 5px;
+      }
+    }
+
+    @media screen and (max-width:768px) {
+      img[src*="modelimage"] {
+        width: 42%;
+        position: relative;
+        left: 15%;
+      }
+       img[src*="modelimage/Ap105-106.png"] {
+        width: 24%;
+        position: relative;
+        left: 35%;
+      }
+       img[src*="modelimage/Ap205-206.png"] {
+        width: 24%;
+        position: relative;
+        left: 30%;
+        bottom: 15px;
+      }
+       img[src*="modelimage/Ap206.png"] {
+        width:33%;
+        position: relative;
+        left: 30%;
+      }
+       img[src*="modelimage/Ap207.png"] {
+        width:27%;
+        position: relative;
+        left: 25%;
+      }
+       img[src*="modelimage/Ap105.png"] {
+        width:33%;
+        position: relative;
+        left: 25%;
+      }
+       img[src*="modelimage/St201.png"] {
+        width:33%;
+        position: relative;
+        left: 25%;
+      }
+       img[src*="modelimage/aquaboost.png"] {
+        width:15%;
+        position: relative;
+        left: 50%;
+      }
+       img[src*="modelimage/TB101-301.png"] {
+        width:25%;
+        position: relative;
+        left: 25%;
+      }
+       img[src*="modelimage/Dp301.png"] {
+        width:25%;
+        position: relative;
+        left: 25%;
+      }
+       img[src*="modelimage/st401-402.png"] {
+        width:25%;
+        position: relative;
+        left: 25%;
+      }
+       img[src*="modelimage/st301-302.png"] {
+        width:25%;
+        position: relative;
+        left: 25%;
+      }
+       img[src*="modelimage/ST101-103.png"] {
+        width:25%;
+        position: relative;
+        left: 65%;
+      }
+    }
+
+          
+     
+    /************************************************* Page3 ******************************************/
+    .page-3{
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+     }
+     .page-3 .page-1lastimg{
+      position: absolute;
+      top: 70%;
+      width: 100%;
+      height: 30vh;
+      overflow: hidden;
+     
+    }
+    .hr-line-blue hr{
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      width: 100%;
+      border-top: 10px solid #00fefa;
+    overflow: hidden;
+     }
+  
+     .hr-line-grey hr{
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      width: 100%;
+      border-top: 10px solid #ced2d4;
+    overflow: hidden;
+     }
+     
+     .hr-line-yellow hr{
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      width: 100%;
+      border-top: 10px solid #ebd7a6;
+    overflow: hidden;
+     }
+     .hr-line-brown hr{
+      position: absolute;
+      top: 97.9%;
+      left: 0%;
+      width: 79%;
+      border-top: 8.5px solid #93665e;
+    overflow: hidden;
+     }
+
+     
+   .hr-line-gray hr{
+    position: absolute;
+    top: 97.9%;
+    left: 85%;
+    width: 15%;
+    border-top: 8.5px solid #bbbdc0;
+  overflow: hidden;
+   }
+
+   .page-no p{
+    font-size: 11px;
+    position: absolute;
+    bottom: 5px;
+    right: 100px;
+    overflow: hidden;
+    font-family: 'Raleway';
+    @media screen and (max-width:500px) {
+      right: 63px;
+      font-size: 12px;
+      bottom: 4px;
+    }
+
+   }
+  
+     .page-3 .page-1lastimg img{
+      width: 100%;
+      overflow: hidden;
+      opacity: .6;
+     }
+
+     .table-con-headings-1 h4{
+      font-size: 18px;
+      position: absolute;
+      top: 3%;
+      left: 5%;
+      overflow: hidden;
+      font-family: 'Raleway';
+      font-weight: 800;
+      @media screen and (max-width:500px) {
+        font-size: 14px;
+      }
+      @media screen and (min-width:769px) and (max-width:900px){
+        font-size: 20px;
+
+      }
+
+     }
+
+     .table-con-headings-1 p{
+      font-size: 12px;
+      position: absolute;
+      top: 8%;
+      left: 5%;
+      overflow: hidden;
+      font-family: 'Raleway';
+      @media screen and (max-width:500px) {
+        font-size: 11px;
+      }
+      @media screen and (min-width:769px) and (max-width:900px){
+        font-size: 14px;
+        top: 6.5%;
+      } 
+     }
+
+     .table-con-headings-2 h4{
+      font-size: 18px;
+      position: absolute;
+      top: 13%;
+      left: 5%;
+      overflow: hidden;
+      font-family: 'Raleway';
+      font-weight: 800;
+      @media screen and (max-width:500px) {
+        font-size: 13px;
+      }
+      @media screen and (min-width:769px) and (max-width:900px){
+        font-size: 20px;
+
+      }
+     }
+
+     .table-con-headings-2 p{
+      font-size: 12px;
+      position: absolute;
+      top: 20%;
+      left: 5%;
+      width: 85%;
+      text-align: justify;
+      line-height: 15px;
+      overflow: hidden;
+      font-family: 'Raleway';
+      @media screen and (max-width:500px) {
+        top: 17%;
+        font-size: 11px;
+        line-height: 13px;
+      }
+      @media screen and (min-width:769px) and (max-width:900px){
+        top: 16.5%;
+        font-size: 15px;
+        line-height: 20px;
+
+      }
+     }
+
+     .table-con-headings-3 h4{
+      font-size: 18px;
+      position: absolute;
+      top: 35%;
+      left: 5%;
+      overflow: hidden;
+      font-family: 'Raleway';
+      @media screen and (max-width:500px) {
+        font-size: 14px;
+      }
+      @media screen and (min-width:769px) and (max-width:900px){
+
+        top: 31.5%;
+        font-size: 20px;
+      }
+     }
+
+     .table-con-headings-3 p{
+      font-size: 12px;
+    position: absolute;
+    top: 39%;
+    left: 5%;
+    text-align: justify;
+    overflow: hidden;
+    font-family: 'Raleway';
+    @media screen and (max-width:500px) {
+        font-size: 11px;
+      }
+      @media screen and (min-width:769px) and (max-width:900px){
+
+        top: 35%;
+        font-size: 15px;
+      }
+     }
+
+     .page-3 .page-3logocentre{
+      position: absolute;
+      top: 54%;
+    left: 58%;
+      transform: translate(-50%, -50%);
+    width: 50%;
+    overflow: hidden;
+     }
+     .page-3 .page-3logocentre img{
+      width: 50%;
+      overflow: hidden;
+     }
+
+     .table-con-headings-4 h4{
+      font-size: 15px;
+      position: absolute;
+      top: 61%;
+      left: 25%;
+      overflow: hidden;
+      font-family: 'Raleway';
+      @media screen and (max-width:500px) {
+        font-size: 12px;
+      }
+      @media screen and (min-width:769px) and (max-width:900px){
+
+        left: 31%;
+      }
+     }
+
+     .corner-con-1 h4{
+      font-size: 12px;
+    position: absolute;
+    top: 75%;
+    left: 8%;
+    overflow: hidden;
+    font-family: 'Raleway';
+    @media screen and (min-width:769px) and (max-width:900px){
+      font-size: 15px;
+      top: 76%;
+    }
+      
+     }
+     .corner-con-2 h4{
+      font-size: 16px;
+    position: absolute;
+    top: 72%;
+    left: 55%;
+    overflow: hidden;
+    font-family: 'Raleway';
+    @media screen and (max-width:500px) {
+        font-size: 12px;
+      }
+      @media screen and (min-width:769px) and (max-width:900px){
+
+        top: 74%;
+      }
+     }
+
+     .hr-line hr{
+      position: absolute;
+    top: 79%;
+    left: 6%;
+    width: 90%;
+    border-top: 1px solid black;
+    overflow: hidden;
+     }
+
+     .corner-text p{
+      font-size: 12px;
+      position: absolute;
+      top: 81%;
+      left: 7%;
+      text-align: justify;
+      width: 83%;
+      overflow: hidden;
+      font-family: 'Raleway';
+      line-height: 20px;
+      @media screen and (max-width:500px) {
+        font-size: 11px;
+        line-height: 13.5px;
+      }
+      @media screen and (min-width:769px) and (max-width:900px){
+
+        font-size: 15px;
+        line-height: 23px;
+      }
+     }
+    /************************************************* Page4 ******************************************/
+
+     .page-4{
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+     }
+  
+     .page-4 .page-1lastimg img{
+      width: 100%;
+      overflow: hidden;
+      
+     }
+
+     .tabl-con-1 h4{
+      font-size: 18px;
+      position: absolute;
+      top: 7%;
+      left: 24%;
+      overflow: hidden;
+      font-family: 'Raleway';
+      @media screen and (max-width:500px) {
+        font-size: 14px;
+      }
+      @media screen and (min-width:769px) and (max-width:900px){
+
+        font-size: 22px;
+      }
+     }
+     
+     /* @media screen and (max-width:500px) {
+      .white-spaces{
+        display: none;
+      }
+      
+     } */
+     /* .menu-number{
+      position: absolute;
+      right: 20%;
+      z-index: 9999999999;
+     }
+     .menu-number span{
+      padding-top: 5%;
+     } */
+
+     .table-con-hr-line hr{
+      position: absolute;
+      top: 11%;
+      left: 24%;
+      width: 66%;
+    border-top: 1px solid black;
+    overflow: hidden;
+     }
+     .tab-con-2 h4{
+      font-size: 13px;
+      position: absolute;
+      top: 14%;
+      left: 24%;
+      border-style: groove;
+      padding: 4px 30px;
+      border-width: 1px;
+      background-color: #9dcbc5;
+      overflow: hidden;
+      font-family: 'Raleway';
+      @media screen and (max-width:500px) {
+        font-size: 10.5px;
+      }
+      @media screen and (min-width:769px) and (max-width:900px){
+
+        font-size: 16px;
+      }
+     }
+
+     .button {
+      border: none;
+      color: white;
+      padding: 2px 30px;
+      text-align: left;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+      font-family: 'Raleway';
+      @media screen and (max-width:500px) {
+        font-size: 10.5px;
+      }
+      @media screen and (min-width:769px) and (max-width:900px){
+        font-size: 15px;
+
+      }
+    }
+    
+    .button1 {
+      /* background-color: white; 
+      color: black; 
+      z-index: 3;
+      position: absolute;
+    top: 19%;
+    left: 24%;
+    text-align: left; */
+    }
+
+    .button1:hover {
+      background-color: rgb(40, 64, 184);
+      color: white;
+    }
+    .button2 {
+      /* background-color: white; 
+      color: black; 
+      z-index: 3;
+      position: absolute;
+    top: 23%;
+    left: 24%; */
+    }
+    
+    .button2:hover {
+      background-color: rgb(40, 64, 184);
+      color: white;
+     
+      
+    }
+    .button3 {
+      /* background-color: white; 
+      color: black; 
+      z-index: 3;
+      position: absolute;
+    top: 27%;
+    left: 24%; */
+    }
+    
+    .button3:hover {
+      background-color: rgb(40, 64, 184);
+      color: white;
+    }
+    .button4 {
+      /* background-color: white; 
+      color: black; 
+      z-index: 3;
+      position: absolute;
+    top: 31%;
+    left: 24%; */
+    }
+    
+    .button4:hover {
+      background-color: rgb(40, 64, 184);
+      color: white;
+    }
+
+    .button5 {
+      /* background-color: white; 
+      color: black; 
+      z-index: 3;
+      position: absolute;
+    top: 35%;
+    left: 24%; */
+    }
+    
+    .button5:hover {
+      background-color: rgb(40, 64, 184);
+      color: white;
+    }
+    
+    .button6 {
+      /* background-color: white; 
+      color: black; 
+      z-index: 3;
+      position: absolute;
+    top: 39%;
+    left: 24%; */
+    }
+    
+    .button6:hover {
+      background-color: rgb(40, 64, 184);
+      color: white;
+    }
+    .button7 {
+      /* background-color: white; 
+      color: black; 
+      z-index: 3;
+      position: absolute;
+    top: 43%;
+    left: 24%; */
+    }
+    
+    .button7:hover {
+      background-color: rgb(40, 64, 184);
+      color: white;
+    }
+    .button8 {
+      /* background-color: white; 
+      color: black; 
+      z-index: 3;
+      position: absolute;
+    top: 47%;
+    left: 24%; */
+    }
+    
+    .button8:hover {
+      background-color: rgb(40, 64, 184);
+      color: white;
+    }
+
+    .button9 {
+      /* background-color: white; 
+      color: black; 
+      z-index: 3;
+      position: absolute;
+    top: 57%;
+    left: 24%; */
+    }
+    
+    .button9:hover {
+      background-color: rgb(40, 64, 184);
+      color: white;
+    }
+    .button91:hover {
+      background-color: rgb(40, 64, 184);
+      color: white;
+    }
+    .button10 {
+      /* background-color: white; 
+      color: black; 
+      z-index: 3;
+      position: absolute;
+    top: 61%;
+    left: 24%; */
+    }
+    
+    .button10:hover {
+      background-color: rgb(40, 64, 184);
+      color: white;
+    }
+      
+    .button101:hover {
+      background-color: rgb(40, 64, 184);
+      color: white;
+    }
+
+    .button11 {
+      /* background-color: white; 
+      color: black; 
+      z-index: 3;
+      position: absolute;
+    top: 71%;
+    left: 24%; */
+    }
+    
+    .button11:hover {
+      background-color: rgb(40, 64, 184);
+      color: white;
+    }
+
+     .tab-con-5 h4{
+      font-size: 12px;
+      position: absolute;
+      top: 50%;
+      left: 25%;
+      border-style: groove;
+      padding-right: 33%;
+      padding-top: 1%;
+      padding-bottom: 1%;
+      padding-left: 6%;
+      border-width: 1px;
+      background-color: #edd8a7;
+      overflow: hidden;
+      font-family: 'Raleway';
+      @media screen and (min-width:769px) and (max-width:900px){
+
+        font-size: 16px;
+      }
+     }
+     .tab-con-7 h4{
+      font-size: 12px;
+      position: absolute;
+      top: 64%;
+      left: 25%;
+      border-style: groove;
+      padding-right: 36%;
+      padding-top: 1%;
+      padding-bottom: 1%;
+      padding-left: 6%;
+      border-width: 1px;
+      background-color: #d1d3d4;
+      overflow: hidden;
+      font-family: 'Raleway';
+      @media screen and (min-width:769px) and (max-width:900px){
+
+        font-size: 16px;
+      }
+     }
+     .tab-con-design{
+      position: absolute;
+      width: 104%;
+      overflow: hidden;
+      top: 69%;
+      left: -1%;
+     }
+
+    .tab-con-design img{
+      width:100%;
+
+    }
+
+    /************************************************* page1-1 ******************************************/
+
+.page1-1{
+    width: 100%;
+      height: 100%;
+      overflow: hidden;
+  }
+
+  .page1-1 .page-1lastimg{
+    position: absolute;
+    top: 70%;
+    width: 100%;
+    height: 30vh;
+    overflow: hidden;
+   
+  }
+  .page1-1 .page-1lastimg img{
+    width: 100%;
+    overflow: hidden;
+    opacity: .6;
+   }
+   .page1-1 .degr{
+    position: absolute;
+    top: 2.5%;
+    left: 75%;
+    width: 7%;
+
+   }
+
+  .page1-1 h2{
+    font-size: 14px;
+    position: absolute;
+    margin-top: 5%;
+    margin-left: 2%;
+   overflow: hidden;
+   font-family: 'Raleway';
+   @media screen and (min-width:769px) and (max-width:900px){
+
+    font-size: 18px;
+   }
+  }
+  
+  .page1-1 .page1-1first{
+    position: absolute;
+    margin-top: 8%;
+    margin-left: 3%;
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+   }
+
+   .page2first .page1-1first   .column {
+    float: left;
+    width: 45%;
+    padding: 5px;
+    overflow: hidden;
+    
+  }
+  
+  /* model-viewer {
+    width: 80%;
+    margin-left: 8%;
+    position: relative;
+    overflow: hidden;
+ 
+  } */
+  
+  /* #preview{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+  } */
+
+  .pf-control-bar-button2 {
+    height: 26px;
+    padding-right: 10%;
+    color: black;
+    margin-top: 25px;
+    overflow: hidden;
+    visibility: visible;
+  }
+    .pf-control-bar-button2 img:hover {
+      -ms-transform: scale(0.8);
+      -webkit-transform: scale(0.8); 
+      transform: scale(0.8); 
+      overflow: hidden;
+     
+    }
+    
+    
+  .pf-control-bar-button21 {
+    height: 26px;
+    padding-right: 10%;
+    color: black;
+    margin-top: 25px;
+    overflow: hidden;
+    visibility: visible;
+  }
+  .pf-control-bar-button21  img {
+    
+   width: 80%;
+   margin-left: 25%;
+    
+  }
+    .pf-control-bar-button21 img:hover {
+      -ms-transform: scale(0.8);
+      -webkit-transform: scale(0.8); 
+      transform: scale(0.8); 
+      overflow: hidden;
+     
+    }
+    
+  
+    .pf-control-bar-button212 {
+      height: 26px;
+      padding-right: 10%;
+      color: black;
+      margin-top: 25px;
+      overflow: hidden;
+      visibility: visible;
+    }
+    .pf-control-bar-button212  img {
+      
+     width: 65%;
+     margin-left: 30%;
+      
+    }
+      .pf-control-bar-button212 img:hover {
+        -ms-transform: scale(0.8);
+        -webkit-transform: scale(0.8); 
+        transform: scale(0.8); 
+        overflow: hidden;
+       
+      }
+  .pf-control-bar-button211 {
+    height: 26px;
+    padding-right: 20%;
+    color: black;
+    margin-top: 25px;
+    overflow: hidden;
+    visibility: visible;
+  }
+  .pf-control-bar-button211  img {
+  
+    margin-left: 45%;
+     
+   }
+
+    .pf-control-bar-button211 img:hover {
+      -ms-transform: scale(0.8);
+      -webkit-transform: scale(0.8); 
+      transform: scale(0.8); 
+      overflow: hidden;
+     
+    }
+  .pf-control-bar-button3 {
+    height: 26px;
+    position: relative;
+    padding-right: 10%;
+    color: transparent;
+    margin-top: 25px;
+    overflow: hidden;
+    visibility: visible;
+  }
+
+  .pf-control-bar-button4 {
+    height: 26px;
+    position: relative;
+    padding-right: 10%;
+    color: transparent;
+    margin-top: 25px;
+    overflow: hidden;
+    visibility: visible;
+  }
+
+  .pf-control-bar-button5 {
+    height: 26px;
+    position: relative;
+    padding-right: 10%;
+    color: black;
+    margin-top: 25px;
+    overflow: hidden;
+    visibility: visible;
+  }
+
+  
+
+  .model-icon{
+    position: absolute;
+    left: 80%;
+    top: 42%;
+    z-index: 100;
+    @media screen and (max-width:500px){
+      top: 46%;
+    }
+    @media screen and (min-width:769px) and (max-width:900px){
+
+      top: 40%;
+    }
+    
+  }
+  .last-model-icon{
+    top: 30%;
+  }
+
+  
+  .img-icon-1{
+    position: absolute;
+    left: 80%;
+    top: 60%;
+    z-index: 100;
+  }
+
+  
+  .img-icon-3{
+    position: absolute;
+    left: 75%;
+    top: 4%;
+    z-index: 100;
+  }
+  
+
+
+  .page1-1 .page1-1first .row:after {
+    content: "";
+    display: table;
+    clear: both;
+    overflow: hidden;
+  }
+  .page1-1  .page1-1first   .column {
+    float: left;
+    width: 44%;
+    padding: 10px;
+    overflow: hidden;
+    
+  }
+  .page1-1 .page1-1first .column p {
+    width: 60%;
+    line-height: 20px;
+    font-size: 12px;
+    text-align: left;
+    position: absolute;
+    overflow: hidden;
+    font-family: 'raleway';
+    @media screen and (max-width:500px){
+    font-size: 11px;
+    line-height: 15px;
+  }
+  @media screen and (min-width:769px) and (max-width:900px){
+
+font-size: 15px;
+line-height: 25px;
+  }
+  }
+.page1-1  .page1-1first   .column h3{
+  
+
+  @media screen and (max-width:500px){
+    margin-top: 0.5%;
+  }
+  @media screen and (min-width:769px) and (max-width:900px){
+
+    margin-top: 3%;
+    font-size: 18px;
+  }
+ }
+  @media screen and (max-width: 600px) {
+    .page1-1 .page1-1first .column {
+      width: 100%;
+      overflow: hidden;
+    }
+  }
+
+  .page1-1 .page1-1second{
+    position: absolute;
+    margin-top: 38%;
+    width: 95%;
+    overflow: hidden;
+    @media screen and (max-width:500px) {
+      margin-top: 48%;  
+    }
+  }
+  
+  .page1-1 .page1-1second h3{
+ font-size: 13.5px;
+    margin-left: 5%;
+    overflow: hidden;
+    font-family: 'Raleway';
+    
+    
+  }
+  .features-imgs-1{
+    width: 98%;
+    margin-left: 5%;
+    margin-top: 1%;
+  }
+  .column h3{
+    font-size: 16px;
+    overflow: hidden;
+    font-family: 'M PLUS 1p', sans-serif;
+
+    @media screen and (min-width:769px) and (max-width:900px){
+
+  font-size: 18px;
+}
+  
+  }
+  
+
+
+  .page1-1 .page1-1second img{
+    width: 7%;
+    overflow: hidden;
+  }
+
+  .page1-1 .page1-1third{
+    position: absolute;
+    margin-top: 58.5%;
+    width: 95%;
+    overflow: hidden;
+    @media screen and (max-width:500px){
+      margin-top: 69%;
+    }
+  }
+
+
+  .page1-1 .page1-1third h3{
+    font-size: 13.5px;
+       margin-left: 5%;  
+       overflow: hidden;
+       font-family: 'Raleway';
+     }
+   
+     .page1-1 .page1-1third img{
+       width: 92%;
+       margin-left: 5%;
+       margin-top: 1%;
+       overflow: hidden;
+     }
+
+   
+    
+
+    .page1-1  .page1-1fourth{
+      position: absolute;
+      margin-top: 84.5%;
+      width: 95%;
+      overflow: hidden;
+      @media screen and (max-width:500px){
+        margin-top: 95.5%;
+      }
+    }
+
+    .page1-1 .page1-1fourth h3{
+      font-size: 13.5px;
+         margin-left: 5%;  
+         overflow: hidden;
+         font-family: 'Raleway';
+         @media screen and (min-width:769px) and (max-width:900px){
+  margin-bottom: 3%;
+
+}
+       }
+    
+       .water-img-1 img{
+        width: 39%;
+        margin-left: 10%;
+        margin-top: 2%;
+        overflow: hidden;
+
+        @media screen and (max-width:500px){
+          margin-top: 3%;
+        }
+       }
+
+       
+       .water-img-2 img{
+        width: 39%;
+        position: absolute;
+        top: 11%;
+        left: 56%;
+        @media screen and (max-width:500px){
+          margin-top: 3%;
+        }
+        @media screen and (min-width:769px) and (max-width:900px){
+
+  margin-top: 1.5%;
+}
+       }
+
+       .para P{
+        font-size: 12px;
+        position: absolute;
+        top: 90%;
+        left: 5%;
+        overflow: hidden;
+        font-family: 'Raleway';
+  @media screen and (min-width:769px) and (max-width:900px){
+
+  font-size: 14px;
+}
+       }
+
+
+/************************************************* page1-2 ******************************************/
+
+.page1-2{
+  width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.page1-2 .page-1lastimg{
+  position: absolute;
+  top: 70%;
+  width: 100%;
+  height: 30vh;
+  overflow: hidden;
+ 
+}
+.page1-2 .page-1lastimg img{
+  width: 100%;
+  overflow: hidden;
+  opacity: .6;
+ }
+
+ .page1-2 .degr{
+  position: absolute;
+  top: 2.5%;
+  left: 75%;
+  width: 7%;
+
+ }
+
+
+ 
+
+ .page1-2 h2{
+  font-size: 14px;
+  position: absolute;
+  margin-top: 5%;
+  margin-left: 2%;
+ overflow: hidden;
+ font-family: 'raleway';
+ @media screen and (min-width:769px) and (max-width:900px){
+
+  font-size: 18px;
+}
+}
+
+.page1-2  .page1-1first{
+  position: absolute;
+  margin-top: 8%;
+  margin-left: 3%;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+ }
+
+ 
+ .page1-2  .page1-1first   .column {
+  float: left;
+  width: 46%;
+  padding:10px;
+  overflow: hidden;
+  
+}
+
+/* model-viewer {
+  width: 100%;
+  margin-left: 10%;
+  position: relative;
+  overflow: hidden;
+
+} */
+
+.page1-2  .page1-1first .row:after {
+  content: "";
+  display: table;
+  clear: both;
+  overflow: hidden;
+}
+
+.page1-2  .page1-1first   .column p {
+  width: 60%;
+  line-height: 20px;
+  font-size: 13px;
+  text-align: left;
+  position: absolute;
+  overflow: hidden;
+  font-family: 'raleway';
+  margin-top: 10px;
+  @media screen and (max-width:500px){
+    font-size: 11px;
+    line-height: 14px;
+  }
+  @media screen and (min-width:769px) and (max-width:900px){
+
+  font-size: 15px;
+  line-height: 25px;
+}
+}
+.page1-2  .page1-1first   .column h3{
+@media screen and (min-width:769px) and (max-width:900px){
+
+  font-size: 18px;
+}
+}
+
+@media screen and (max-width: 600px) {
+  .page1-2  .page1-1first .column {
+    width: 100%;
+    overflow: hidden;
+  }
+}
+
+.page1-2  .page1-1second{
+  position: absolute;
+  margin-top: 48%;
+  width: 95%;
+  overflow: hidden;
+  @media screen and (max-width:500px){
+    margin-top: 55%;
+  }
+}
+
+
+.page1-2  .page1-1second h3{
+  font-size: 13.5px;
+  margin-left: 5%;
+  overflow: hidden;
+  font-family: 'raleway';
+  
+  
+}
+
+.page1-2 .page1-1second img{
+  width: 7%;
+  overflow: hidden;
+}
+
+.page1-2 .page1-1third{
+  position: absolute;
+  margin-top: 71%;
+  width: 95%;
+  overflow: hidden;
+  @media screen and (max-width:500px){
+    margin-top: 78%;
+  }
+}
+
+
+.page1-2  .page1-1third h3{
+  font-size: 13.5px;
+     margin-left: 5%;
+     overflow: hidden;  
+     font-family: 'raleway';
+   }
+ 
+   .page1-2  .page1-1third img{
+     width: 90%;
+     margin-left: 5%;
+     margin-top: 1%;
+     overflow: hidden;
+   }
+
+ 
+  
+
+   .page1-2   .page1-1fourth{
+    position: absolute;
+    margin-top: 90%;
+    width: 95%;
+    overflow: hidden;
+
+  }
+
+  .page1-2 .page1-1fourth h3{
+    font-size: 13.5px;
+       margin-left: 5%;
+       overflow: hidden;  
+       font-family: 'raleway';
+     }
+   
+     .page1-2  .page1-1fourth img{
+       width: 60%;
+       margin-left: 25%;
+       margin-top: 1%;
+       z-index: 3;
+       overflow: hidden;
+     }
+             
+
+/************************************************* page1-3 ******************************************/
+
+.page1-3{
+  width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.page1-3 .page-1lastimg{
+  position: absolute;
+  top: 70%;
+  width: 100%;
+  height: 30vh;
+  overflow: hidden;
+ 
+}
+.page1-3 .page-1lastimg img{
+  width: 100%;
+  overflow: hidden;
+  opacity: .6;
+ }
+
+
+ .water-img-p-3-1 img{
+  width: 35%;
+  position: absolute;
+  top: 12%;
+  left: 10%;
+  overflow: hidden;
+
+ }
+
+ 
+ .water-img-p-3-2 img{
+  width: 35%;
+  position: absolute;
+  top: 12%;
+  left: 53%;
+  overflow: hidden;
+
+ }
+
+ 
+ .water-img-p-3-3 img{
+  width: 35%;
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  overflow: hidden;
+
+ }
+
+ 
+ .water-img-p-3-4 img{
+  width: 35%;
+  position: absolute;
+  top: 40%;
+  left: 53%;
+  overflow: hidden;
+
+ }
+
+ 
+ .water-img-p-3-5 img{
+  width: 35%;
+  position: absolute;
+  top: 68%;
+  left: 10%;
+  overflow: hidden;
+
+ }
+
+ 
+ .water-img-p-3-6 img{
+  width: 35%;
+  position: absolute;
+  top: 68%;
+  left: 53%;
+  overflow: hidden;
+
+ }
+ .water-img-p-3-1 img{
+  width: 35%;
+  position: absolute;
+  top: 12%;
+  left: 10%;
+  overflow: hidden;
+
+ }
+
+ 
+ .water-img-p-3-2 img{
+  width: 35%;
+  position: absolute;
+  top: 12%;
+  left: 53%;
+  overflow: hidden;
+
+ }
+
+ 
+ .water-img-p-3-3 img{
+  width: 35%;
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  overflow: hidden;
+
+ }
+
+ 
+ .water-img-p-3-4 img{
+  width: 35%;
+  position: absolute;
+  top: 40%;
+  left: 53%;
+  overflow: hidden;
+
+ }
+
+ 
+ .water-img-p-3-5 img{
+  width: 35%;
+  position: absolute;
+  top: 68%;
+  left: 10%;
+  overflow: hidden;
+
+ }
+
+ 
+ .water-img-p-3-6 img{
+  width: 35%;
+  position: absolute;
+  top: 68%;
+  left: 53%;
+  overflow: hidden;
+
+ }
+
+ 
+ .water-img-icon-p-3-1{
+  position: absolute;
+  left: 40%;
+  top: 28%;
+  z-index: 100;
+}
+
+
+.water-img-icon-p-3-2{
+  position: absolute;
+  left: 83%;
+  top: 28%;
+  z-index: 100;
+}
+
+
+
+.water-img-icon-p-3-3{
+  position: absolute;
+  left: 40%;
+  top: 56%;
+  z-index: 100;
+}
+
+
+
+
+ .page-1first-img h3{
+  font-size: 13.5px;
+  position: absolute;
+  top: 4%;
+  left: 9%;
+  overflow: hidden;
+  font-family: 'raleway';
+  @media screen and (min-width:769px) and (max-width:900px){
+  font-size: 20px !important;
+
+}
+ }
+
+                    
+   /************************************************* page1-4 ******************************************/
+
+.page1-4{
+  width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.page1-4 .page-1lastimg{
+  position: absolute;
+  top: 70%;
+  width: 100%;
+  height: 30vh;
+  overflow: hidden;
+ 
+}
+.page1-4 .page-1lastimg img{
+  width: 100%;
+  overflow: hidden;
+  opacity: .6;
+ }
+ .page1-4 .degr{
+  position: absolute;
+  top: 2.5%;
+  left: 75%;
+  width: 7%;
+
+ }
+
+ 
+ .page1-4 h2{
+  font-size: 14px;
+    position: absolute;
+    margin-top: 5%;
+    margin-left: 2%;
+ overflow: hidden;
+ font-family: 'raleway';
+ @media screen and (min-width:769px) and (max-width:900px){
+
+  font-size: 18px;
+}
+}
+
+.page1-4  .page1-4first{
+  position: absolute;
+  margin-top: 8%;
+  margin-left: 5%;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+ }
+
+ .page1-4  .page1-4first   .column {
+  float: left;
+  width: 45%;
+  padding: 10px;
+  overflow: hidden;
+  
+}
+
+/* model-viewer {
+  width: 100%;
+  margin-left: 10%;
+  position: relative;
+  overflow: hidden;
+} */
+
+.page1-4  .page1-4first .row:after {
+  content: "";
+  display: table;
+  clear: both;
+  overflow: hidden;
+}
+
+.page1-4  .page1-4first   .column h3 {
+   font-size: 16px;
+    overflow: hidden;
+    font-family: 'M PLUS 1p', sans-serif;
+
+@media screen and (min-width:769px) and (max-width:900px){
+font-size: 17px;
+}
+
+}
+.page1-4  .page1-4first   .column p {
+  width: 55%;
+  line-height: 20px;
+  font-size: 12px;
+  text-align: left;
+  position: absolute;
+  overflow: hidden;
+  font-family: 'raleway';
+  margin-top: 10px;
+
+@media screen and (max-width:500px){
+  margin-top: 0 !important;
+  line-height: 16.5px;
+}
+@media screen and (min-width:769px) and (max-width:900px){
+
+  font-size: 15px;
+  line-height: 25px;
+}
+}
+
+@media screen and (max-width: 600px) {
+  .page1-4  .page1-4first .column {
+    width: 100%;
+  }
+}
+
+.page1-4  .page1-4second{
+  position: absolute;
+  margin-top: 44%;
+  width: 95%;
+  overflow: hidden;
+
+@media screen and (max-width:500px){
+  margin-top: 55%;
+}
+}
+
+
+.page1-4  .page1-4second h3{
+  font-size: 13.5px;
+  margin-left: 5%;
+  font-family: 'raleway';
+  overflow: hidden;
+}
+
+.page1-4 .page1-4second img{
+ width: 7%;
+    overflow: hidden;
+}
+
+.page1-4 .page1-4third{
+  position: absolute;
+  margin-top: 66%;
+  width: 95%;
+  overflow: hidden;
+  
+@media screen and (max-width:500px){
+  margin-top: 78%;
+}
+
+
+}
+
+
+.page1-4  .page1-4third h3{
+  font-size: 13.5px;
+     margin-left: 5%;  
+     font-family: 'raleway';
+     overflow: hidden;
+   }
+ 
+   .page1-4  .page1-4third img{
+     width: 90%;
+     margin-left: 5%;
+     margin-top: 1%;
+     overflow: hidden;
+   }
+
+ 
+  
+
+   .page1-4   .page1-4fourth{
+    position: absolute;
+    margin-top: 90%;
+    width: 95%;
+    overflow: hidden;
+
+  }
+
+  .page1-4 .page1-4fourth h3{
+    font-size: 13.5px;
+    margin-left: 5%;  
+    font-family: 'raleway';
+    overflow: hidden;
+  }
+   
+     .page1-4  .page1-4fourth img{
+       width: 60%;
+       margin-left: 25%;
+       margin-top: 1%;
+       z-index: 3;
+       overflow: hidden;
+     }
+
+     /**********************waveAnimation************************/
+
+   /************************************************* page1-5 ******************************************/
+
+.page1-5{
+  width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.page-1first-img h3{
+  font-size: 13.5px;
+  position: absolute;
+  top: 4%;
+  left: 9%;
+  font-family: 'raleway';
+  overflow: hidden;
+
+ }
+
+.water-img-p-5-1 img{
+  width: 35%;
+  position: absolute;
+  top: 12%;
+  left: 10%;
+  overflow: hidden;
+
+ }
+
+ 
+ .water-img-p-5-2 img{
+  width: 35%;
+  position: absolute;
+  top: 12%;
+  left: 53%;
+  overflow: hidden;
+
+ }
+
+ 
+ .water-img-p-5-3 img{
+  width: 35%;
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  overflow: hidden;
+
+ }
+
+ 
+ .water-img-p-5-4 img{
+  width: 35%;
+  position: absolute;
+  top: 40%;
+  left: 53%;
+  overflow: hidden;
+
+ }
+
+ 
+ .water-img-p-5-5 img{
+  width: 35%;
+  position: absolute;
+  top: 68%;
+  left: 10%;
+  overflow: hidden;
+
+ }
+
+ 
+ .water-img-p-5-6 img{
+  width: 35%;
+  position: absolute;
+  top: 68%;
+  left: 53%;
+  overflow: hidden;
+
+ }
+
+ 
+ .water-img-icon-p-5-1{
+  position: absolute;
+  left: 40%;
+  top: 28%;
+  z-index: 100;
+}
+
+
+.water-img-icon-p-5-2{
+  position: absolute;
+  left: 83%;
+  top: 28%;
+  z-index: 100;
+}
+
+
+
+.water-img-icon-p-5-3{
+  position: absolute;
+  left: 40%;
+  top: 56%;
+  z-index: 100;
+}
+
+.page1-5 .page-1lastimg{
+  position: absolute;
+  top: 70%;
+  width: 100%;
+  height: 30vh;
+  overflow: hidden;
+ 
+}
+.page1-5 .page-1lastimg img{
+  width: 100%;
+  overflow: hidden;
+  opacity: .6;
+ }
+
+
+ 
+  /**********************waveAnimation************************/
+                   
+ /************************************************* page1-6 ******************************************/
+
+.page1-6{
+  width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.page1-6 .page-1lastimg{
+  position: absolute;
+  top: 70%;
+  width: 100%;
+  height: 30vh;
+  overflow: hidden;
+ 
+}
+.page1-6 .page-1lastimg img{
+  width: 100%;
+  overflow: hidden;
+  opacity: .6;
+ }
+ .page1-6 .degr{
+  position: absolute;
+  top: 2.5%;
+  left: 75%;
+  width: 7%;
+
+ }
+
+
+ .page1-6 h2{
+  font-size: 14px;
+    position: absolute;
+    margin-top: 5%;
+    margin-left: 2%;
+ overflow: hidden;
+ font-family: 'raleway';
+ @media screen and (min-width:769px) and (max-width:900px){
+
+  font-size: 18px;
+}
+}
+
+.page1-6  .page1-6first{
+  position: absolute;
+  margin-top: 8%;
+  margin-left: 5%;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+ }
+
+ .page1-6  .page1-6first   .column {
+  float: left;
+  width: 45%;
+  padding: 10px;
+  overflow: hidden;
+}
+
+/* model-viewer {
+  width: 100%;
+  margin-left: 10%;
+  position: relative;
+  overflow: hidden;
+
+} */
+
+.page1-6  .page1-6first .row:after {
+  content: "";
+  display: table;
+  clear: both;
+  overflow: hidden;
+}
+
+.page1-6  .page1-6first   .column p {
+  width: 60%;
+    line-height: 18px;
+  font-size: 12px;
+  text-align: left;
+  position: absolute;
+  overflow: hidden;
+  font-family: 'raleway';
+  margin-top: 5px;
+  
+@media screen and (max-width:500px){
+  line-height: 14.5px;
+  font-size: 11px;
+  margin-top: 0;
+}
+@media screen and (min-width:769px) and (max-width:900px){
+
+  font-size: 14.5px;
+  line-height: 23px;
+}
+}
+
+@media screen and (max-width: 600px) {
+  .page1-6  .page1-6first .column {
+    width: 100%;
+  }
+}
+
+.page1-6  .page1-6second{
+  position: absolute;
+  margin-top: 44%;
+  width: 95%;
+  overflow: hidden;
+
+@media screen and (max-width:500px){
+  margin-top: 58%;
+}
+}
+
+
+.page1-6  .page1-6second h3{
+  font-size: 13.5px;
+  margin-left: 5%;
+  font-family: 'raleway';
+  overflow: hidden;
+}
+
+.page1-6 .page1-6second img{
+  width: 7%;
+  overflow: hidden;
+}
+
+.page1-6 .page1-6third{
+  position: absolute;
+  margin-top: 66%;
+  width: 95%;
+  overflow: hidden;
+  
+@media screen and (max-width:500px){
+  margin-top: 81%;
+}
+}
+
+.page1-6  .page1-6third h3{
+  font-size: 13.5px;
+     margin-left: 5%;  
+     font-family: 'raleway';
+     overflow: hidden;
+   }
+ 
+   .page1-6  .page1-6third img{
+     width: 90%;
+     margin-left: 5%;
+     margin-top: 1%;
+     overflow: hidden;
+   }
+
+ 
+  
+
+   .page1-6   .page1-6fourth{
+    position: absolute;
+    margin-top: 86%;
+    width: 95%;
+    overflow: hidden;
+    
+@media screen and (max-width:500px){
+  margin-top: 101%;
+}
+@media screen and (min-width:769px) and (max-width:900px){
+  margin-top: 90%;
+
+}
+  }
+
+  .page1-6 .page1-6fourth h3{
+    font-size: 13.5px;
+       margin-left: 5%;  
+       font-family: 'raleway';
+       overflow: hidden;
+       margin-bottom: 10px;
+     }
+   
+   
+
+       
+.water-img-p-6-1 img{
+  width: 37%;
+    margin-left: 14%;
+    margin-top: 0%;
+  overflow: hidden;
+  z-index: 3;
+
+ }
+
+ 
+ .water-img-p-6-2 img{
+  width: 37%;
+  position: absolute;
+  top: 12%;
+  left: 53%;
+  overflow: hidden;
+
+@media screen and (max-width:500px){
+  margin-top: 3.7%;
+}
+ }
+
+ 
+ .water-img-icon-p-6-1{
+  position: absolute;
+  left: 41%;
+  top: 60%;
+  z-index: 100;
+}
+
+
+.water-img-icon-p-6-2{
+  position: absolute;
+  left: 80%;
+    top: 60%;
+  z-index: 100;
+}
+
+   /************************************************* page1-7 ******************************************/
+
+.page1-7{
+  width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.page1-7 .page-1lastimg{
+  position: absolute;
+  top: 70%;
+  width: 100%;
+  height: 30vh;
+  overflow: hidden;
+ 
+}
+.page1-7 .page-1lastimg img{
+  width: 100%;
+  overflow: hidden;
+  opacity: .6;
+ }
+
+ .page1-7 .degr{
+  position: absolute;
+  top: 2.5%;
+  left: 75%;
+  width: 7%;
+
+ }
+
+
+ .page1-7 h2{
+  font-size: 14px;
+    position: absolute;
+    margin-top: 5%;
+    margin-left: 2%;
+ overflow: hidden;
+ font-family: 'raleway';
+ @media screen and (min-width:769px) and (max-width:900px){
+  font-size: 18px;
+
+}
+
+}
+
+.page1-7  .page1-7first{
+  position: absolute;
+  margin-top: 8%;
+  margin-left: 5%;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+ }
+
+ .page1-7  .page1-7first   .column {
+  float: left;
+  width: 45%;
+  padding: 10px;
+  overflow: hidden;
+  
+}
+
+model-viewer {
+  width: 100%;
+  height: 85%;
+  margin-left: 10%;
+  position: relative;
+  overflow: hidden;
+
+}
+
+.page1-7  .page1-7first .row:after {
+  content: "";
+  display: table;
+  clear: both;
+  overflow: hidden;
+}
+
+.page1-7  .page1-7first   .column p {
+  width: 60%;
+    line-height: 18px;
+  font-size: 12px;
+  text-align: left;
+  position: absolute;
+  overflow: hidden;
+  font-family: 'raleway';
+  margin-top: 5px;
+
+@media screen and (max-width:500px){
+  font-size: 11px;
+  line-height: 14px;
+}
+@media screen and (min-width:769px) and (max-width:900px){
+
+  font-size: 14px;
+  line-height: 21px;
+}
+}
+
+@media screen and (max-width: 600px) {
+  .page1-7  .page1-7first .column {
+    width: 100%;
+  }
+}
+
+.page1-7  .page1-7second{
+  position: absolute;
+  margin-top: 43%;
+  width: 95%;
+  overflow: hidden;
+
+@media screen and (max-width:500px){
+  margin-top: 61%;
+}
+}
+
+
+.page1-7  .page1-7second h3{
+  font-size: 13.5px;
+  margin-left: 5%;
+  font-family: 'raleway';
+  overflow: hidden;
+}
+
+.page1-7 .page1-7second img{
+  width: 7%;
+  overflow: hidden;
+}
+
+.page1-7 .page1-7third{
+  position: absolute;
+  margin-top: 65%;
+  width: 95%;
+  overflow: hidden;
+  
+@media screen and (max-width:500px){
+    margin-top: 82.5%;
+}
+}
+
+
+.page1-7  .page1-7third h3{
+  font-size: 13.5px;
+     margin-left: 5%;  
+     font-family: 'raleway';
+     overflow: hidden;
+   }
+ 
+   .page1-7  .page1-7third img{
+     width: 90%;
+     margin-left: 5%;
+     margin-top: 1%;
+     overflow: hidden;
+   }
+   .page1-7   .page1-7fourth{
+    position: absolute;
+    margin-top: 88%;
+    width: 95%;
+    overflow: hidden;
+    
+@media screen and (max-width:500px){
+  margin-top: 106%;
+}
+@media screen and (min-width:769px) and (max-width:900px){
+
+  margin-top: 90%;
+}
+  }
+
+  .page1-7 .page1-7fourth h3{
+    font-size: 13.5px;
+       margin-left: 5%;  
+       font-family: 'raleway';
+       overflow: hidden;
+       margin-bottom: 5px;
+     }
+   
+     
+       
+.water-img-p-7-1 img{
+  width: 36%;
+    margin-left: 14%;
+   
+  overflow: hidden;
+  z-index: 3;
+  @media screen and (min-width:769px) and (max-width:900px){
+margin-top: 3%;
+
+}
+
+ }
+ 
+ .water-img-p-7-2 img{
+  width: 36%;
+  position: absolute;
+  top: 10%;
+  left: 53%;
+  overflow: hidden;
+  
+@media screen and (max-width:500px){
+  margin-top: 2%;
+}
+@media screen and (min-width:769px) and (max-width:900px){
+margin-top: 2%;
+
+}
+ }
+
+/************************************************* page1-8 ******************************************/
+
+.page1-8{
+  width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.page1-8 .page-1lastimg{
+  position: absolute;
+  top: 70%;
+  width: 100%;
+  height: 30vh;
+  overflow: hidden;
+ 
+}
+.page1-8 .page-1lastimg img{
+  width: 100%;
+  overflow: hidden;
+  opacity: .6;
+ }
+ .page1-8 .degr{
+  position: absolute;
+  top: 2.5%;
+  left: 75%;
+  width: 7%;
+
+ }
+
+
+ .page1-8 h2{
+  font-size: 14px;
+    position: absolute;
+    margin-top: 5%;
+    margin-left: 2%;
+ overflow: hidden;
+ font-family: 'raleway';
+ @media screen and (min-width:769px) and (max-width:900px){
+font-size: 18px;
+
+}
+}
+
+.page1-8  .page1-8first{
+  position: absolute;
+  margin-top: 8%;
+  margin-left: 5%;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+ }
+
+ .page1-8  .page1-8first   .column {
+  float: left;
+  width: 46%;
+  padding: 10px;
+  overflow: hidden;
+  
+}
+
+model-viewer {
+  width: 100%;
+  margin-left: 10%;
+  position: relative;
+  overflow: hidden;
+
+}
+
+.page1-8  .page1-8first .row:after {
+  content: "";
+  display: table;
+  clear: both;
+  overflow: hidden;
+}
+
+.page1-8  .page1-8first   .column p {
+  width: 60%;
+  line-height: 22px;
+    font-size: 12.5px;
+    text-align: left;
+    position: absolute;
+    overflow: hidden;
+    font-family: 'raleway';
+    
+@media screen and (max-width:500px){
+  line-height: 18px;
+  font-size: 11px;
+}
+@media screen and (min-width:769px) and (max-width:900px){
+
+  font-size: 15px;
+  line-height: 28px;
+}
+}
+
+@media screen and (max-width: 600px) {
+  .page1-8  .page1-8first .column {
+    width: 100%;
+  }
+}
+
+.page1-8  .page1-8second{
+  position: absolute;
+  margin-top: 42%;
+  width: 95%;
+  overflow: hidden;
+  
+@media screen and (max-width:500px){
+  margin-top: 58%;
+}
+
+}
+
+
+.page1-8  .page1-8second h3{
+  font-size: 13.5px;
+  margin-left: 5%;
+  font-family: 'raleway';
+  overflow: hidden;
+}
+
+.page1-8 .page1-8second img{
+  width: 7%;
+  overflow: hidden;
+}
+
+.page1-8 .page1-8third{
+  position: absolute;
+  margin-top: 65%;
+  width: 95%;
+  overflow: hidden;
+  
+@media screen and (max-width:500px){
+  margin-top: 80%;
+}
+
+}
+
+
+.page1-8  .page1-8third h3{
+  font-size: 13.5px;
+     margin-left: 5%;  
+     font-family: 'raleway';
+     overflow: hidden;
+   }
+ 
+   .page1-8  .page1-8third img{
+     width: 90%;
+     margin-left: 5%;
+     margin-top: 1%;
+     overflow: hidden;
+   }
+
+ 
+  
+
+   .page1-8   .page1-8fourth{
+    position: absolute;
+    margin-top: 90%;
+    width: 95%;
+    overflow: hidden;
+
+@media screen and (max-width:500px){
+  margin-top: 105%;
+}
+  }
+
+  .page1-8 .page1-8fourth h3{
+    font-size: 13.5px;
+       margin-left: 5%;  
+       font-family: 'raleway';
+       overflow: hidden;
+     }
+   
+
+           
+.water-img-p-8-1 img{
+  width: 67%;
+    margin-left: 14%;
+    margin-top: 2%;
+  overflow: hidden;
+  z-index: 3;
+
+ }
+
+/************************************************* page1-9 ******************************************/
+
+.page1-9{
+  width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.page1-9 .page-1lastimg{
+  position: absolute;
+  top: 70%;
+  width: 100%;
+  height: 30vh;
+  overflow: hidden;
+ 
+}
+.page1-9 .page-1lastimg img{
+  width: 100%;
+  overflow: hidden;
+  opacity: .6;
+ }
+
+
+ 
+.page1-9 .page-1first-img{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+ 
+}
+
+.page-1first-img h3{
+  font-size: 13.5px;
+  position: absolute;
+  top: 4%;
+  left: 9%;
+  font-family: 'raleway';
+  overflow: hidden;
+ }
+
+ .water-img-p-9-1 img {
+  width: 85%;
+  position: absolute;
+  top: 6%;
+  left: 8%;
+  overflow: hidden;
+}
+ 
+.water-img-p-9-2 img {
+  width: 85%;
+  position: absolute;
+  top: 34%;
+  left: 8%;
+  overflow: hidden;
+}
+
+.water-img-p-9-3 img {
+  width: 85%;
+  position: absolute;
+  top: 66%;
+  left: 8%;
+  overflow: hidden;
+}
+ 
+/************************************************* page1-10 ******************************************/
+
+.page1-10{
+  width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.page1-10 .page-1lastimg{
+  position: absolute;
+  top: 70%;
+  width: 100%;
+  height: 30vh;
+  overflow: hidden;
+ 
+}
+.page1-10 .page-1lastimg img{
+  width: 100%;
+  overflow: hidden;
+  opacity: .6;
+ }
+ .page1-10 .degr{
+  position: absolute;
+  top: 2.5%;
+  left: 75%;
+  width: 7%;
+
+ }
+
+
+ .page1-10 h2{
+  font-size: 14px;
+    position: absolute;
+    margin-top: 5%;
+    margin-left: 2%;
+ overflow: hidden;
+ font-family: 'raleway';
+ @media screen and (min-width:769px) and (max-width:900px){
+
+font-size: 18px;
+}
+}
+
+.page1-10  .page1-10first{
+  position: absolute;
+  margin-top: 8%;
+  margin-left: 5%;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+ }
+
+ .page1-10  .page1-10first   .column {
+  float: left;
+  width: 46%;
+  padding: 10px;
+  overflow: hidden;
+  
+}
+
+/* model-viewer {
+  width: 100%;
+  margin-left: 10%;
+  position: relative;
+  overflow: hidden;
+
+} */
+
+.page1-10  .page1-10first .row:after {
+  content: "";
+  display: table;
+  clear: both;
+  overflow: hidden;
+}
+
+.page1-10  .page1-10first   .column p {
+  width: 60%;
+    line-height: 20px;
+  font-size: 12px;
+  text-align: left;
+  position: absolute;
+  overflow: hidden;
+  font-family: 'raleway';
+  margin-top: 10px;
+
+@media screen and (max-width:500px){
+margin-top: 0;
+  line-height: 15px;
+  font-size: 10.7px;
+  width: 60%;
+}
+@media screen and (min-width:769px) and (max-width:900px){
+
+  font-size: 14.5px;
+  line-height: 26px;
+}
+}
+
+@media screen and (max-width: 600px) {
+  .page1-10  .page1-10first .column {
+    width: 100%;
+  }
+}
+
+.page1-10  .page1-10second{
+  position: absolute;
+  margin-top: 41%;
+  width: 95%;
+  overflow: hidden;
+
+@media screen and (max-width:500px){
+  margin-top: 59%;
+}
+@media screen and (min-width:1024px) and (max-width:1100px) {
+  margin-top: 45%;       
+}
+}
+
+
+.page1-10  .page1-10second h3{
+  font-size: 13.5px;
+  margin-left: 5%;
+  font-family: 'raleway';
+  overflow: hidden;
+}
+
+.page1-10 .page1-10second img{
+  width: 7%;
+  overflow: hidden;
+}
+
+.page1-10 .page1-10third{
+  position: absolute;
+  margin-top: 63%;
+  width: 95%;
+  overflow: hidden;
+  
+@media screen and (max-width:500px){
+  margin-top: 81%;
+}
+@media screen and (min-width:1024px) and (max-width:1100px) {
+  margin-top: 65%;       
+}
+
+}
+
+
+.page1-10  .page1-10third h3{
+  font-size: 13.5px;
+     margin-left: 5%;  
+     font-family: 'raleway';
+     overflow: hidden;
+   }
+ 
+   .page1-10  .page1-10third img{
+     width: 90%;
+     margin-left: 5%;
+     margin-top: 1%;
+     overflow: hidden;
+   }
+
+ 
+  
+
+   .page1-10   .page1-10fourth{
+    position: absolute;
+    margin-top: 90%;
+    width: 98%;
+    overflow: hidden;
+    
+@media screen and (max-width:500px){
+  margin-top: 105%;
+}
+  }
+
+  .page1-10 .page1-10fourth h3{
+    font-size: 13.5px;
+       margin-left: 5%;  
+       font-family: 'raleway';
+       overflow: hidden;
+     }
+   
+   
+.water-img-p-10-1 img {
+  width: 21.5%;
+    margin-left: 10%;
+    margin-top: 2%;
+    overflow: hidden;
+}
+.water-img-p-10-2 img {
+  width: 21.5%;
+  position: absolute;
+  top: 14%;
+  left: 39%;
+  overflow: hidden;
+  
+@media screen and (max-width:500px){
+  margin-top: 1%;
+}
+}
+
+.water-img-p-10-3 img {
+  width: 25%;
+  position: absolute;
+  top: 14%;
+  left: 70%;
+  overflow: hidden;
+  
+@media screen and (max-width:500px){
+  margin-top: 1%;
+}
+}
+
+
+  
+ .water-img-icon-p-10-1{
+  position: absolute;
+    left: 25%;
+    top: 60%;
+    z-index: 100;
+}
+
+
+.water-img-icon-p-10-2{
+  position: absolute;
+  left: 56%;
+    top: 60%;
+  z-index: 100;
+}
+
+/************************************************* page1-11 ******************************************/
+
+    .page1-11{
+      width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    
+    .page1-11 .page-1lastimg{
+      position: absolute;
+      top: 70%;
+      width: 100%;
+      height: 30vh;
+      overflow: hidden;
+     
+    }
+    .page1-11 .page-1lastimg img{
+      width: 100%;
+      overflow: hidden;
+      opacity: .6;
+     }
+
+     .page1-11 .degr{
+      position: absolute;
+      top: 2.5%;
+      left: 75%;
+      width: 7%;
+    
+     }
+    
+     
+ .page1-11 h2{
+  font-size: 14px;
+  position: absolute;
+  margin-top: 5%;
+  margin-left: 2%;
+ overflow: hidden;
+ font-family: 'raleway';
+ @media screen and (min-width:769px) and (max-width:900px){
+
+  font-size: 18px;
+}
+}
+
+.page1-11  .page1-11first{
+  position: absolute;
+  margin-top: 8%;
+  margin-left: 5%;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+ }
+
+ .page1-11  .page1-11first   .column {
+  float: left;
+  width: 46%;
+  padding: 10px;
+  overflow: hidden;
+  
+}
+
+/* model-viewer {
+  width: 100%;
+  margin-left: 10%;
+  position: relative;
+  overflow: hidden;
+
+} */
+
+.page1-11  .page1-11first .row:after {
+  content: "";
+  display: table;
+  clear: both;
+  overflow: hidden;
+}
+
+.page1-11  .page1-11first   .column p {
+  width: 60%;
+  line-height: 22px;
+    font-size: 12px;
+    text-align: left;
+    position: absolute;
+    overflow: hidden;
+    font-family: 'raleway';
+    margin-top: 10px;
+    
+@media screen and (max-width:500px){
+  font-size: 11px;
+  line-height: 15px;
+  margin-top: 2px;
+}
+@media screen and (min-width:769px) and (max-width:900px){
+
+  font-size: 14.5px;
+  line-height: 26px;
+}
+}
+
+@media screen and (max-width: 600px) {
+  .page1-11  .page1-11first .column {
+    width: 100%;
+    overflow: hidden;
+  }
+}
+
+.page1-11  .page1-11second{
+  position: absolute;
+  margin-top: 41%;
+  width: 95%;
+  overflow: hidden;
+  
+@media screen and (max-width:500px){
+  margin-top: 53%;
+}
+@media screen and (min-width:1024px) and (max-width:1100px) {
+  margin-top: 45%;       
+}
+
+}
+
+
+.page1-11  .page1-11second h3{
+  font-size: 13.5px;
+  margin-left: 5%;
+  font-family: 'raleway';
+  overflow: hidden;
+  
+}
+
+.page1-11 .page1-11second img{
+  width: 7%;
+  overflow: hidden;
+}
+
+.page1-11 .page1-11third{
+  position: absolute;
+  margin-top: 63%;
+  width: 95%;
+  overflow: hidden;
+  
+@media screen and (max-width:500px){
+  margin-top: 76%;
+}
+@media screen and (min-width:1024px) and (max-width:1100px) {
+  margin-top: 66%;       
+}
+}
+
+
+.page1-11  .page1-11third h3{
+  font-size: 13.5px;
+     margin-left: 5%;  
+     font-family: 'raleway';
+     overflow: hidden;
+   }
+ 
+   .page1-11  .page1-11third img{
+     width: 90%;
+     margin-left: 5%;
+     margin-top: 1%;
+     overflow: hidden;
+   }
+
+ 
+  
+
+   .page1-11   .page1-11fourth{
+    position: absolute;
+    margin-top: 90%;
+    width: 95%;
+    overflow: hidden;
+    @media screen and (max-width:500px) {
+      margin-top: 103%;
+    }
+   
+
+  }
+
+  .page1-11 .page1-11fourth h3{
+    font-size: 13.5px;
+       margin-left: 5%;  
+       font-family: 'raleway';
+       overflow: hidden;
+       margin-bottom: 5px;
+     }
+   
+    
+.water-img-p-11-1 img {
+  width: 22%;
+    margin-left: 13%;
+    margin-top: 1.5%;
+    overflow: hidden;
+}
+.water-img-p-11-2 img {
+  width: 22%;
+  position: absolute;
+  top: 14.5%;
+  left: 41%;
+  overflow: hidden;
+  
+@media screen and (max-width:500px){
+  margin-top: 4%;
+}
+}
+
+.water-img-p-11-3 img {
+  width: 22%;
+  position: absolute;
+  top: 14.5%;
+  left: 70%;
+  overflow: hidden;
+  
+@media screen and (max-width:500px){
+  margin-top: 4%;
+}
+}
+
+
+  
+ .water-img-icon-p-11-1{
+  position: absolute;
+    left: 28%;
+    top: 60%;
+    z-index: 100;
+}
+
+
+.water-img-icon-p-11-2{
+  position: absolute;
+  left: 55%;
+    top: 60%;
+  z-index: 100;
+}
+
+ 
+ 
+
+    /************************************************* page1-12 ******************************************/
+
+       .page1-12{
+        width: 100%;
+          height: 100%;
+          overflow: hidden;
+      }
+      
+      .page1-12 .page-1lastimg{
+        position: absolute;
+        top: 70%;
+        width: 100%;
+        height: 30vh;
+        overflow: hidden;
+       
+      }
+      .page1-12 .page-1lastimg img{
+        width: 100%;
+        overflow: hidden;
+        opacity: .6;
+       }
+       .page1-12 .degr{
+        position: absolute;
+        top: 2.5%;
+        left: 75%;
+        width: 7%;
+      
+       }
+      
+      
+           
+ .page1-12 h2{
+  font-size: 14px;
+    position: absolute;
+    margin-top: 5%;
+    margin-left: 2%;
+ overflow: hidden;
+ font-family: 'raleway';
+ @media screen and (min-width:769px) and (max-width:900px){
+
+font-size: 18px;
+}
+}
+
+.page1-12  .page1-12first{
+  position: absolute;
+  margin-top: 8%;
+  margin-left: 5%;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  
+ }
+
+ .page1-12  .page1-12first   .column {
+  float: left;
+  width: 46%;
+  padding: 10px;
+  overflow: hidden;
+  
+}
+
+/* model-viewer {
+  width: 100%;
+  margin-left: 10%;
+  position: relative;
+  overflow: hidden;
+
+} */
+
+.page1-12  .page1-12first .row:after {
+  content: "";
+  display: table;
+  clear: both;
+  overflow: hidden;
+}
+
+.page1-12  .page1-12first   .column p {
+  width: 60%;
+  line-height: 21px;
+  font-size: 12.5px;
+  text-align: left;
+  position: absolute;
+  overflow: hidden;
+  font-family: 'raleway';
+  margin-top: 10px;
+  
+@media screen and (max-width:500px){
+  font-size: 11px;
+  line-height: 15px;
+}
+@media screen and (min-width:769px) and (max-width:900px){
+
+  font-size: 14.5px;
+  line-height: 26.5px;
+}
+
+}
+
+@media screen and (max-width: 600px) {
+  .page1-12  .page1-12first .column {
+    width: 100%;
+  }
+}
+
+.page1-12  .page1-12second{
+  position: absolute;
+  margin-top: 39%;
+  width: 95%;
+  overflow: hidden;
+
+@media screen and (max-width:500px){
+  margin-top: 55%;
+}
+}
+
+
+.page1-12  .page1-12second h3{
+  font-size: 13.5px;
+  margin-left: 5%;
+  font-family: 'raleway';
+  overflow: hidden;
+  @media screen and (min-width:769px) and (max-width:900px){
+
+  margin-top: 2%;
+}
+}
+
+.page1-12 .page1-12second img{
+  width: 7%;
+  overflow: hidden;
+}
+
+.page1-12 .page1-12third{
+  position: absolute;
+  margin-top: 60%;
+  width: 95%;
+  overflow: hidden;
+
+@media screen and (max-width:500px){
+  margin-top: 78%;
+}
+}
+
+
+.page1-12  .page1-12third h3{
+  font-size: 13.5px;
+     margin-left: 5%;  
+     font-family: 'raleway';
+     overflow: hidden;
+
+   }
+ 
+   .page1-12  .page1-12third img{
+     width: 90%;
+     margin-left: 5%;
+     margin-top: 1%;
+     overflow: hidden;
+   }
+
+ 
+  
+
+   .page1-12   .page1-12fourth{
+    position: absolute;
+    margin-top: 84%;
+    width: 95%;
+    overflow: hidden;
+
+@media screen and (max-width:500px){
+  margin-top: 100%;
+}
+@media screen and (min-width:769px) and (max-width:900px){
+
+  margin-top: 90%;
+}
+  }
+
+  .page1-12 .page1-12fourth h3{
+    font-size: 13.5px;
+       margin-left: 5%;  
+       font-family: 'raleway';
+       overflow: hidden;
+     }
+     
+     .border-box-img {
+      width: 77%;
+      position: absolute;
+      top: 69%;
+      left: 11%;
+      overflow: hidden;
+      
+@media screen and (max-width:500px){
+  top: 72%;
+}
+
+     }
+     .border-box-img img{
+      width: 100%;
+      overflow: hidden;
+     }
+
+     .box-image-12-1{
+      width: 5%;
+     position: absolute;
+     top: 71.5%;
+     left: 18%;
+     overflow: hidden;
+     
+@media screen and (max-width:500px){
+  top: 73.5%;
+}
+
+     }
+     .box-image-12-1 img{
+      width: 100%;
+      overflow: hidden;
+     }
+     .box-image-12-2{
+      width: 6%;
+    position: absolute;
+    top: 71.5%;
+    left: 33%;
+    overflow: hidden;
+      
+      @media screen and (max-width:500px) {
+        top: 73.5%;
+      }
+     }
+     .box-image-12-2 img{
+      width: 100%;
+      overflow: hidden;
+     }
+     .box-image-12-3{
+      width: 10%;
+    position: absolute;
+    top: 71.5%;
+    left: 50%;
+    overflow: hidden;
+
+@media screen and (max-width:500px) {
+  top: 73.5%;
+}
+     }
+     .box-image-12-3 img{
+      width: 100%;
+      overflow: hidden;
+     }
+     .box-image-12-4{
+      width: 11%;
+      position: absolute;
+      top: 71.5%;
+      left: 69%;
+      overflow: hidden;
+      @media screen and (max-width:500px) {
+        top: 73.5%;
+      }
+     }
+     .box-image-12-4 img{
+      width: 100%;
+      overflow: hidden;
+     }
+     .box-image-12-5{
+      width: 10%;
+    position: absolute;
+    top: 83.5%;
+    left: 14%;
+    overflow: hidden;
+
+     }
+     .box-image-12-5 img{
+      width: 100%;
+      overflow: hidden;
+     }
+     .box-image-12-6{
+      width: 10%;
+    position: absolute;
+    top: 83.5%;
+    left: 31%;
+    overflow: hidden;
+
+     }
+     .box-image-12-6 img{
+      width: 100%;
+      overflow: hidden;
+     }
+     .box-image-12-7{
+      width: 10%;
+    position: absolute;
+    top: 83.5%;
+    left: 50%;
+    overflow: hidden;
+
+     }
+     .box-image-12-7 img{
+      width: 100%;
+      overflow: hidden;
+     }
+     .box-image-12-8{
+      width: 10%;
+    position: absolute;
+    top: 84%;
+    left: 69%;
+    overflow: hidden;
+
+     }
+     .box-image-12-8 img{
+      width: 100%;
+      overflow: hidden;
+     }
+
+     .box-image-12-1 img:hover {
+      -ms-transform: scale(0.8);
+      -webkit-transform: scale(0.8); 
+      transform: scale(0.8); 
+      overflow: hidden;
+    }
+
+    .box-image-12-2 img:hover {
+      -ms-transform: scale(0.8);
+      -webkit-transform: scale(0.8); 
+      transform: scale(0.8); 
+      overflow: hidden;
+    }
+
+    .box-image-12-3 img:hover {
+      -ms-transform: scale(0.8);
+      -webkit-transform: scale(0.8); 
+      transform: scale(0.8); 
+      overflow: hidden;
+    }
+
+    .box-image-12-4 img:hover {
+      -ms-transform: scale(0.8);
+      -webkit-transform: scale(0.8); 
+      transform: scale(0.8); 
+      overflow: hidden;
+    }
+
+    .box-image-12-5 img:hover {
+      -ms-transform: scale(0.8);
+      -webkit-transform: scale(0.8); 
+      transform: scale(0.8); 
+      overflow: hidden;
+    }
+    
+    .box-image-12-6 img:hover {
+      -ms-transform: scale(0.8);
+      -webkit-transform: scale(0.8); 
+      transform: scale(0.8); 
+      overflow: hidden;
+    }
+    
+    .box-image-12-7 img:hover {
+      -ms-transform: scale(0.8);
+      -webkit-transform: scale(0.8); 
+      transform: scale(0.8); 
+      overflow: hidden;
+    }
+
+    .box-image-12-8 img:hover {
+      -ms-transform: scale(0.8);
+      -webkit-transform: scale(0.8); 
+      transform: scale(0.8); 
+      overflow: hidden;
+    }
+
+    /************************************************* Produvct3 ******************************************/
+
+.Product3 {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.Product3 .page-1lastimg {
+  position: absolute;
+  top: 70%;
+  width: 100%;
+  height: 30vh;
+  overflow: hidden;
+
+}
+
+.Product3 .page-1lastimg img {
+  width: 100%;
+  overflow: hidden;
+  opacity: .6;
+}
+
+.Product3 .degr {
+  position: absolute;
+  top: 2.5%;
+  left: 75%;
+  width: 7%;
+
+}
+
+
+
+.Product3 h2 {
+  font-size: 14px;
+  position: absolute;
+  margin-top: 5%;
+  margin-left: 2%;
+  overflow: hidden;
+  font-family: 'raleway';
+
+  @media screen and (min-width:769px) and (max-width:900px) {
+
+    font-size: 18px;
+  }
+}
+.Product3 .Product3first  .column h3 {
+  font-size: 16px;
+  overflow: hidden;
+  font-family: 'M PLUS 1p', sans-serif;
+
+  @media screen and (min-width:769px) and (max-width:900px) {
+
+    font-size: 18px;
+  }
+
+}
+
+.Product3 .Product3first {
+  position: absolute;
+  margin-top: 6%;
+  margin-left: 5%;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+
+}
+
+.Product3 .Product3first .column {
+  float: left;
+  width: 46%;
+  padding: 10px;
+  overflow: hidden;
+
+}
+
+/* model-viewer {
+  width: 100%;
+  margin-left: 10%;
+  position: relative;
+  overflow: hidden;
+
+} */
+.Product3 .Product3second  .features-imgs-1 {
+  width: 98%;
+  height: 10%;
+  margin-left: 5%;
+  position: relative;
+ 
+}
+
+.Product3 .Product3first .row:after {
+  content: "";
+  display: table;
+  clear: both;
+  overflow: hidden;
+}
+
+.Product3 .Product3first .column p {
+  width: 60%;
+  line-height: 21px;
+  font-size: 12.5px;
+  text-align: left;
+  position: absolute;
+  overflow: hidden;
+  font-family: 'raleway';
+  margin-top: 10px;
+
+  @media screen and (max-width:500px) {
+    font-size: 11px;
+    line-height: 15px;
+  }
+
+  @media screen and (min-width:769px) and (max-width:900px) {
+
+    font-size: 14.5px;
+    line-height: 26.5px;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+  .Product3 .Product3irst .column {
+    width: 100%;
+  }
+}
+
+.Product3 .Product3first-1 {
+  position: absolute;
+  margin-top: 61%;
+  margin-left: 5%;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+
+}
+
+.Product3 .Product3first-1 .column {
+  float: left;
+  width: 46%;
+  margin-left: 0%;
+  padding: 10px;
+  overflow: hidden;
+
+}
+
+/* model-viewer {
+  width: 100%;
+  margin-left: 10%;
+  position: relative;
+  overflow: hidden;
+
+} */
+
+.Product3 .Product3first-1  .column h3 {
+  font-size: 16px;
+  overflow: hidden;
+  font-family: 'M PLUS 1p', sans-serif;
+
+  @media screen and (min-width:769px) and (max-width:900px) {
+
+    font-size: 18px;
+  }
+
+}
+.Product3 .Product3first-1 .row:after {
+  content: "";
+  display: table;
+  clear: both;
+  overflow: hidden;
+}
+
+.Product3 .Product3first-1 .column p {
+  width: 60%;
+  line-height: 21px;
+  font-size: 12.5px;
+  text-align: left;
+  position: absolute;
+  overflow: hidden;
+  font-family: 'raleway';
+  margin-top: 10px;
+
+  @media screen and (max-width:500px) {
+    font-size: 11px;
+    line-height: 15px;
+  }
+
+  @media screen and (min-width:769px) and (max-width:900px) {
+
+    font-size: 14.5px;
+    line-height: 26.5px;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+  .Product3 .Product3first-1 .column {
+    width: 100%;
+  }
+}
+.pf-control-bar-button3-1 {
+  height: 100px;
+  position: relative;
+  padding-right: -6%;
+  color: transparent;
+  margin-top: 10px;
+  margin-left:70px;
+  overflow: hidden;
+  visibility: visible;
+}
+
+.pf-control-bar-button3-2 {
+  height: 100px;
+  position: relative;
+margin-right: -6%;
+  margin-left:70px;
+  color: transparent;
+  margin-top: -10px;
+  overflow: hidden;
+  visibility: visible;
+}
+
+
+.Product3 .Product3second {
+  position: absolute;
+  margin-top: 31%;
+  width: 95%;
+  overflow: hidden;
+
+  @media screen and (max-width:500px) {
+    margin-top: 55%;
+  }
+}
+
+
+.Product3 .Product3second h3 {
+  font-size: 13.5px;
+  margin-left: 5%;
+  font-family: 'raleway';
+  overflow: hidden;
+
+  @media screen and (min-width:769px) and (max-width:900px) {
+
+    margin-top: 2%;
+  }
+}
+
+.Product3 .Product3second img {
+  width: 7%;
+  overflow: hidden;
+}
+
+.Product3 .Product3third {
+  position: absolute;
+  margin-top: 42%;
+  width: 95%;
+  overflow: hidden;
+
+  @media screen and (max-width:500px) {
+    margin-top: 78%;
+  }
+}
+
+.Product3 .Product3third-1 {
+  position: absolute;
+  margin-top: 82%;
+  width: 95%;
+  overflow: hidden;
+
+  @media screen and (max-width:500px) {
+    margin-top: 78%;
+  }
+}
+
+.Product3 .Product3third h3 {
+  font-size: 13.5px;
+  margin-left: 5%;
+  font-family: 'raleway';
+  overflow: hidden;
+
+}
+
+.Product3 .Product3third img {
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 1%;
+  overflow: hidden;
+}
+.Product3 .Product3third-1 h3 {
+  font-size: 13.5px;
+  margin-left: 5%;
+  font-family: 'raleway';
+  overflow: hidden;
+
+}
+
+.Product3 .Product3third-1 img {
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 1%;
+  overflow: hidden;
+}
+
+
+
+.Product3 .Product3fourth {
+  position: absolute;
+  margin-top:105%;
+  width: 95%;
+  overflow: hidden;
+
+  @media screen and (max-width:500px) {
+    margin-top: 100%;
+  }
+
+  @media screen and (min-width:769px) and (max-width:900px) {
+
+    margin-top: 90%;
+  }
+}
+
+.Product3  .Product3fourth h3 {
+  font-size: 13.5px;
+  margin-left: 5%;
+  font-family: 'raleway';
+  overflow: hidden;
+}
+
+.border-box-img {
+  width: 77%;
+  position: absolute;
+  top: 69%;
+  left: 11%;
+  overflow: hidden;
+
+  @media screen and (max-width:500px) {
+    top: 72%;
+  }
+
+}
+
+.border-box-img img {
+  width: 100%;
+  overflow: hidden;
+}
+
+.border-box-img-1 {
+  width:80%;
+  position: absolute;
+  top: 83.5%;
+  left: 11%;
+  overflow: hidden;
+
+  @media screen and (max-width:500px) {
+    top: 72%;
+  }
+
+}
+.border-box-img-1 img {
+  width:100%;
+  overflow: hidden;
+}
+
+.box-image-12-1 {
+  width: 5%;
+  position: absolute;
+  top: 71.5%;
+  left: 18%;
+  overflow: hidden;
+
+  @media screen and (max-width:500px) {
+    top: 73.5%;
+  }
+
+}
+
+.box-image-12-1 img {
+  width: 100%;
+  overflow: hidden;
+}
+.box-image-12-1-1 {
+  width: 15%;
+  position: absolute;
+  top: 88%;
+  left: 18%;
+  overflow: hidden;
+
+  @media screen and (max-width:500px) {
+    top: 73.5%;
+  }
+
+}
+
+.box-image-12-1-1 img {
+  width: 100%;
+  overflow: hidden;
+}
+
+
+.box-image-12-11 {
+  width: 13%;
+  position: absolute;
+  top: 72%;
+  left: 16%;
+  overflow: hidden;
+
+  @media screen and (max-width:500px) {
+    top: 73.5%;
+  }
+
+}
+
+.box-image-12-11 img {
+  width: 100%;
+  overflow: hidden;
+}
+
+.box-image-12-2 {
+  width: 6%;
+  position: absolute;
+  top: 71.5%;
+  left: 33%;
+  overflow: hidden;
+
+  @media screen and (max-width:500px) {
+    top: 73.5%;
+  }
+}
+.box-image-12-21 {
+  width: 10%;
+  position: absolute;
+  top: 71.5%;
+  left: 33%;
+  overflow: hidden;
+
+  @media screen and (max-width:500px) {
+    top: 73.5%;
+  }
+}
+
+.box-image-12-2 img {
+  width: 100%;
+  overflow: hidden;
+}
+
+.box-image-12-2-1 {
+  width: 13%;
+  position: absolute;
+  top: 86%;
+  left:40%;
+  overflow: hidden;
+
+  @media screen and (max-width:500px) {
+    top: 73.5%;
+  }
+}
+
+.box-image-12-2-1 img {
+  width: 100%;
+  overflow: hidden;
+}
+.box-image-12-21 img {
+  width: 100%;
+  overflow: hidden;
+}
+
+
+
+ 
+.box-image-12-2-2 {
+  width: 14%;
+  position: absolute;
+  top: 89%;
+  left:60%;
+  overflow: hidden;
+
+  @media screen and (max-width:500px) {
+    top: 73.5%;
+  }
+}
+
+.box-image-12-2-2 img {
+  width: 100%;
+  overflow: hidden;
+}
+
+.box-image-12-3 {
+  width: 10%;
+  position: absolute;
+  top: 71.5%;
+  left: 50%;
+  overflow: hidden;
+
+  @media screen and (max-width:500px) {
+    top: 73.5%;
+  }
+}
+
+.box-image-12-3 img {
+  width: 100%;
+  overflow: hidden;
+}
+
+
+.box-image-12-3-1 {
+  width: 13%;
+  position: absolute;
+  top: 86%;
+  left: 61%;
+  overflow: hidden;
+
+  @media screen and (max-width:500px) {
+    top: 73.5%;
+  }
+}
+
+.box-image-12-3-1 img {
+  width: 100%;
+  overflow: hidden;
+}
+
+.box-image-12-4 {
+  width: 11%;
+  position: absolute;
+  top: 71.5%;
+  left: 69%;
+  overflow: hidden;
+
+  @media screen and (max-width:500px) {
+    top: 73.5%;
+  }
+}
+
+.box-image-12-4 img {
+  width: 100%;
+  overflow: hidden;
+}
+
+.box-image-12-5 {
+  width: 10%;
+  position: absolute;
+  top: 83.5%;
+  left: 14%;
+  overflow: hidden;
+
+}
+
+.box-image-12-5 img {
+  width: 100%;
+  overflow: hidden;
+}
+
+.box-image-12-6 {
+  width: 10%;
+  position: absolute;
+  top: 83.5%;
+  left: 31%;
+  overflow: hidden;
+
+}
+
+.box-image-12-6 img {
+  width: 100%;
+  overflow: hidden;
+}
+
+.box-image-12-7 {
+  width: 10%;
+  position: absolute;
+  top: 83.5%;
+  left: 50%;
+  overflow: hidden;
+
+}
+
+.box-image-12-7 img {
+  width: 100%;
+  overflow: hidden;
+}
+
+.box-image-12-8 {
+  width: 10%;
+  position: absolute;
+  top: 84%;
+  left: 69%;
+  overflow: hidden;
+
+}
+
+.box-image-12-8 img {
+  width: 100%;
+  overflow: hidden;
+}
+
+.box-image-12-1 img:hover {
+  -ms-transform: scale(0.8);
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+  overflow: hidden;
+}
+.box-image-12-11 img:hover {
+  -ms-transform: scale(0.8);
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+  overflow: hidden;
+}
+.box-image-12-1-1 img:hover {
+  -ms-transform: scale(0.8);
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+  overflow: hidden;
+}
+
+.box-image-12-2 img:hover {
+  -ms-transform: scale(0.8);
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+  overflow: hidden;
+}
+.box-image-12-2-1 img:hover {
+  -ms-transform: scale(0.8);
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+  overflow: hidden;
+}
+.box-image-12-2-2 img:hover {
+  -ms-transform: scale(0.8);
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+  overflow: hidden;
+}
+.box-image-12-21 img:hover {
+  -ms-transform: scale(0.8);
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+  overflow: hidden;
+}
+
+.box-image-12-3 img:hover {
+  -ms-transform: scale(0.8);
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+  overflow: hidden;
+}
+
+.box-image-12-3-1 img:hover {
+  -ms-transform: scale(0.8);
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+  overflow: hidden;
+}
+.box-image-12-4 img:hover {
+  -ms-transform: scale(0.8);
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+  overflow: hidden;
+}
+
+.box-image-12-5 img:hover {
+  -ms-transform: scale(0.8);
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+  overflow: hidden;
+}
+
+.box-image-12-6 img:hover {
+  -ms-transform: scale(0.8);
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+  overflow: hidden;
+}
+
+.box-image-12-7 img:hover {
+  -ms-transform: scale(0.8);
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+  overflow: hidden;
+}
+
+.box-image-12-8 img:hover {
+  -ms-transform: scale(0.8);
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+  overflow: hidden;
+}
+
+
+    /*************************************************** page1-121 *************************************/
+  
+
+    .page1-121{
+      width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    
+    .page1-121 .page-1lastimg{
+      position: absolute;
+      top: 70%;
+      width: 100%;
+      height: 30vh;
+      overflow: hidden;
+     
+    }
+    .page1-121 .page-1lastimg img{
+      width: 100%;
+      overflow: hidden;
+      opacity: .6;
+     }
+     .page1-121 .degr{
+      position: absolute;
+      top: 2.5%;
+      left: 75%;
+      width: 7%;
+    
+     }
+    
+    
+         
+.page1-121 h2{
+font-size: 14px;
+  position: absolute;
+  margin-top: 5%;
+  margin-left: 2%;
+overflow: hidden;
+font-family: 'raleway';
+@media screen and (min-width:769px) and (max-width:900px){
+
+font-size: 18px;
+}
+}
+
+.page1-121  .page1-121first{
+position: absolute;
+margin-top: 8%;
+margin-left: 5%;
+width: 100%;
+height: 50%;
+overflow: hidden;
+
+}
+
+.page1-121  .page1-121first   .column {
+float: left;
+width: 46%;
+padding: 10px;
+overflow: hidden;
+
+}
+
+/* model-viewer {
+width: 100%;
+margin-left: 10%;
+position: relative;
+overflow: hidden;
+
+} */
+
+.page1-121  .page1-121first .row:after {
+content: "";
+display: table;
+clear: both;
+overflow: hidden;
+}
+
+.page1-121  .page1-121first   .column p {
+width: 60%;
+line-height: 21px;
+font-size: 12.5px;
+text-align: left;
+position: absolute;
+overflow: hidden;
+font-family: 'raleway';
+margin-top: 10px;
+
+@media screen and (max-width:500px){
+font-size: 11px;
+line-height: 15px;
+}
+@media screen and (min-width:769px) and (max-width:900px){
+
+font-size: 14.5px;
+line-height: 26.5px;
+}
+
+}
+
+@media screen and (max-width: 600px) {
+.page1-121  .page1-121first .column {
+  width: 100%;
+}
+}
+
+.page1-121  .page1-121second{
+position: absolute;
+margin-top: 39%;
+width: 95%;
+overflow: hidden;
+
+@media screen and (max-width:500px){
+margin-top: 55%;
+}
+}
+
+
+.page1-121  .page1-121second h3{
+font-size: 13.5px;
+margin-left: 5%;
+font-family: 'raleway';
+overflow: hidden;
+@media screen and (min-width:769px) and (max-width:900px){
+
+margin-top: 2%;
+}
+}
+
+.page1-121 .page1-121second img{
+width: 7%;
+overflow: hidden;
+}
+
+.page1-121 .page1-121third{
+position: absolute;
+margin-top: 60%;
+width: 95%;
+overflow: hidden;
+
+@media screen and (max-width:500px){
+margin-top: 78%;
+}
+}
+
+
+.page1-121  .page1-121third h3{
+font-size: 13.5px;
+   margin-left: 5%;  
+   font-family: 'raleway';
+   overflow: hidden;
+
+ }
+
+ .page1-121  .page1-121third img{
+   width: 90%;
+   margin-left: 5%;
+   margin-top: 1%;
+   overflow: hidden;
+ }
+
+
+
+
+ .page1-121   .page1-121fourth{
+  position: absolute;
+  margin-top: 84%;
+  width: 95%;
+  overflow: hidden;
+
+@media screen and (max-width:500px){
+margin-top: 100%;
+}
+@media screen and (min-width:769px) and (max-width:900px){
+
+margin-top: 90%;
+}
+
+ }
+
+
+.page1-121   .page1-121fourth{
+  position: absolute;
+  margin-top: 90%;
+  width: 98%;
+  overflow: hidden;
+  
+@media screen and (max-width:500px){
+margin-top: 105%;
+}
+}
+
+.page1-121 .page1-121fourth h3{
+  font-size: 13.5px;
+     margin-left: 5%;  
+     font-family: 'raleway';
+     overflow: hidden;
+   }
+ 
+ 
+.water-img-p-121-1 img {
+width: 21.5%;
+  margin-left: 10%;
+  margin-top: 2%;
+  overflow: hidden;
+}
+.water-img-p-121-2 img {
+width: 21.5%;
+position: absolute;
+top: 14%;
+left: 39%;
+overflow: hidden;
+
+@media screen and (max-width:500px){
+margin-top: 1%;
+}
+}
+
+.water-img-p-121-3 img {
+width: 25%;
+position: absolute;
+top: 14%;
+left: 70%;
+overflow: hidden;
+
+@media screen and (max-width:500px){
+margin-top: 1%;
+}
+}
+
+
+
+.water-img-icon-p-121-1{
+position: absolute;
+  left: 25%;
+  top: 60%;
+  z-index: 100;
+}
+
+
+.water-img-icon-p-121-2{
+position: absolute;
+left: 56%;
+  top: 60%;
+z-index: 100;
+}
+
+/************************************************* page1-1211 ******************************************/
+
+.page1-1211{
+  width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.page1-1211 .page-1lastimg{
+  position: absolute;
+  top: 70%;
+  width: 100%;
+  height: 30vh;
+  overflow: hidden;
+ 
+}
+.page1-1211 .page-1lastimg img{
+  width: 100%;
+  overflow: hidden;
+  opacity: .6;
+ }
+ .page1-1211 .degr{
+  position: absolute;
+  top: 2.5%;
+  left: 75%;
+  width: 7%;
+
+ }
+
+
+     
+.page1-1211 h2{
+font-size: 14px;
+position: absolute;
+margin-top: 5%;
+margin-left: 2%;
+overflow: hidden;
+font-family: 'raleway';
+@media screen and (min-width:769px) and (max-width:900px){
+
+font-size: 18px;
+}
+}
+
+.page1-1211  .page1-1211first{
+position: absolute;
+margin-top: 8%;
+margin-left: 5%;
+width: 100%;
+height: 50%;
+overflow: hidden;
+
+}
+
+.page1-1211  .page1-1211first   .column {
+float: left;
+width: 46%;
+padding: 10px;
+overflow: hidden;
+
+}
+
+/* model-viewer {
+width: 100%;
+margin-left: 10%;
+position: relative;
+overflow: hidden;
+
+} */
+
+.page1-1211  .page1-1211first .row:after {
+content: "";
+display: table;
+clear: both;
+overflow: hidden;
+}
+
+.page1-1211  .page1-1211first   .column p {
+width: 60%;
+line-height: 21px;
+font-size: 12.5px;
+text-align: left;
+position: absolute;
+overflow: hidden;
+font-family: 'raleway';
+margin-top: 10px;
+
+@media screen and (max-width:500px){
+font-size: 11px;
+line-height: 15px;
+}
+@media screen and (min-width:769px) and (max-width:900px){
+
+font-size: 14.5px;
+line-height: 26.5px;
+}
+
+}
+
+@media screen and (max-width: 600px) {
+.page1-1211  .page1-1211first .column {
+width: 100%;
+}
+}
+
+.page1-1211  .page1-1211second{
+position: absolute;
+margin-top: 49%;
+width: 95%;
+overflow: hidden;
+
+@media screen and (max-width:500px){
+margin-top: 55%;
+}
+}
+
+
+.page1-1211  .page1-1211second h3{
+font-size: 13.5px;
+margin-left: 5%;
+font-family: 'raleway';
+overflow: hidden;
+@media screen and (min-width:769px) and (max-width:900px){
+
+margin-top: 2%;
+}
+}
+
+.page1-1211 .page1-1211second img{
+width: 7%;
+overflow: hidden;
+}
+
+.page1-1211 .page1-1211third{
+position: absolute;
+margin-top: 67%;
+width: 95%;
+overflow: hidden;
+
+@media screen and (max-width:500px){
+margin-top: 78%;
+}
+}
+
+
+.page1-1211  .page1-1211third h3{
+font-size: 13.5px;
+margin-left: 5%;  
+font-family: 'raleway';
+overflow: hidden;
+
+}
+
+.page1-1211  .page1-1211third img{
+width: 90%;
+margin-left: 5%;
+margin-top: 1%;
+overflow: hidden;
+}
+
+
+
+
+.page1-1211   .page1-1211fourth{
+position: absolute;
+margin-top: 86%;
+width: 95%;
+overflow: hidden;
+
+@media screen and (max-width:500px){
+margin-top: 100%;
+}
+@media screen and (min-width:769px) and (max-width:900px){
+
+margin-top: 90%;
+}
+}
+
+.page1-1211 .page1-1211fourth h3{
+font-size: 13.5px;
+ margin-left: 5%;  
+ font-family: 'raleway';
+ overflow: hidden;
+}
+
+.border-box-img {
+width: 77%;
+position: absolute;
+top: 69%;
+left: 11%;
+overflow: hidden;
+
+@media screen and (max-width:500px){
+top: 72%;
+}
+
+}
+.border-box-img img{
+width: 100%;
+overflow: hidden;
+}
+
+.box-image-12-1{
+width: 5%;
+position: absolute;
+top: 71.5%;
+left: 18%;
+overflow: hidden;
+
+@media screen and (max-width:500px){
+top: 73.5%;
+}
+
+}
+.box-image-12-1 img{
+width: 100%;
+overflow: hidden;
+}
+.box-image-12-2{
+width: 6%;
+position: absolute;
+top: 71.5%;
+left: 33%;
+overflow: hidden;
+
+@media screen and (max-width:500px) {
+  top: 73.5%;
+}
+}
+.box-image-12-2 img{
+width: 100%;
+overflow: hidden;
+}
+.box-image-12-3{
+width: 10%;
+position: absolute;
+top: 71.5%;
+left: 50%;
+overflow: hidden;
+
+@media screen and (max-width:500px) {
+top: 73.5%;
+}
+}
+.box-image-12-3 img{
+width: 100%;
+overflow: hidden;
+}
+.box-image-12-4{
+width: 11%;
+position: absolute;
+top: 71.5%;
+left: 69%;
+overflow: hidden;
+@media screen and (max-width:500px) {
+  top: 73.5%;
+}
+}
+.box-image-12-4 img{
+width: 100%;
+overflow: hidden;
+}
+.box-image-12-5{
+width: 10%;
+position: absolute;
+top: 83.5%;
+left: 14%;
+overflow: hidden;
+
+}
+.box-image-12-5 img{
+width: 100%;
+overflow: hidden;
+}
+.box-image-12-6{
+width: 10%;
+position: absolute;
+top: 83.5%;
+left: 31%;
+overflow: hidden;
+
+}
+.box-image-12-6 img{
+width: 100%;
+overflow: hidden;
+}
+.box-image-12-7{
+width: 10%;
+position: absolute;
+top: 83.5%;
+left: 50%;
+overflow: hidden;
+
+}
+.box-image-12-7 img{
+width: 100%;
+overflow: hidden;
+}
+.box-image-12-8{
+width: 10%;
+position: absolute;
+top: 84%;
+left: 69%;
+overflow: hidden;
+
+}
+.box-image-12-8 img{
+width: 100%;
+overflow: hidden;
+}
+
+.box-image-12-1 img:hover {
+-ms-transform: scale(0.8);
+-webkit-transform: scale(0.8); 
+transform: scale(0.8); 
+overflow: hidden;
+}
+
+.box-image-12-2 img:hover {
+-ms-transform: scale(0.8);
+-webkit-transform: scale(0.8); 
+transform: scale(0.8); 
+overflow: hidden;
+}
+
+.box-image-12-3 img:hover {
+-ms-transform: scale(0.8);
+-webkit-transform: scale(0.8); 
+transform: scale(0.8); 
+overflow: hidden;
+}
+
+.box-image-12-4 img:hover {
+-ms-transform: scale(0.8);
+-webkit-transform: scale(0.8); 
+transform: scale(0.8); 
+overflow: hidden;
+}
+
+.box-image-12-5 img:hover {
+-ms-transform: scale(0.8);
+-webkit-transform: scale(0.8); 
+transform: scale(0.8); 
+overflow: hidden;
+}
+
+.box-image-12-6 img:hover {
+-ms-transform: scale(0.8);
+-webkit-transform: scale(0.8); 
+transform: scale(0.8); 
+overflow: hidden;
+}
+
+.box-image-12-7 img:hover {
+-ms-transform: scale(0.8);
+-webkit-transform: scale(0.8); 
+transform: scale(0.8); 
+overflow: hidden;
+}
+
+.box-image-12-8 img:hover {
+-ms-transform: scale(0.8);
+-webkit-transform: scale(0.8); 
+transform: scale(0.8); 
+overflow: hidden;
+}
+
+
+
+    /************************************************* page1-13 ******************************************/
+
+    .page1-13{
+      width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    
+    .page1-13 .page-1lastimg{
+      position: absolute;
+      top: 70%;
+      width: 100%;
+      height: 30vh;
+      overflow: hidden;
+     
+    }
+    .page1-13 .page-1lastimg img{
+      width: 100%;
+      overflow: hidden;
+      opacity: .6;
+     }
+     .page1-13 .degr{
+      position: absolute;
+      top: 2.5%;
+      left: 75%;
+      width: 7%;
+    
+     }
+    
+         
+ .page1-13 h2{
+  font-size: 14px;
+  position: absolute;
+  margin-top: 5%;
+  margin-left: 2%;
+ overflow: hidden;
+ font-family: 'raleway';
+ overflow: hidden;
+ @media screen and (min-width:769px) and (max-width:900px){
+
+  font-size: 18px;
+}
+}
+
+.page1-13  .page1-13first{
+  position: absolute;
+  margin-top: 8%;
+  margin-left: 5%;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+ }
+
+ .page1-13  .page1-13first   .column {
+  float: left;
+  width: 46%;
+  padding: 10px;
+  overflow: hidden;
+  
+}
+
+/* model-viewer {
+  width: 100%;
+  margin-left: 8%;
+  position: relative;
+  overflow: hidden;
+
+} */
+
+.page1-13  .page1-13first .row:after {
+  content: "";
+  display: table;
+  clear: both;
+  overflow: hidden;
+}
+
+.page1-13  .page1-13first   .column p {
+  width: 60%;
+  line-height: 20px;
+    font-size: 12px;
+    text-align: left;
+    position: absolute;
+    overflow: hidden;
+    font-family: 'raleway';
+    margin-top: 10px;
+    
+@media screen and (max-width:500px){
+  font-size: 11px;
+  line-height: 14.5px;
+}
+@media screen and (min-width:769px) and (max-width:900px){
+
+  font-size: 15px;
+  line-height: 28px;
+}
+}
+
+@media screen and (max-width: 600px) {
+  .page1-13  .page1-13first .column {
+    width: 100%;
+  }
+}
+
+.page1-13  .page1-13second{
+  position: absolute;
+  margin-top: 40%;
+  width: 95%;
+  overflow: hidden;
+  
+@media screen and (max-width:500px){
+  margin-top: 63.5%;
+}
+@media screen and (min-width:769px) and (max-width:900px){
+
+  margin-top: 45%;
+}
+}
+
+
+.page1-13  .page1-13second h3{
+  font-size: 13.5px;
+  margin-left: 5%;
+  font-family: 'raleway';
+  overflow: hidden;
+}
+
+.page1-13 .page1-13second img{
+  width: 7%;
+  overflow: hidden;
+}
+
+.page1-13 .page1-13third{
+  position: absolute;
+  margin-top: 61%;
+  width: 95%;
+  overflow: hidden;
+  
+@media screen and (max-width:500px){
+  margin-top: 78%;
+}
+@media screen and (min-width:769px) and (max-width:900px){
+
+  margin-top: 65%;
+}
+}
+
+
+.page1-13  .page1-13third h3{
+  font-size: 13.5px;
+     margin-left: 5%;  
+     font-family: 'raleway';
+     overflow: hidden;
+   }
+ 
+   .page1-13  .page1-13third img{
+     width: 90%;
+     margin-left: 5%;
+     margin-top: 1%;
+     overflow: hidden;
+   }
+
+ 
+  
+
+   .page1-13   .page1-13fourth{
+    position: absolute;
+    margin-top: 84%;
+    width: 95%;
+    overflow: hidden;
+  
+@media screen and (max-width:500px){
+  margin-top: 97%;
+}
+@media screen and (min-width:769px) and (max-width:900px){
+
+  margin-top: 90%;
+}
+  }
+
+  .page1-13 .page1-13fourth h3{
+    font-size: 13.5px;
+       margin-left: 5%;  
+       font-family: 'raleway';
+       overflow: hidden;
+     }
+   
+     .page1-13  .page1-13fourth img{
+       width: 60%;
+       margin-left: 25%;
+       margin-top: 1%;
+       z-index: 3;
+       overflow: hidden;
+     }
+
+     .border-box-img-13 {
+      width: 77%;
+      position: absolute;
+      top: 69%;
+      left: 11%;
+      overflow: hidden;
+      
+@media screen and (max-width:500px){
+  top: 71.5%;
+}
+
+     }
+     .border-box-img-13 img{
+      width: 100%;
+      overflow: hidden;
+     }
+
+    
+     .box-image-1{
+      width: 7%;
+    position: absolute;
+    top: 71.5%;
+    left: 18%;
+    overflow: hidden;
+    @media screen {
+      top: 73.5%;
+    }
+     }
+     .box-image-1 img{
+      width: 100%;
+      overflow: hidden;
+     }
+     .box-image-2{
+      width: 7%;
+      position: absolute;
+      top: 71.5%;
+      left: 34%;
+      overflow: hidden;
+       @media screen {
+      top: 73.5%;
+    }
+     }
+     .box-image-2 img{
+      width: 100%;
+      overflow: hidden;
+     }
+     .box-image-3{
+      width: 11%;
+    position: absolute;
+    top: 71.5%;
+    left: 49%;
+    overflow: hidden;
+     @media screen {
+      top: 73.5%;
+    }
+     }
+     .box-image-3 img{
+      width: 100%;
+      overflow: hidden;
+     }
+     .box-image-4{
+      width: 14%;
+    position: absolute;
+    top: 73.5%;
+    left: 68%;
+    overflow: hidden;
+     @media screen {
+      top: 75.5%;
+    }
+
+     }
+     .box-image-4 img{
+      width: 100%;
+      overflow: hidden;
+     }
+     .box-image-5{
+      width: 10%;
+    position: absolute;
+    top: 85.5%;
+    left: 17%;
+    overflow: hidden;
+     }
+     .box-image-5 img{
+      width: 100%;
+      overflow: hidden;
+     }
+     .box-image-6{
+      width: 11%;
+    position: absolute;
+    top: 85.5%;
+    left: 33%;
+    overflow: hidden;
+     }
+     .box-image-6 img{
+      width: 100%;
+      overflow: hidden;
+     }
+     .box-image-7{
+      width: 10%;
+    position: absolute;
+    top: 85.5%;
+    left: 52%;
+    overflow: hidden;
+     }
+     .box-image-7 img{
+      width: 100%;
+      overflow: hidden;
+     }
+
+     .box-image-1 img:hover {
+      -ms-transform: scale(0.8);
+      -webkit-transform: scale(0.8); 
+      transform: scale(0.8);
+      overflow: hidden; 
+    }
+    
+    .box-image-2 img:hover {
+      -ms-transform: scale(0.8);
+      -webkit-transform: scale(0.8); 
+      transform: scale(0.8);
+      overflow: hidden; 
+    }
+    
+    .box-image-3 img:hover {
+      -ms-transform: scale(0.8);
+      -webkit-transform: scale(0.8); 
+      transform: scale(0.8); 
+      overflow: hidden;
+    }
+    .box-image-4 img:hover {
+      -ms-transform: scale(0.8);
+      -webkit-transform: scale(0.8); 
+      transform: scale(0.8); 
+      overflow: hidden;
+    }
+    .box-image-5 img:hover {
+      -ms-transform: scale(0.8);
+      -webkit-transform: scale(0.8); 
+      transform: scale(0.8); 
+      overflow: hidden;
+    }
+    .box-image-6 img:hover {
+      -ms-transform: scale(0.8);
+      -webkit-transform: scale(0.8); 
+      transform: scale(0.8); 
+      overflow: hidden;
+    }
+    .box-image-7 img:hover {
+      -ms-transform: scale(0.8);
+      -webkit-transform: scale(0.8); 
+      transform: scale(0.8); 
+      overflow: hidden;
+    }
+
+
+         /************************************************* page1-14 ******************************************/
+
+         .page1-14{
+          width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .page1-14 .page-1lastimg{
+          position: absolute;
+          top: 70%;
+          width: 100%;
+          height: 30vh;
+          overflow: hidden;
+         
+        }
+        .page1-14 .page-1lastimg img{
+          width: 100%;
+          overflow: hidden;
+          opacity: .6;
+         }
+        
+         .page1-14 .degr{
+          position: absolute;
+          top: 2.5%;
+          left: 75%;
+          width: 7%;
+        
+         }
+        
+         .page1-14 h2{
+          font-size: 14px;
+          position: absolute;
+          margin-top: 5%;
+          margin-left: 2%;
+         overflow: hidden;
+         font-family: 'raleway';
+         @media screen and (min-width:769px) and (max-width:900px){
+
+  font-size: 18px;
+}
+        }
+        
+        .page1-14  .page1-14first{
+          position: absolute;
+          margin-top: 10%;
+          margin-left: 5%;
+          width: 100%;
+          height: 50%;
+          overflow: hidden;
+          @media screen and (max-width:500px){
+            margin-top: 8%;
+          }
+         }
+        
+         .page1-14  .page1-14first   .column {
+          float: left;
+          width: 46%;
+          padding: 10px;
+          overflow: hidden;
+          
+        }
+        
+        /* model-viewer {
+          width: 100%;
+          margin-left: 10%;
+          position: relative;
+          overflow: hidden;
+        
+        } */
+        
+        .page1-14  .page1-14first .row:after {
+          content: "";
+          display: table;
+          clear: both;
+          overflow: hidden;
+        }
+        
+        .page1-14  .page1-14first   .column p {
+          width: 60%;
+    line-height: 21px;
+    font-size: 12.5px;
+    text-align: left;
+    position: absolute;
+    overflow: hidden;
+    font-family: 'raleway';
+    margin-top: 10px;
+    @media screen and (max-width:500px){
+      font-size: 11px;
+      line-height: 15px;
+      margin-top: 5px;
+    }
+    @media screen and (min-width:769px) and (max-width:900px){
+
+  font-size: 15.5px;
+  line-height: 29px;
+}
+
+        }
+        
+        @media screen and (max-width: 600px) {
+          .page1-14  .page1-14first .column {
+            width: 100%;
+          }
+        }
+        
+        .page1-14  .page1-14second{
+          position: absolute;
+          margin-top: 43%;
+          width: 95%;
+          overflow: hidden;
+          @media screen and (max-width:500px){
+            margin-top: 57%;
+          }
+          @media screen and (min-width:769px) and (max-width:900px){
+
+  margin-top: 47%;
+}
+        }
+        
+        
+        .page1-14  .page1-14second h3{
+          font-size: 13.5px;
+          margin-left: 5%;
+          font-family: 'raleway';
+          overflow: hidden;
+        }
+        
+        .page1-14 .page1-14second img{
+          width: 7%;
+          overflow: hidden;
+        }
+        
+        .page1-14 .page1-14third{
+          position: absolute;
+          margin-top: 62%;
+          width: 95%;
+          overflow: hidden;
+          @media screen and (max-width:500px){
+            margin-top: 73%;
+          }
+          @media screen and (min-width:769px) and (max-width:900px){
+
+  margin-top: 65%;
+}
+        }
+        
+        
+        .page1-14  .page1-14third h3{
+          font-size: 13.5px;
+             margin-left: 5%;  
+             font-family: 'raleway';
+             overflow: hidden;
+           }
+         
+           .page1-14  .page1-14third img{
+             width: 90%;
+             margin-left: 5%;
+             margin-top: 1%;
+             overflow: hidden;
+           }
+        
+         
+          
+        
+           .page1-14   .page1-14fourth{
+            position: absolute;
+            margin-top: 90%;
+            width: 95%;
+            overflow: hidden;
+            @media screen and (max-width:500px){
+              margin-top: 100%;
+            }
+            @media screen and (min-width:769px) and (max-width:900px){
+
+  margin-top: 93%;
+}
+          }
+        
+          .page1-14 .page1-14fourth h3{
+            font-size: 13.5px;
+               margin-left: 5%;  
+               font-family: 'raleway';
+               overflow: hidden;
+             }
+           
+             .page1-14  .page1-14fourth img{
+               width: 60%;
+               margin-left: 25%;
+               margin-top: 1%;
+               z-index: 3;
+               overflow: hidden;
+             }
+        .border-box-img-14{
+          width: 64%;
+          position: absolute;
+          top: 73%;
+          left: 17%;
+          overflow: hidden;
+        }
+        .border-box-img-14 img{
+          width: 100%;
+          overflow: hidden;
+        }
+             .box-image-14-1{
+              width: 18%;
+              position: absolute;
+              top: 81%;
+              left: 23%;
+              overflow: hidden;
+        
+             }
+
+             .box-image-14-1 img{
+              width: 100%;
+              overflow: hidden;
+             }
+             .box-image-14-2{
+              width: 10%;
+              position: absolute;
+              top: 80%;
+              left: 46%;
+              overflow: hidden;
+             }
+             .box-image-14-2 img{
+              width: 100%;
+              overflow: hidden;
+             }
+             .box-image-14-3{
+              width: 14%;
+              position: absolute;
+              top: 80%;
+              left: 63%;
+              overflow: hidden;
+             }
+             .box-image-14-3 img{
+              width: 100%;
+              overflow: hidden;
+             }
+        
+             .box-image-14-1 img:hover {
+              -ms-transform: scale(0.8);
+              -webkit-transform: scale(0.8); 
+              transform: scale(0.8); 
+              overflow: hidden;
+            }
+            
+            .box-image-14-2 img:hover {
+              -ms-transform: scale(0.8);
+              -webkit-transform: scale(0.8); 
+              transform: scale(0.8); 
+              overflow: hidden;
+            }
+            
+            .box-image-14-3 img:hover {
+              -ms-transform: scale(0.8);
+              -webkit-transform: scale(0.8); 
+              transform: scale(0.8); 
+              overflow: hidden;
+            }
+     
+         /************************************************* page1-15 ******************************************/
+
+         .page1-15{
+          width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .page1-15 .page-1lastimg{
+          position: absolute;
+          top: 70%;
+          width: 100%;
+          height: 30vh;
+          overflow: hidden;
+         
+        }
+        .page1-15 .page-1lastimg img{
+          width: 100%;
+          overflow: hidden;
+          opacity: .6;
+         }
+         .page1-15 .degr{
+          position: absolute;
+          top: 2.5%;
+          left: 75%;
+          width: 7%;
+        
+         }
+        
+         .page1-15 h2{
+          font-size: 14px;
+          position: absolute;
+          margin-top: 5%;
+          margin-left: 2%;
+         overflow: hidden;
+         font-family: 'raleway';
+         @media screen and (min-width:769px) and (max-width:900px){
+
+  font-size: 18px;
+}
+        }
+        
+        .page1-15  .page1-15first{
+          position: absolute;
+          margin-top: 10%;
+          margin-left: 5%;
+          width: 100%;
+          height: 50%;
+          overflow: hidden;
+          @media screen and (max-width:500px){
+            margin-top: 8%;
+          }
+         }
+        
+         .page1-15  .page1-15first   .column {
+          float: left;
+          width: 46%;
+          padding: 10px;
+          overflow: hidden;
+          
+        }
+        
+        /* model-viewer {
+          width: 100%;
+          margin-left: 10%;
+          position: relative;
+          overflow: hidden;
+        
+        } */
+        
+        .page1-15  .page1-15first .row:after {
+          content: "";
+          display: table;
+          clear: both;
+          overflow: hidden;
+        }
+        
+        .page1-15  .page1-15first   .column p {
+          width: 60%;
+    line-height: 21px;
+          font-size: 12px;
+          text-align: left;
+          position: absolute;
+          overflow: hidden;
+          font-family: 'raleway';
+          margin-top: 10px;
+          @media screen and (max-width:500px){
+            font-size: 11px;
+            line-height: 15px;
+          }
+          @media screen and (min-width:769px) and (max-width:900px){
+  font-size: 15.5px;
+  line-height: 28.5px;
+
+}
+        }
+        
+        @media screen and (max-width: 600px) {
+          .page1-15  .page1-15first .column {
+            width: 100%;
+          }
+        }
+        
+        .page1-15  .page1-15second{
+          position: absolute;
+          margin-top: 43%;
+          width: 95%;
+          overflow: hidden;
+          @media screen and (max-width:500px){
+            margin-top: 57.5%;
+          }
+          @media screen and (min-width:769px) and (max-width:900px){
+
+  margin-top: 44%;
+}
+        }
+        
+        
+        .page1-15  .page1-15second h3{
+          font-size: 13.5px;
+          margin-left: 5%;
+          font-family: 'raleway';
+          overflow: hidden;
+        }
+        
+        .page1-15 .page1-15second img{
+          width: 7%;
+          overflow: hidden;
+        }
+        
+        .page1-15 .page1-15third{
+          position: absolute;
+          margin-top: 63%;
+          width: 95%;
+          overflow: hidden;
+          @media screen and (max-width:500px){
+            margin-top: 73.5%;
+          }
+
+        }
+        
+        
+        .page1-15  .page1-15third h3{
+          font-size: 13.5px;
+          margin-left: 5%;  
+             font-family: 'raleway';
+             overflow: hidden;
+           }
+         
+           .page1-15  .page1-15third img{
+             width: 90%;
+             margin-left: 5%;
+             margin-top: 1%;
+             overflow: hidden;
+           }
+        
+         
+          
+        
+           .page1-15   .page1-15fourth{
+            position: absolute;
+            margin-top: 90%;
+            width: 95%;
+            overflow: hidden;
+            @media screen and (max-width:500px){
+              margin-top: 101%;
+            }
+            @media screen and (min-width:769px) and (max-width:900px){
+
+  margin-top: 92%;
+}
+          }
+        
+          .page1-15 .page1-15fourth h3{
+            font-size: 13.5px;
+            margin-left: 5%;  
+               font-family: 'raleway';
+               overflow: hidden;
+             }
+           
+             .page1-15  .page1-15fourth img{
+               width: 60%;
+               margin-left: 25%;
+               margin-top: 1%;
+               z-index: 3;
+               overflow: hidden;
+             }
+             .border-box-img-15{
+              width: 64%;
+              position: absolute;
+              top: 77%;
+              left: 17%;
+              overflow: hidden;
+            }
+            .border-box-img-15 img{
+              width: 100%;
+              overflow: hidden;
+            }
+                 .box-image-15-1{
+                  width: 18%;
+                  position: absolute;
+                  top: 81%;
+                  left: 23%;
+                  overflow: hidden;
+            
+                 }
+    
+                 .box-image-15-1 img{
+                  width: 100%;
+                  overflow: hidden;
+                 }
+                 .box-image-15-2{
+                  width: 10%;
+                  position: absolute;
+                  top: 80%;
+                  left: 46%;
+                  overflow: hidden;
+                 }
+                 .box-image-15-2 img{
+                  width: 100%;
+                  overflow: hidden;
+                 }
+                 .box-image-15-3{
+                  width: 14%;
+                  position: absolute;
+                  top: 80%;
+                  left: 63%;
+                  overflow: hidden;
+                 }
+                 .box-image-15-3 img{
+                  width: 100%;
+                  overflow: hidden;
+                 }
+            
+                 .box-image-15-1 img:hover {
+                  -ms-transform: scale(0.8);
+                  -webkit-transform: scale(0.8); 
+                  transform: scale(0.8); 
+                  overflow: hidden;
+                }
+                
+                .box-image-15-2 img:hover {
+                  -ms-transform: scale(0.8);
+                  -webkit-transform: scale(0.8); 
+                  transform: scale(0.8); 
+                  overflow: hidden;
+                }
+                
+                .box-image-15-3 img:hover {
+                  -ms-transform: scale(0.8);
+                  -webkit-transform: scale(0.8); 
+                  transform: scale(0.8); 
+                  overflow: hidden;
+                }
+/**********************waveAnimation************************/
+           
+     
+  /************************************************* page1-16 ******************************************/
+
+         .page1-16{
+          width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .page1-16 .page-1lastimg{
+          position: absolute;
+          top: 70%;
+          width: 100%;
+          height: 30vh;
+          overflow: hidden;
+         
+        }
+        .page1-16 .degr{
+          position: absolute;
+          top: 2.5%;
+          left: 75%;
+          width: 7%;
+        
+         }
+        
+        .page1-16 .page-1lastimg img{
+          width: 100%;
+          overflow: hidden;
+          opacity: .6;
+         }
+        
+         .page1-16 h2{
+          font-size: 14px;
+    position: absolute;
+    margin-top: 5%;
+    margin-left: 2%;
+         overflow: hidden;
+         font-family: 'raleway';
+         @media screen and (min-width:769px) and (max-width:900px){
+
+  font-size: 18px;
+}
+        }
+        
+        .page1-16  .page1-16first{
+          position: absolute;
+          margin-top: 10%;
+          margin-left: 5%;
+          width: 100%;
+          height: 50%;
+          overflow: hidden;
+         }
+        
+         .page1-16  .page1-16first   .column {
+          float: left;
+          width: 46%;
+          padding: 10px;
+          overflow: hidden;
+          
+        }
+        
+        /* model-viewer {
+          width: 100%;
+          margin-left: 10%;
+          position: relative;
+          overflow: hidden;
+        
+        } */
+        .page-16-img{
+          width: 34%;
+          position: absolute;
+          top: 24%;
+          left: 75%;
+          transform: translate(-50%, -50%);
+          overflow: hidden;
+
+        }
+        
+        .page-16-img img{
+          width: 100%;
+          overflow: hidden;
+        }
+        .page1-16  .page1-16first .row:after {
+          content: "";
+          display: table;
+          clear: both;
+          overflow: hidden;
+        }
+        
+        .page1-16  .page1-16first   .column p {
+          width: 60%;
+    line-height: 17px;
+          font-size: 12px;
+          text-align: left;
+          position: absolute;
+          overflow: hidden;
+          font-family: 'raleway';
+          margin-top: 10px;
+          @media screen and (max-width:500px){
+            font-size: 11px;
+            line-height: 15px;
+          }
+          @media screen and (min-width:769px) and (max-width:900px){
+
+  font-size: 15px;
+  line-height: 28px;
+}
+
+        }
+        
+        @media screen and (max-width: 600px) {
+          .page1-16  .page1-16first .column {
+            width: 100%;
+          }
+        }
+        
+        .page1-16  .page1-16second{
+          position: absolute;
+          margin-top: 38%;
+          width: 95%;
+          overflow: hidden;
+          @media screen and (max-width:500px){
+            margin-top: 45%;
+          }
+        }
+        
+        
+        .page1-16  .page1-16second h3{
+          font-size: 13.5px;
+          margin-left: 5%;
+          font-family: 'raleway';
+          overflow: hidden;
+        }
+        
+        .page1-16 .page1-16second img{
+          width: 7%;
+          overflow: hidden;
+        }
+        
+        .page1-16 .page1-16third{
+          position: absolute;
+          margin-top: 62%;
+          width: 95%;
+          overflow: hidden;
+          @media screen and (max-width:500px){
+            margin-top: 70%;
+          }
+
+        }
+        
+        
+        .page1-16  .page1-16third h3{
+          font-size: 13.5px;
+          margin-left: 5%;  
+             font-family: 'raleway';
+             overflow: hidden;
+           }
+         
+           .page1-16  .page1-16third img{
+             width: 54%;
+             margin-left: 5%;
+             margin-top: 1%;
+             overflow: hidden;
+           }
+        
+         
+          
+        
+           .page1-16   .page1-16fourth{
+            position: absolute;
+            margin-top: 90%;
+            width: 95%;
+            overflow: hidden;
+            
+          }
+        
+          .page1-16 .page1-16fourth h3{
+            font-size: 13.5px;
+            margin-left: 5%;  
+            font-family: 'raleway';
+            overflow: hidden;
+             }
+           
+             .page1-16  .page1-16fourth img{
+               width: 60%;
+               margin-left: 25%;
+               margin-top: 1%;
+               z-index: 3;
+               overflow: hidden;
+             }
+
+             .page1-16four h3{
+              font-size: 15px;
+              position: absolute;
+              top: 56%;
+              left: 64%;
+              font-family: 'raleway';
+              overflow: hidden;
+              @media screen and (max-width:500px){
+                top: 48%;
+              }
+              @media screen and (min-width:769px) and (max-width:900px){
+
+    top: 44.5%;
+}
+             }
+
+             .page1-16four p{
+              width: 27%;
+              line-height: 30px;
+              font-size: 11px;
+              text-align: center;
+              position: absolute;
+              top: 61%;
+              left: 62%;
+              border-style: groove;
+              border-radius: 12px;
+              border-color: black;
+              border-width: 2px;
+              font-family: 'raleway';
+              overflow: hidden;
+              @media screen and (max-width:500px){
+                top: 52%;
+                line-height: 25px;
+                left: 64%;
+              }
+              @media screen and (min-width:769px) and (max-width:900px){
+  top: 48%;
+    font-size: 15px;
+    line-height: 50px;
+}
+             }
+        
+            
+         
+/************************************************* page1-17 ******************************************/
+
+         .page1-17{
+          width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .page1-17 .page-1lastimg{
+          position: absolute;
+          top: 70%;
+          width: 100%;
+          height: 30vh;
+          overflow: hidden;
+         
+        }
+        .page1-17 .page-1lastimg img{
+          width: 100%;
+          overflow: hidden;
+          opacity: .6;
+         }
+
+         .legend-head h2{
+          position: absolute;
+          font-size: 18px;
+          margin-top: 4%;
+          margin-left: 40%;
+          font-family: 'raleway';
+          overflow: hidden;
+         }
+
+         .legend-pic-1 {
+          width: 70%;
+          position: absolute;
+          top: 7%;
+          left: 13%;
+          overflow: hidden;
+         }
+
+
+         .legend-pic-1 a{
+          padding: 2%;
+          overflow: hidden;
+         }
+         .legend-pic-1 img{
+          width: 100%;
+          overflow: hidden;
+    
+         }
+         .legend-img-1 {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          overflow: hidden;
+
+         }
+
+         .legend-pic-2{
+          width: 70%;
+          position: absolute;
+          top: 16%;
+          left: 13%;
+          overflow: hidden;
+         }
+         
+         .legend-pic-1 a{
+          padding: 2%;
+          overflow: hidden;
+         }
+         .legend-pic-2 img{
+          width: 100%;
+          padding: 3%;
+          overflow: hidden;
+         }
+         .legend-img-2{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          overflow: hidden;
+
+         }
+         
+         .legend-pic-2 a{
+          padding: 2%;
+          overflow: hidden;
+         }
+
+         .legend-pic-3{
+          width: 70%;
+          position: absolute;
+          top: 25%;
+          left: 13%;
+          overflow: hidden;
+         }
+         .legend-pic-3 a{
+          padding: 2%;
+          overflow: hidden;
+         }
+         .legend-pic-3 img{
+          width: 100%;
+          padding: 3%;
+          overflow: hidden;
+         }
+         .legend-img-3{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          overflow: hidden;
+
+         }
+
+         .legend-pic-4{
+          width: 70%;
+          position: absolute;
+          top: 35%;
+          left: 13%;
+          overflow: hidden;
+         }
+         .legend-pic-4 a{
+          padding: 2%;
+          overflow: hidden;
+         }
+         .legend-pic-4 img{
+          width: 100%;
+          padding: 2%;
+          overflow: hidden;
+         }
+         .legend-img-4{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          overflow: hidden;
+         }
+
+         .legend-pic-5{
+          width: 70%;
+          position: absolute;
+          top: 45%;
+          left: 13%;
+          overflow: hidden;
+         }
+         .legend-pic-5 a{
+          padding: 2%;
+          overflow: hidden;
+         }
+         .legend-pic-5 img{
+          width: 100%;
+          padding: 2%;
+          overflow: hidden;
+         }
+         .legend-img-5{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          overflow: hidden;
+
+         }
+
+         .legend-pic-6{
+          width: 70%;
+          position: absolute;
+          top: 55%;
+          left: 13%;
+          overflow: hidden;
+         }
+         .legend-pic-6 a{
+          padding: 2%;
+          overflow: hidden;
+         }
+         .legend-pic-6 img{
+          width: 100%;
+          padding: 2%;
+          overflow: hidden;
+         }
+         .legend-img-6{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          overflow: hidden;
+
+         }
+         .legend-pic-7{
+          width: 70%;
+          position: absolute;
+          top: 65%;
+          left: 13%;
+          overflow: hidden;
+         }
+         .legend-pic-7 a{
+          padding: 2%;
+          overflow: hidden;
+         }
+         .legend-pic-7 img{
+          width: 100%;
+          padding: 2%;
+          overflow: hidden;
+         }
+         .legend-img-7{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          overflow: hidden;
+
+         }
+
+         .legend-pic-8{
+          width: 70%;
+          position: absolute;
+          top: 75%;
+          left: 13%;
+          overflow: hidden;
+         }
+         .legend-pic-8 a{
+          padding: 2%;
+          overflow: hidden;
+         }
+         .legend-pic-8 img{
+          width: 100%;
+          padding: 2%;
+          overflow: hidden;
+         }
+         .legend-img-8{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          overflow: hidden;
+         }
+
+         .legend-pic-9{
+          width: 70%;
+          position: absolute;
+          top: 85%;
+          left: 13%;
+          overflow: hidden;
+         }
+         .legend-pic-9 a{
+          padding: 2%;
+          overflow: hidden;
+         }
+         .legend-pic-9 img{
+          width: 100%;
+          padding: 2%;
+          overflow: hidden;
+         }
+         .legend-img-9{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          overflow: hidden;
+         }
+
+
+
+
+/************************************************* page1-18 ******************************************/
+
+         .page1-18{
+          width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #f2e7e7;
+        }
+        
+        .page1-18 .page-1lastimg{
+          position: absolute;
+          top: 70%;
+          width: 100%;
+          height: 30vh;
+          overflow: hidden;
+         
+        }
+        .page1-18 .page-1lastimg img{
+          width: 100%;
+          overflow: hidden;
+          opacity: .6;
+         }
+
+         .last-page-heading h3{
+          position: absolute;
+          font-size: 13px;
+          margin-top: 9%;
+          margin-left: 36.5%;
+          font-family: 'raleway';
+          overflow: hidden;
+          @media screen and (max-width:500px){
+            margin-left: 28%;
+          }
+         }
+         .last-bg-mab-img-1 {
+          width: 86%;
+          position: absolute;
+          top: 31%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          overflow: hidden;
+        }
+
+         .last-bg-mab-img-1 img{
+          width: 100%;
+          overflow: hidden;
+         }
+         .last-bg-mab-img-2 {
+          width: 86%;
+        position: absolute;
+          top: 13.5%;
+         left: 7%;
+          overflow: hidden;
+          @media screen and (max-width:500px){
+            top: 16%;
+          }
+          @media screen and (min-width:410px) and (max-width:500px) {
+            top: 15.5% !important;
+          }
+          @media screen and (min-width:769px) and (max-width:900px){
+
+            top: 15%;
+          }
+          @media only screen and (min-width:767px) and (max-width:768px){
+            top: 15.5%;
+          }
+        }
+
+         .last-bg-mab-img-2 img{
+          width: 100%;
+          overflow: hidden;
+         }
+
+          .blink {
+    animation: blinker 1s linear infinite;
+    overflow: hidden;
+  }
+
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+      overflow: hidden;
+    }
+  }
+
+  .last-page-logo {
+    width: 100%;
+  }
+  .last-page-logo img{
+    width: 20%;
+    position: absolute;
+    top: 54%;
+    left: 39%;
+  }
+
+  .contact-details h3{
+    font-size: 17px;
+    position: absolute;
+    bottom: 32%;
+    left: 40%;
+    font-family: 'raleway';
+    overflow: hidden;
+  }
+  .contact-details p{
+    font-size: 12px;
+    position: absolute;
+    bottom: 15%;
+    left: 25%;
+    line-height: 17px;
+    font-family: 'raleway';
+    overflow: hidden;
+    text-align: center;
+    @media screen and (min-width:375px) and (max-width:391px) {
+      left: 12% !important;
+    }
+    @media screen and (max-width:500px){
+      left: 10%;
+    }
+    @media screen and (min-width:410px) and (max-width:500px) {
+      left: 16%;
+    }
+
+  }
+ .last-social-icon{
+  position: absolute;
+  top: 91%;
+  left: 18%;
+  width: 60%;
+  color: black;
+  @media screen and (max-width:500px){
+    width: 65%;
+    left: 20%;
+  }
+  @media screen and (min-width:410px) and (max-width:500px) {
+    left: 16% !important;
+  }
+
+ }
+
+ .pf-control-bar-button-1 {
+  float: left;
+  margin-top: 10px;
+  height: 26px;
+  padding-left: 10%;
+  color: black;
+  overflow: hidden;
+}
+
+  /***********************************************************Footer********************************************/
+  
+.footer{
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  z-index: 999;
+  }
+
+  .lefticon{
+    float: left;
+    width: 300px;
+    margin-left: 32px;
+    overflow: hidden;
+    @media screen and (max-width:360px){
+      position: relative;
+      left: 30px;
+      top: 20px;
+    }
+    @media screen and (min-width:366px) and (max-width:500px) {
+      position: relative;
+      left: 65px;
+      top: 20px;
+    }
+  }
+
+  .pf-control-bar-button {
+    float: left;
+    margin-top: 10px;
+    height: 26px;
+    padding-left: 10%;
+    color: #808080;
+    overflow: hidden;
+}
+
+.pf-control-bar-button:hover{
+  color: #000;
+  overflow: hidden;
+}
+
+  .centericon{
+    position: relative;
+    top: 0px;
+    left: auto;
+    right: auto;
+    margin: 0px auto;
+    width: 420px;
+    display: none;
+    overflow: hidden;
+  
+  }
+
+  .pf-control-bar-button1 {
+  
+    height: 26px;
+    padding-right: 10%;
+    color: #808080;
+    margin-top: 15px;
+    overflow: hidden;
+  }
+  
+  .pf-control-bar-button1:hover{
+  color: #000;
+  overflow: hidden;
+  }
+
+ #pageFld{
+  position: absolute;
+  margin: 0px auto;
+  border: none; 
+  background: none;
+  outline: none; 
+  appearance: none; 
+  -moz-appearance: none; 
+  -webkit-appearance: none;
+  color: #808080;
+  font-size: 20px;
+  overflow: hidden;
+}
+
+input[type='number']::-webkit-inner-spin-button, 
+input[type='number']::-webkit-outer-spin-button { 
+    -webkit-appearance: none;    
+    appearance: none;
+    margin: 0;  
+    overflow: hidden;
+}
+
+ .centericon p{ 
+  position: relative;
+    font-size: 20px;
+    text-align: center;
+    color: #4e4e4e9f;
+    width: 150px;
+    text-align: center;
+    height: 26px;
+    font-family: 'raleway';
+    overflow: visible;
+    margin-left: 25%;
+    overflow: hidden;
+  }
+  
+.righticon{
+  float: right;
+    width: 200px;
+    margin-right: 32px;
+    overflow: hidden;
+    @media screen and (max-width:360px) {
+      position: relative;
+      top: 25px;
+      right: 25px;
+      /* float: none; */
+    }
+    @media screen and (min-width:366px) and (max-width:500px) {
+      position: relative;
+      top: 25px;
+      right: 25px;
+      /* float: none; */
+    }
+}
+
+.trans{
+  height: 100%;
+  width: 100%;
+  opacity: 0.5;
+  overflow: hidden;
+}
+
+
+
+/*******************share-btn ************************/
+.container {
+  margin: 0 auto;
+  width: 300px;
+  overflow: hidden;
+}
+
+.share-container {
+  border-radius: 15px;
+  display: flex;
+  padding-right: 0;
+  text-align: center;
+  transition: width 0.5s;
+  width: 80px;
+  /* background-color: #eeeeee; */
+  overflow: hidden;
+  
+}
+
+.share-container.active {
+  width: 100%;
+  overflow: hidden;
+}
+
+.share-btn {
+  position: absolute;
+  top: 0px;
+  float: left;
+  overflow: hidden;
+
+  /* @media screen and (max-width:500px){
+    top: 34.7px;
+  } */
+}
+
+.share-btn:hover {
+  color: #343a40;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.share-btn.active {
+  color: #343a40;
+  overflow: hidden;
+}
+
+.share-url {
+  width: 0;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 12px;
+  color: #eeeeee;
+  transition: all 0.2s;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  overflow: hidden;
+}
+
+.share-url.active {
+  width: 100%;
+  color: #343a40;
+  padding: 6px;
+  overflow: hidden;
+}
+
+/*fade*/
+.animate {
+  opacity: 0;
+  transition: all 1s;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;  
+  animation-fill-mode: both;
+  overflow: hidden;
+}
+
+.animate.active {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-50%);
+  overflow: hidden;
+}
+
+.slide-in-down {
+  transform: translateY(-100%) translateX(-50%);
+  overflow: hidden;
+}
+
+/*notification*/
+.notification-button {
+  position: fixed;
+  top: 40px;
+  left: 50%;
+  padding: 10px 20px;
+  background: #343a40;
+  color: #eeeeee;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 800;
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+/*******************share-btn ended************************/
+.productImage img#largeImage {
+  height: 500px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5), 0px -2px 5px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+#description {
+  padding: 5px;
+  margin: 10px 0;
+  color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+#thumbs img  {
+  height: 26px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.centericon-1{
+  position: relative;
+  top: 0px;
+  left: -28px;
+  right: auto;
+  margin: 0px auto;
+  overflow: hidden;
+@media screen and (max-width:365px) {
+  width: 100%;
+  margin-bottom: 5%;
+  margin-left: 7.5%;
+}
+@media screen and (min-width:366px) and (max-width:500px)  {
+  width: 100%;
+  margin-bottom: 3%;
+  margin-left: 7.5%;
+}
+} 
+.digital-catalog{
+  visibility: visible;
+}
+
+@media screen and (max-width:900px) {
+  .catalog-app{
+    display: none !important;
+}
+body{
+  overflow-y: scroll !important;
+}
+}
+
+  /********** lightbox *******/
+  
+  .lightbox-target {
+    position: fixed;
+    top: -100%;
+    width: 100%;
+    background: rgb(251 251 251 / 85%);
+    width: 100%;
+    opacity: 0;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+    overflow: hidden;
+    z-index: 5;
+    display: block;
+
+  }
+  
+  
+
+  
+  .lightbox-target img {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 0%;
+    max-width: 0%;
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    overflow: hidden;
+  }
+  .lightbox-target video {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 0%;
+    max-width: 0%;
+    width: 80%;
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    overflow: hidden;
+  }
+  
+  .lightbox-target model-viewer {
+    margin: auto;
+    position: absolute;
+    /* top: 0; */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 0%;
+    max-width: 0%;
+  -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    
+  }
+  
+  a.lightbox-close {
+  display: block;
+  width:50px;
+  height:50px;
+  box-sizing: border-box;
+  background: white;
+  color: black;
+  text-decoration: none;
+  position: absolute;
+  top: -80px;
+  right: 0;
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+  }
+  
+  
+  a.lightbox-close:before {
+  content: "";
+  display: block;
+  height: 30px;
+  width: 1px;
+  background: black;
+  position: absolute;
+  left: 26px;
+  top:10px;
+  -webkit-transform:rotate(45deg);
+  -moz-transform:rotate(45deg);
+  -o-transform:rotate(45deg);
+  transform:rotate(45deg);
+  }
+  
+  
+  a.lightbox-close:after {
+  content: "";
+  display: block;
+  height: 30px;
+  width: 1px;
+  background: black;
+  position: absolute;
+  left: 26px;
+  top:10px;
+  -webkit-transform:rotate(-45deg);
+  -moz-transform:rotate(-45deg);
+  -o-transform:rotate(-45deg);
+  transform:rotate(-45deg);
+  }
+  .lightbox-target:target {
+    opacity: 1;
+    top: 0;
+    bottom: 0;
+    overflow: scroll;
+    overflow: hidden;
+  }
+  
+  .lightbox-target:target img {
+    max-height: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  
+.lightbox-target:target model-viewer {
+    max-height: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+  .lightbox-target:target video {
+    max-height: 80%;
+    max-width: 80%;
+    overflow: hidden;
+  }
+  
+  
+  .lightbox-target:target a.lightbox-close {
+    top: 0;
+    overflow: hidden;
+  }
+  
+
+
+
+
+  .lightbox-target1 {
+    position: fixed;
+    top: -100%;
+    width: 100%;
+    background: rgba(65, 65, 65, 0.85);
+    width: 100%;
+    opacity: 0;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+    overflow: hidden;
+    z-index: 5;
+    zoom: none;
+    display: block;
+  }
+  
+  
+  .lightbox-target1 img {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 0%;
+    max-width: 0%;
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    overflow: hidden;
+  }
+  
+
+  .lightbox-target1 video {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 0%;
+    max-width: 0%;
+    width: 80%;
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    overflow: hidden;
+  }
+  
+  .lightbox-target1 model-viewer {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 0%;
+    max-width: 0%;
+  -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    overflow: hidden;
+  }
+  
+  a.lightbox-close {
+  display: block;
+  width:53px;
+  height:50px;
+  box-sizing: border-box;
+  background: white;
+  color: black;
+  text-decoration: none;
+  position: absolute;
+  top: -80px;
+  right: 0;
+    
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+  }
+  
+  
+  a.lightbox-close:before {
+  content: "";
+  display: block;
+  height: 30px;
+  width: 3px;
+  background: rgb(255, 255, 255);
+  position: absolute;
+  left: 26px;
+  top:10px;
+  -webkit-transform:rotate(45deg);
+  -moz-transform:rotate(45deg);
+  -o-transform:rotate(45deg);
+  transform:rotate(45deg);
+  }
+  
+  
+  a.lightbox-close:after {
+  content: "";
+  display: block;
+  height: 30px;
+  width: 3px;
+  background: rgb(255, 255, 255);
+  position: absolute;
+  left: 26px;
+  top:10px;
+  -webkit-transform:rotate(-45deg);
+  -moz-transform:rotate(-45deg);
+  -o-transform:rotate(-45deg);
+  transform:rotate(-45deg);
+  }
+  .lightbox-target1:target {
+    opacity: 1;
+    top: 0;
+    bottom: 0;
+    overflow: scroll;
+    overflow: hidden;
+  }
+  
+  .lightbox-target1:target img {
+    max-height: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  
+  .lightbox-target1:target model-viewer {
+    max-height: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  .lightbox-target1:target video {
+    max-height: 80%;
+    max-width: 80%;
+    overflow: hidden;
+  }
+  
+  
+  .lightbox-target1:target a.lightbox-close {
+    top: 0;
+    overflow: hidden;
+  }
+  
+
+  
+  .lightbox-target .deg img{
+    width: 5%;
+    position: absolute;
+    top: -80%;
+  }
+  .lightbox-target1 .deg img{
+    width: 5%;
+    position: absolute;
+    top: -80%;
+  }
+
+  @media screen and (max-width: 500px) {
+
+   .lightbox-target .deg img{
+      width: 15%;
+      height: auto;
+      overflow: hidden;
+    }
+    
+  }
+  
+
+
+
+  /*************************** Mobile **************************/
+
+.non-catalog2{
+  width: 90%;
+  height: 100%;
+  overflow-y: scroll !important;
+  display: block;
+  margin: auto;
+  transform: translateY(15px);
+  /* background-color: #Fff; */
+}
+
+@media screen and (min-width:900px) {
+  .non-catalog2{
+    display: none !important;
+  }
+}
+.npage{
+  position: relative;
+    padding: 0; /* Reset padding */
+    margin-top: 2%;
+  }
+
+.npage img{
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+}
+.model-icon2{
+  position: absolute;
+  top: 8%;
+  left: 69%;
+z-index: 5;
+border: none;  
+}
+
+
+.img-icon-2{
+  position: absolute;
+
+  left: 79%;
+  top: 84%;
+  z-index: 100;
+}
+.model-icon3{
+  position: absolute;
+  top: 8%;
+  left: 69%;
+z-index: 5;
+
+}
+#button-container1-2 {
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  width: 84%;
+  position: absolute;
+  top: 25%;
+  left: 3%;
+}
+.npage .water-img-icon-p-3-1{
+  top: 25%;
+}
+.npage .water-img-icon-p-3-2{
+  top: 25%;
+  left: 87%;
+}
+.npage .model-icon4{
+  position: absolute;
+  top: 8%;
+  left: 69%;
+z-index: 5;
+}
+.npage .water-img-icon-p-5-1{
+  top: 25%;
+}
+.npage .water-img-icon-p-5-2{
+  top: 25%;
+  left: 87%;
+}
+.npage .water-img-icon-p-5-3{
+  top: 55%;
+}
+.model-icon5{
+  position: absolute;
+  top: 8%;
+  left: 69%;
+z-index: 5;
+}
+.npage .water-img-icon-p-6-1{
+  top: 85%;
+}
+.npage .water-img-icon-p-6-2{
+  top: 85%;
+  left: 85%;
+}
+.model-icon6{
+  position: absolute;
+  top: 8%;
+  left: 69%;
+z-index: 5;
+}
+.npage .pf-control-bar-button3 i{
+  width: 180px;
+  height: 200px;
+}
+
+.npage .pf-control-bar-button3 i :hover{
+    color: transparent;
+  
+    background-color: transparent;
+    
+}
+.npage .pf-control-bar-button4 i{
+
+  width: 307px;
+  height: 149px;
+}
+.npage .degr{
+  position: absolute;
+  top: 2.5%;
+  left: 77%;
+  width: 7%;
+}
+.npage .degr1 {
+  position: absolute;
+  top: 46.5%;
+  left: 77%;
+  width: 7%;
+}
+.npage .pf-control-bar-button5 i{
+font-size: 20px !important;
+}
+.model-icon-7{
+  position: absolute;
+  top: 7%;
+    left: 69%;
+    z-index: 5;
+}
+.model-icon8{
+  position: absolute;
+  top: 8%;
+  left: 69%;
+z-index: 5;
+}
+.npage .water-img-icon-p-10-1{
+  position: absolute;
+  top: 85%;
+  left: 28%;
+}
+.npage .water-img-icon-p-10-2{
+  position: absolute;
+  top: 85%;
+  left: 59%;
+}
+.model-icon9{
+  position: absolute;
+  top: 8%;
+  left: 69%;
+z-index: 5;
+}
+.npage .water-img-icon-p-11-1{
+  position: absolute;
+  top: 82%;
+  left: 27%;
+}
+.npage .water-img-icon-p-11-2{
+  position: absolute;
+  top: 82%;
+  left: 58.5%;
+}
+.model-icon10{
+  position: absolute;
+  top: 8%;
+  left: 69%;
+z-index: 5;
+}
+.model-icon10{
+  position: absolute;
+  top: -8%;
+  left: 69%;
+z-index: 5;
+}
+.model-icon11 {
+  position: absolute;
+  top: 42%;
+  left: 60%;
+  z-index: 5;
+}
+.model-icon-11{
+  position: absolute;
+  top: 8%;
+  left: 69%;
+z-index: 5;
+}
+.model-icon-12{
+  position: absolute;
+  top: 8%;
+  left: 69%;
+z-index: 5;
+}
+.model-icon-13{
+  position: absolute;
+  top: 8%;
+  left: 69%;
+z-index: 5;
+}
+.model-icon-14{
+  position: absolute;
+  top: 6%;
+  left: 51%;
+  z-index: 5;
+}
+
+.npage .row{
+  justify-content: center;
+ 
+}
+
+.npage .second{
+  position: absolute;
+  top: 20%;
+  left: 5%;
+}
+.second .btn1{
+
+}
+.npage .col-4 a{
+  height: auto;
+  width: 100px;
+  @media screen and (min-width:500px) and (max-width:899px) {
+    height: 150px; 
+    width: 150px;
+  }
+}
+.col-4 img{
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+}
+/* .bottom-imgae-non{
+  position: relative;
+  bottom: 150px;
+} */
+.nlegendpage{
+  /* position: relative; */
+  /* height: 110%; */
+  background-color: #fff;
+}
+
+.last-row{
+margin-bottom: 3.5rem!important;
+}
+.text-center {
+  text-align: center;
+}
+
+.my-3 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.row2 {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -0.75rem;
+  margin-bottom: -0.75rem;
+  justify-content: space-around;
+  z-index: 99999;
+}
+
+.my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  z-index: 99999;
+}
+
+.col-4 {
+  flex: 0 0 33.333333%;
+  max-width: 21.333333%;
+  z-index: 99999;
+}
+
+.bottom-image-non{
+  position: absolute;
+  top: 75%;
+  z-index: 1;
+}
+
+.position-relative {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+/* .position-relative model-viewer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+} */
+
+ a.lightbox-close {
+  background: #023b7c;
+    border-radius: 10px;
+    top: 1.5% !important;
+    right: 1%;
+ }
+
+  a.lightbox-close:hover {
+  background: rgb(136, 136, 136);
+  
+  
+ }
