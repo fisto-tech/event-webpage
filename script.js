@@ -6,19 +6,29 @@
   'use strict';
 
   /* ── Preloader ───────────────────────────────── */
+  const PRELOADER_SESSION_KEY = 'fistoPreloaderShown';
   const preloader = document.getElementById('preloader');
+  const hasSeenPreloader = sessionStorage.getItem(PRELOADER_SESSION_KEY) === 'true';
+
   const finishPreload = () => {
     if (!preloader) return;
     document.body.classList.add('is-loaded');
     document.body.classList.remove('is-loading');
+    sessionStorage.setItem(PRELOADER_SESSION_KEY, 'true');
     // Allow CSS transition to finish, then remove from DOM
     window.setTimeout(() => preloader.remove(), 550);
   };
 
-  // Hide loader when everything is ready
-  window.addEventListener('load', finishPreload, { once: true });
-  // Failsafe (in case some external resource hangs)
-  window.setTimeout(finishPreload, 5000);
+  if (hasSeenPreloader) {
+    if (preloader) preloader.remove();
+    document.body.classList.add('is-loaded');
+    document.body.classList.remove('is-loading');
+  } else {
+    // Hide loader when everything is ready
+    window.addEventListener('load', finishPreload, { once: true });
+    // Failsafe (in case some external resource hangs)
+    window.setTimeout(finishPreload, 5000);
+  }
 
   /* ── Navbar scroll-glass effect ───────────────── */
   const navbar = document.getElementById('navbar');
@@ -63,6 +73,25 @@
 
         if (!els.length) return;
 
+        // If the user refreshes mid-scroll, some elements might be in view already.
+        // Because we set them to the "hidden" state first, they can remain blank if
+        // no ScrollTrigger callback fires immediately. We therefore "unhide" anything
+        // that's currently in the viewport right after wiring triggers.
+        const isElementInView = (el) => {
+          try {
+            // Prefer ScrollTrigger's helper if available
+            if (window.ScrollTrigger?.isInViewport) return window.ScrollTrigger.isInViewport(el, 0.15);
+          } catch (_) {}
+          const r = el.getBoundingClientRect();
+          return r.bottom > 0 && r.top < window.innerHeight * 0.92;
+        };
+
+        const toSetVars = (() => {
+          // Strip tween-only props; gsap.set should only receive CSS/transform props.
+          const { duration, stagger, onComplete, overwrite, ...rest } = (toVars || {});
+          return rest;
+        })();
+
         // Hint the browser for better performance during animations
         window.gsap.set(els, { willChange: 'transform, opacity', force3D: true });
 
@@ -80,6 +109,15 @@
               stagger: { each: 0.085, from: 'start' },
               onComplete: () => window.gsap.set(batch, { willChange: 'auto' })
             }),
+          // Critical for "refresh mid-scroll" and for scrolling up into a section:
+          // ensure items reveal when entering from the bottom as well.
+          onEnterBack: (batch) =>
+            window.gsap.to(batch, {
+              ...toVars,
+              overwrite: 'auto',
+              stagger: { each: 0.085, from: 'end' },
+              onComplete: () => window.gsap.set(batch, { willChange: 'auto' })
+            }),
           onLeaveBack: (batch) =>
             window.gsap.to(batch, {
               ...fromVars,
@@ -91,6 +129,11 @@
           // Performance: limit how often batch recalculates
           interval: 0.2,
           batchMax: 14
+        });
+
+        // Immediately reveal anything that's already visible (fixes "blank sections" on refresh mid-scroll)
+        els.forEach((el) => {
+          if (isElementInView(el)) window.gsap.set(el, toSetVars);
         });
       };
 
