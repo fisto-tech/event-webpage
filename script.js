@@ -58,17 +58,28 @@
       window.gsap.defaults({ ease: 'power3.out' });
       window.gsap.ticker.lagSmoothing(500, 16);
       window.ScrollTrigger.config({
-        limitCallbacks: true,
+        // When true, ScrollTrigger can skip callbacks during fast scrolling.
+        // This project needs consistent enter/leave behavior (no blank sections),
+        // so keep it disabled.
+        limitCallbacks: false,
         ignoreMobileResize: true
       });
 
       // Helper: batched reveal that reverses immediately on scroll-up
+      // IMPORTANT: prevent the same element from being registered multiple times
+      // across different selector groups (this causes flicker + "blank on refresh").
+      const processed = new WeakSet();
+
       const batchReveal = (targets, fromVars, toVars) => {
         const els = window.gsap.utils.toArray(targets).filter((el) => {
           // Don't hide/animate the hero content by default (hero has its own intro)
           if (el.closest && el.closest('#hero')) return false;
           // Skip if element is not in layout flow
-          return el && el.offsetParent !== null;
+          if (!el || el.offsetParent === null) return false;
+          // Avoid double registering the same element in multiple batches
+          if (processed.has(el)) return false;
+          processed.add(el);
+          return true;
         });
 
         if (!els.length) return;
@@ -218,7 +229,32 @@
         });
       }
 
-      window.addEventListener('load', () => window.ScrollTrigger.refresh(), { once: true });
+      // Refresh strategy:
+      // - load: after images are decoded and layout stabilizes
+      // - fonts: after font swap/metrics changes
+      // - pageshow: bfcache restores can break trigger positions
+      // - a small delayed refresh to catch late layout shifts
+      const refreshScrollTriggers = () => {
+        try {
+          window.ScrollTrigger.sort();
+          window.ScrollTrigger.refresh(true);
+          window.ScrollTrigger.update();
+        } catch (_) {}
+      };
+
+      window.addEventListener('load', () => {
+        refreshScrollTriggers();
+        window.setTimeout(refreshScrollTriggers, 250);
+      }, { once: true });
+
+      window.addEventListener('pageshow', () => {
+        refreshScrollTriggers();
+        window.setTimeout(refreshScrollTriggers, 250);
+      });
+
+      if (document.fonts?.ready) {
+        document.fonts.ready.then(() => refreshScrollTriggers()).catch(() => {});
+      }
     }
   } catch (_) {
     // Fail silently if GSAP isn't available
